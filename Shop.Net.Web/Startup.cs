@@ -1,14 +1,18 @@
 ﻿using Microsoft.Owin;
-using Owin;
 
-[assembly: OwinStartupAttribute(typeof(Shop.Net.Web.Startup))]
+using Shop.Net.Web;
+
+[assembly: OwinStartup(typeof(Startup))]
+
 namespace Shop.Net.Web
 {
+    using Owin;
+
     public partial class Startup
     {
         public void Configuration(IAppBuilder app)
         {
-            ConfigureAuth(app);
+            this.ConfigureAuth(app);
         }
     }
 }

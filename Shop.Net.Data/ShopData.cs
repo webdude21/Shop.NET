@@ -7,18 +7,13 @@
     using Shop.Net.Data.Repositories;
     using Shop.Net.Model;
 
-    internal class ShopData
+    public class ShopData : IShopData
     {
         private readonly IDbContext context;
 
         private readonly IDictionary<Type, object> repositories;
 
-        public LaptopSystemData()
-            : this(new ShopDbContext())
-        {
-        }
-
-        public LaptopSystemData(IDbContext context)
+        public ShopData(IDbContext context)
         {
             this.context = context;
             this.repositories = new Dictionary<Type, object>();

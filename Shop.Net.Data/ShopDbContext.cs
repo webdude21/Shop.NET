@@ -14,6 +14,7 @@
         {
             Database.SetInitializer(new MigrateDatabaseToLatestVersion<ShopDbContext, Configuration>());
         }
+
         public static ShopDbContext Create()
         {
             return new ShopDbContext();
