@@ -1,11 +1,3 @@
-﻿using System.Data.Entity;
-using System.Security.Claims;
-using System.Threading.Tasks;
-using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.EntityFramework;
-
-namespace Shop.Net.Web.Models
+﻿namespace Shop.Net.Web.Models
 {
- 
-
 }

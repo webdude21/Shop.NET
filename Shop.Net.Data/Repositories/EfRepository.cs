@@ -5,7 +5,8 @@
 
     using Shop.Net.Data.Contracts;
 
-    public class EfRepository<T> : IRepository<T> where T : class
+    public class EfRepository<T> : IRepository<T>
+        where T : class
     {
         private readonly IDbContext context;
 

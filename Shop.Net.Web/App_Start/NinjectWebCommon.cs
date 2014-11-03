@@ -17,7 +17,6 @@ namespace Shop.Net.Web
 
     using Shop.Net.Data;
     using Shop.Net.Data.Contracts;
-    using Shop.Net.Data.Repositories;
 
     public static class NinjectWebCommon
     {
@@ -69,8 +68,7 @@ namespace Shop.Net.Web
         /// <param name="kernel">The kernel.</param>
         private static void RegisterServices(IKernel kernel)
         {
-            kernel.Bind<IDbContext>().To<ShopDbContext>();
-            kernel.Bind<IShopData>().To<ShopData>();
+            kernel.Bind<IShopData>().To<ShopData>().WithConstructorArgument("context", c => new ShopDbContext());
         }
     }
 }

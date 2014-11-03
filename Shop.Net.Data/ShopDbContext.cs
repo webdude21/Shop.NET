@@ -10,19 +10,20 @@
 
     public class ShopDbContext : IdentityDbContext<ApplicationUser>, IDbContext
     {
-        public ShopDbContext() : base("DefaultConnection", false)
+        public ShopDbContext()
+            : base("DefaultConnection", false)
         {
             Database.SetInitializer(new MigrateDatabaseToLatestVersion<ShopDbContext, Configuration>());
-        }
-
-        public static ShopDbContext Create()
-        {
-            return new ShopDbContext();
         }
 
         public new IDbSet<T> Set<T>() where T : class
         {
             return base.Set<T>();
+        }
+
+        public static ShopDbContext Create()
+        {
+            return new ShopDbContext();
         }
 
         public new void SaveChanges()
