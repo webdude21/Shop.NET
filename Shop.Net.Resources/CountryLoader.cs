@@ -1,35 +1,35 @@
 ﻿namespace Shop.Net.Resources
 {
+    using System;
     using System.Collections.Generic;
-    using System.IO;
+
+    using Shop.Net.Resources.Properties;
 
     public class CountryLoader
     {
-        private readonly string countryFilePath;
+        private readonly string countryList;
 
-        public CountryLoader(string countryFilePath)
+        public CountryLoader(string countryList)
         {
-            this.countryFilePath = countryFilePath;
+            this.countryList = countryList;
+        }
+
+        public CountryLoader()
+            : this(Resources.Countries)
+        {
         }
 
         public Dictionary<string, string> RetrieveCountries()
         {
-            var textFileStream = new StreamReader(this.countryFilePath);
+            var countries = this.countryList.Split(new[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries);
             var countriesDict = new Dictionary<string, string>();
 
-            using (textFileStream)
+            foreach (var country in countries)
             {
-                var currentCountry = textFileStream.ReadLine();
-
-                while (currentCountry != null)
+                var keyValuePair = country.Split(';');
+                if (!countriesDict.ContainsKey(keyValuePair[0]))
                 {
-                    var keyValuePair = currentCountry.Split(';');
-                    if (!countriesDict.ContainsKey(keyValuePair[0]))
-                    {
-                        countriesDict.Add(keyValuePair[0], keyValuePair[1]);
-                    }
-
-                    currentCountry = textFileStream.ReadLine();
+                    countriesDict.Add(keyValuePair[0], keyValuePair[1]);
                 }
             }
 

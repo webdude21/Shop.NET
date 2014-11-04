@@ -1,6 +1,9 @@
 namespace Shop.Net.Data.Migrations
 {
     using System.Data.Entity.Migrations;
+    using System.Linq;
+
+    using Shop.Net.Resources;
 
     internal sealed class Configuration : DbMigrationsConfiguration<ShopDbContext>
     {
@@ -12,7 +15,9 @@ namespace Shop.Net.Data.Migrations
 
         protected override void Seed(ShopDbContext context)
         {
-
+            var seeder = new Seeder(context, new CountryLoader());
+            seeder.SeedRolesAndUsers();
+            seeder.SeedCountries();
         }
     }
 }

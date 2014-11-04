@@ -1,4 +1,4 @@
-﻿namespace Shop.Net.Model
+﻿namespace Shop.Net.Model.Shipping
 {
     using System.ComponentModel.DataAnnotations;
 
@@ -24,8 +24,9 @@
         [MaxLength(DbStringMaxLength)]
         public string Company { get; set; }
 
-        [MaxLength(DbStringMaxLength)]
-        public string Country { get; set; }
+        public virtual Country Country{ get; set; }
+
+        public int CountryId { get; set; }
 
         [MaxLength(DbStringMaxLength)]
         public string StateProvince { get; set; }

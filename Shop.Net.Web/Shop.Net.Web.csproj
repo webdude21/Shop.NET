@@ -245,6 +245,9 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Administration\Controllers\" />
+    <Folder Include="Administration\Models\" />
+    <Folder Include="Administration\Views\" />
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>

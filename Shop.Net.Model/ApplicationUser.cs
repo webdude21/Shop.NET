@@ -7,6 +7,8 @@
     using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.Identity.EntityFramework;
 
+    using Shop.Net.Model.Shipping;
+
     public class ApplicationUser : IdentityUser
     {
         private ICollection<ContactInformation> adresses;

@@ -2,6 +2,8 @@
 {
     using System.ComponentModel.DataAnnotations;
 
+    using Shop.Net.Model.Shipping;
+
     public class Manufacturer
     {
         private const int DbStringMaxLength = 400;

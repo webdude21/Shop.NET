@@ -14,13 +14,15 @@
 
         private ICollection<Category> categories;
 
-        private ICollection<Review> reviews;
+        private ICollection<Image> images;
 
+        private ICollection<Review> reviews;
 
         public Product()
         {
             this.categories = new HashSet<Category>();
             this.reviews = new HashSet<Review>();
+            this.images = new HashSet<Image>();
         }
 
         public int Id { get; set; }
@@ -50,9 +52,6 @@
 
         [Column(TypeName = "Money")]
         public decimal ProductCost { get; set; }
-
-        [Column(TypeName = "Money")]
-        public decimal SpecialPrice { get; set; }
 
         public double? Weight { get; set; }
 
@@ -97,10 +96,26 @@
             {
                 return this.reviews;
             }
+
             set
             {
                 this.reviews = value;
             }
         }
+
+        public virtual ICollection<Image> Images
+        {
+            get
+            {
+                return this.images;
+            }
+
+            set
+            {
+                this.images = value;
+            }
+        }
+
+        public virtual Manufacturer Manufacturer { get; set; }
     }
 }
