@@ -10,12 +10,13 @@
     using Microsoft.Owin.Security;
 
     using Shop.Net.Model;
-    using Shop.Net.Web.Models;
+    using Shop.Net.Web.ViewModels;
+    using Shop.Net.Web.ViewModels.Account;
 
     [Authorize]
     public class ManageController : Controller
     {
-        private ApplicationUserManager _userManager;
+        private ApplicationUserManager userManager;
 
         public ManageController()
         {
@@ -30,12 +31,12 @@
         {
             get
             {
-                return this._userManager ?? this.HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
+                return this.userManager ?? this.HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
             }
 
             private set
             {
-                this._userManager = value;
+                this.userManager = value;
             }
         }
 
@@ -306,7 +307,9 @@
         {
             this.ViewBag.StatusMessage = message == ManageMessageId.RemoveLoginSuccess
                                              ? "The external login was removed."
-                                             : message == ManageMessageId.Error ? "An error has occurred." : string.Empty;
+                                             : message == ManageMessageId.Error
+                                                   ? "An error has occurred."
+                                                   : string.Empty;
             var user = await this.UserManager.FindByIdAsync(this.User.Identity.GetUserId());
             if (user == null)
             {

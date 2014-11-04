@@ -6,6 +6,7 @@
     using Shop.Net.Data.Contracts;
     using Shop.Net.Data.Repositories;
     using Shop.Net.Model;
+    using Shop.Net.Model.Catalog;
 
     public class ShopData : IShopData
     {
@@ -24,6 +25,14 @@
             get
             {
                 return this.GetRepository<ApplicationUser>();
+            }
+        }
+
+        public IRepository<Product> Products
+        {
+            get
+            {
+                return this.GetRepository<Product>();
             }
         }
 
