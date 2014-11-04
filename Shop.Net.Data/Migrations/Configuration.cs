@@ -12,6 +12,7 @@ namespace Shop.Net.Data.Migrations
 
         protected override void Seed(ShopDbContext context)
         {
+
         }
     }
 }

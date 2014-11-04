@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{C806643D-CDE9-4498-BAF0-3383C2359B86}</ProjectGuid>
+    <ProjectGuid>{C4C4F305-65B1-4E69-93CB-19FDDF8DBE81}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Shop.Net.Model</RootNamespace>
-    <AssemblyName>Shop.Net.Model</AssemblyName>
+    <RootNamespace>Shop.Net.Resources</RootNamespace>
+    <AssemblyName>Shop.Net.Resources</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -30,20 +30,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="EntityFramework">
-      <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.dll</HintPath>
-    </Reference>
-    <Reference Include="EntityFramework.SqlServer">
-      <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.AspNet.Identity.Core">
-      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.1.0\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.AspNet.Identity.EntityFramework">
-      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.1.0\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
-    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -52,28 +39,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ApplicationUser.cs" />
-    <Compile Include="Catalog\Category.cs" />
-    <Compile Include="Catalog\Manufacturer.cs" />
-    <Compile Include="Marketing\Comment.cs" />
-    <Compile Include="Catalog\Product.cs" />
-    <Compile Include="Marketing\Rating.cs" />
-    <Compile Include="Marketing\Review.cs" />
-    <Compile Include="Marketing\Tag.cs" />
-    <Compile Include="Order\Order.cs" />
-    <Compile Include="Order\OrderStatus.cs" />
-    <Compile Include="Shipping\ContactInformation.cs" />
+    <Compile Include="CountryLoader.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Marketing\SeoAttributes.cs" />
-    <Compile Include="Shipping\Carrier.cs" />
-    <Compile Include="Shipping\Country.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="General\" />
+    <None Include="Countries.cvs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
