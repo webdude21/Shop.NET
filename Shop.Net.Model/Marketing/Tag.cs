@@ -1,7 +1,9 @@
-﻿namespace Shop.Net.Model.Catalog
+﻿namespace Shop.Net.Model.Marketing
 {
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
+
+    using Shop.Net.Model.Catalog;
 
     public class Tag
     {

@@ -6,6 +6,9 @@
 
     public class Category
     {
+        [NotMapped]
+        private const int DbStringMaxLength = 200;
+
         private ICollection<Product> products;
 
         public Category()
@@ -16,7 +19,7 @@
         public int Id { get; set; }
 
         [Required]
-        [MaxLength(200)]
+        [MaxLength(DbStringMaxLength)]
         [MinLength(2)]
         [Index(IsUnique = true)]
         public string Name { get; set; }
@@ -24,7 +27,7 @@
         public string MetaTitle { get; set; }
 
         [Required]
-        [MaxLength(200)]
+        [MaxLength(DbStringMaxLength)]
         [MinLength(2)]
         [Index(IsUnique = true)]
         public string FriendlyUrl { get; set; }

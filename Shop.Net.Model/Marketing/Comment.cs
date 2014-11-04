@@ -1,6 +1,9 @@
-﻿namespace Shop.Net.Model.Catalog
+﻿namespace Shop.Net.Model.Marketing
 {
+    using System;
     using System.ComponentModel.DataAnnotations;
+
+    using Shop.Net.Model.Catalog;
 
     public class Comment
     {
@@ -18,5 +21,11 @@
         [MaxLength(400)]
         [MinLength(2)]
         public string Content { get; set; }
+
+        public bool Deleted { get; set; }
+
+        public DateTime? CreatedOnUtc { get; set; }
+
+        public DateTime? UpdatedOnUtc { get; set; }
     }
 }

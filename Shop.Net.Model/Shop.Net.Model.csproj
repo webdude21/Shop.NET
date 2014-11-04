@@ -54,10 +54,19 @@
   <ItemGroup>
     <Compile Include="ApplicationUser.cs" />
     <Compile Include="Catalog\Category.cs" />
-    <Compile Include="Catalog\Comment.cs" />
+    <Compile Include="Catalog\Manufacturer.cs" />
+    <Compile Include="Marketing\Comment.cs" />
     <Compile Include="Catalog\Product.cs" />
-    <Compile Include="Catalog\Tag.cs" />
+    <Compile Include="Marketing\Rating.cs" />
+    <Compile Include="Marketing\Review.cs" />
+    <Compile Include="Marketing\Tag.cs" />
+    <Compile Include="Order\Order.cs" />
+    <Compile Include="Order\OrderStatus.cs" />
+    <Compile Include="PartnerInformation.cs" />
+    <Compile Include="RatingType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Marketing\SeoAttributes.cs" />
+    <Compile Include="Shipping\Carrier.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
