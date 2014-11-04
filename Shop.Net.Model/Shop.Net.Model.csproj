@@ -53,6 +53,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApplicationUser.cs" />
+    <Compile Include="Catalog\Category.cs" />
+    <Compile Include="Catalog\Comment.cs" />
+    <Compile Include="Catalog\Product.cs" />
+    <Compile Include="Catalog\Tag.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
