@@ -9,16 +9,16 @@
 
     public class ProductThumbnailModel : IMapFrom<Product>, IHaveCustomMappings
     {
-        public int Id { get; set; }
-
         public string Name { get; set; }
+
+        public decimal Price { get; set; }
 
         public Image Image { get; set; }
 
         public void CreateMappings(IConfiguration configuration)
         {
             configuration.CreateMap<Product, ProductThumbnailModel>()
-                .ForMember(product => product.Image, opt => opt.MapFrom(fullProduct => fullProduct.Images.FirstOrDefault()));
+                .ForMember(model => model.Image, opt => opt.MapFrom(fullProduct => fullProduct.Images.First()));
         }
     }
 }

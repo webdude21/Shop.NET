@@ -29,8 +29,6 @@
 
         public IDbSet<Image> Images { get; set; }
 
-        public IDbSet<Review> Manufacturers { get; set; }
-
         public IDbSet<Comment> Comments { get; set; }
 
         public static ShopDbContext Create()
