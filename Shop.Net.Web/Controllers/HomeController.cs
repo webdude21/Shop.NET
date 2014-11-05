@@ -10,6 +10,7 @@
     using Shop.Net.Resources;
     using Shop.Net.Web.ViewModels.Product;
 
+    [RequireHttps]
     public class HomeController : BaseController
     {
         public ActionResult Index()

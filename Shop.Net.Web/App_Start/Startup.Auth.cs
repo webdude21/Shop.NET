@@ -11,6 +11,7 @@
 
     using Shop.Net.Data;
     using Shop.Net.Model;
+    using Shop.Net.Resources;
 
     public partial class Startup
     {
@@ -28,8 +29,8 @@
             app.UseCookieAuthentication(
                 new CookieAuthenticationOptions
                     {
-                        AuthenticationType = DefaultAuthenticationTypes.ApplicationCookie, 
-                        LoginPath = new PathString("/Account/Login"), 
+                        AuthenticationType = DefaultAuthenticationTypes.ApplicationCookie,
+                        LoginPath = new PathString("/Account/Login"),
                         Provider =
                             new CookieAuthenticationProvider
                                 {
@@ -38,10 +39,10 @@
                                     OnValidateIdentity =
                                         SecurityStampValidator
                                         .OnValidateIdentity
-                                        <ApplicationUserManager, 
+                                        <ApplicationUserManager,
                                         ApplicationUser>(
                                             TimeSpan.FromMinutes(
-                                                30), 
+                                                30),
                                             (manager, user) =>
                                             user
                                                 .GenerateUserIdentityAsync
@@ -67,9 +68,9 @@
             // consumerKey: "",
             // consumerSecret: "");
 
-            // app.UseFacebookAuthentication(
-            // appId: "",
-            // appSecret: "");
+            app.UseFacebookAuthentication(
+                appId: GlobalConstants.FacebookApiKey,
+                appSecret: GlobalConstants.FacebookSecretKey);
 
             // app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
             // {

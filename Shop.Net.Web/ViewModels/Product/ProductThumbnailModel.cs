@@ -18,7 +18,7 @@
         public void CreateMappings(IConfiguration configuration)
         {
             configuration.CreateMap<Product, ProductThumbnailModel>()
-                .ForMember(model => model.Image, opt => opt.MapFrom(fullProduct => fullProduct.Images.First()));
+                .ForMember(model => model.Image, opt => opt.MapFrom(fullProduct => fullProduct.Images.FirstOrDefault()));
         }
     }
 }

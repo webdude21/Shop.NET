@@ -18,7 +18,11 @@
             bundles.Add(
                 new ScriptBundle("~/bundles/bootstrap").Include("~/Scripts/bootstrap.js", "~/Scripts/respond.js"));
 
-            bundles.Add(new StyleBundle("~/Content/css").Include("~/Content/bootstrap.css", "~/Content/site.css"));
+            bundles.Add(
+                new ScriptBundle("~/bundles/responsive-images").Include("~/Scripts/masonry.pkgd.min.js")
+                    .Include("~/Scripts/responsive-images.js"));
+
+            bundles.Add(new StyleBundle("~/Content/css").Include("~/Content/paper.css", "~/Content/site.css"));
 
             // Set EnableOptimizations to false for debugging. For more information,
             // visit http://go.microsoft.com/fwlink/?LinkId=301862

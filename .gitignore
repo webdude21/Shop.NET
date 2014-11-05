@@ -89,6 +89,10 @@ StyleCop*
 *.log
 *.scc
 
+# MS-SQL
+*.mdf
+*.ldf
+
 # Visual C++ cache files
 ipch/
 *.aps

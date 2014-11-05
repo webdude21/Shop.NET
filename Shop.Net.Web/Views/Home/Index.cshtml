@@ -8,22 +8,16 @@
     <p class="lead">Welcome to our shop!</p>
 </div>
 
-<div class="row">
+<div class="row" id="thumbnails">
     @for (var i = 0; i < Model.Count(); i++)
     {
         var product = Model.ElementAt(i);
-        <div class="col-sm-4">
-            <h2>@product.Name</h2>
-            <img src="@product.Image.Url" class="img-responsive" alt="@product.Image.AltText" />
+        <div class="col-md-4 item">
+            <h3 class="text-center text-info">@product.Name</h3>
+            <div><img src="@product.Image.Url" class="img-rounded" alt="@product.Image.AltText" /></div>
             <p class="text-center">
-                <a class="btn btn-default" href="@Url.Action("Product", "Laptop", new {product.Id})">Price @product.Price</a>
+                <a class="btn btn-default" href="">Price @string.Format("{0:C0}", product.Price)</a>
             </p>
         </div>
-
-        if (i > 0 && i % 2 == 0)
-        {
-            @:</div>
-             @:<div class="row">
-        }
     }
 </div>
