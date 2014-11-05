@@ -5,11 +5,17 @@
 
     using AutoMapper.QueryableExtensions;
 
+    using Shop.Net.Data.Contracts;
     using Shop.Net.Web.ViewModels.Product;
 
     public class ProductController : BaseController
     {
         // GET: Product
+        public ProductController(IShopData shopData)
+            : base(shopData)
+        {
+        }
+
         public ActionResult Details(int id)
         {
             var product =

@@ -7,12 +7,18 @@
 
     using AutoMapper.QueryableExtensions;
 
+    using Shop.Net.Data.Contracts;
     using Shop.Net.Resources;
     using Shop.Net.Web.ViewModels.Product;
 
     [RequireHttps]
-    public class HomeController : BaseController
+    public class PagesController : BaseController
     {
+        public PagesController(IShopData shopData)
+            : base(shopData)
+        {
+        }
+
         public ActionResult Index()
         {
             const string HomePageProducts = "HomePageProducts";
