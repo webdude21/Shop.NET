@@ -7,7 +7,7 @@
 
     using Shop.Net.Model.Marketing;
 
-    public class Product
+    public class Product : Seo
     {
         [NotMapped]
         private const int DbStringMaxLength = 400;
@@ -16,7 +16,7 @@
 
         private ICollection<Review> reviews;
 
-        public Product()
+        public Product() 
         {
             this.reviews = new HashSet<Review>();
             this.images = new HashSet<Image>();
@@ -31,15 +31,6 @@
 
         [MaxLength(1200)]
         public string Description { get; set; }
-
-        [MaxLength(DbStringMaxLength)]
-        public string MetaTitle { get; set; }
-
-        [MaxLength(1200)]
-        public string MetaDescription { get; set; }
-
-        [MaxLength(DbStringMaxLength)]
-        public string MetaKeyWords { get; set; }
 
         [MaxLength(DbStringMaxLength)]
         public string Sku { get; set; }

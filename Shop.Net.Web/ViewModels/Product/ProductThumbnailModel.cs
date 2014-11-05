@@ -15,6 +15,8 @@
 
         public Image Image { get; set; }
 
+        public string FriendlyUrl { get; set; }
+
         public void CreateMappings(IConfiguration configuration)
         {
             configuration.CreateMap<Product, ProductThumbnailModel>()

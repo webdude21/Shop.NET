@@ -12,13 +12,24 @@
         // GET: Product
         public ActionResult Details(int id)
         {
-            var viewLaptop =
+            var product =
                 this.ShopData.Products.All()
                     .Where(x => x.Id == id)
                     .Project().To<ProductDetailsModel>()
                     .FirstOrDefault();
 
-            return this.View(viewLaptop);
+            return this.View(product);
+        }
+
+        public ActionResult ByFriendlyUrl(string friendlyUrl)
+        {
+            var product =
+                this.ShopData.Products.All()
+                    .Where(x => x.FriendlyUrl == friendlyUrl)
+                    .Project().To<ProductDetailsModel>()
+                    .FirstOrDefault();
+
+            return this.View("Details", product);
         }
     }
 }

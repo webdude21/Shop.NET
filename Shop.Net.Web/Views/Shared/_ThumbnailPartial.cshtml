@@ -1,0 +1,11 @@
+﻿@model Shop.Net.Web.ViewModels.Product.ProductThumbnailModel
+<div class="col-md-4 item">
+    <h3 class="text-center text-info">@Model.Name</h3>
+    <a href="~/product/@Model.FriendlyUrl">
+        <img src="@Model.Image.Url" class="img-rounded" alt="@Model.Image.AltText" />
+    </a>
+    <p class="text-center">
+        <span>Price: @string.Format("{0:C0}", Model.Price)</span>
+        <a class="btn btn-default" href="">Buy</a>
+    </p>
+</div>

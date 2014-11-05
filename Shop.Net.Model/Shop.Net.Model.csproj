@@ -65,7 +65,7 @@
     <Compile Include="Order\OrderStatus.cs" />
     <Compile Include="Shipping\ContactInformation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Marketing\SeoAttributes.cs" />
+    <Compile Include="Marketing\Seo.cs" />
     <Compile Include="Shipping\Carrier.cs" />
     <Compile Include="Shipping\Country.cs" />
   </ItemGroup>
