@@ -19,6 +19,7 @@
         {
         }
 
+        [OutputCache (Duration = 60 * 60)]
         public ActionResult Index()
         {
             const string HomePageProducts = "HomePageProducts";

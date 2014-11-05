@@ -27,11 +27,12 @@
             return this.View(product);
         }
 
-        public ActionResult ByFriendlyUrl(string friendlyUrl)
+        public ActionResult ByFriendlyUrl(string categoryFriendlyUrl, string productFriendlyUrl)
         {
             var product =
                 this.ShopData.Products.All()
-                    .Where(x => x.FriendlyUrl == friendlyUrl)
+                    .Where(c => c.Category.FriendlyUrl == categoryFriendlyUrl)
+                    .Where(x => x.FriendlyUrl == productFriendlyUrl)
                     .Project().To<ProductDetailsModel>()
                     .FirstOrDefault();
 

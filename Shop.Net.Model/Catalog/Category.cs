@@ -4,7 +4,9 @@
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
 
-    public class Category
+    using Shop.Net.Model.Marketing;
+
+    public class Category : Seo
     {
         [NotMapped]
         private const int DbStringMaxLength = 200;
@@ -24,13 +26,6 @@
         [Index(IsUnique = true)]
         public string Name { get; set; }
 
-        public string MetaTitle { get; set; }
-
-        [Required]
-        [MaxLength(DbStringMaxLength)]
-        [MinLength(2)]
-        [Index(IsUnique = true)]
-        public string FriendlyUrl { get; set; }
 
         public virtual ICollection<Product> Products
         {

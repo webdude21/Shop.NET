@@ -10,14 +10,14 @@
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
-             name: "FriendlyUrls",
-             url: "products/{friendlyUrl}",
-             defaults: new { controller = "Product", action = "ByFriendlyUrl", friendlyUrl = UrlParameter.Optional });
+                name: "FriendlyUrls",
+                url: "catalog/{categoryFriendlyUrl}/{productFriendlyUrl}",
+                defaults: new { controller = "Product", action = "ByFriendlyUrl", categoryFriendlyUrl = string.Empty, productFriendlyUrl = string.Empty, });
 
             routes.MapRoute(
-               name: "Default", 
-               url: "{controller}/{action}/{id}", 
-               defaults: new { controller = "Pages", action = "Index", id = UrlParameter.Optional });
+                name: "Default",
+                url: "{controller}/{action}/{id}",
+                defaults: new { controller = "Pages", action = "Index", id = UrlParameter.Optional });
         }
     }
 }
