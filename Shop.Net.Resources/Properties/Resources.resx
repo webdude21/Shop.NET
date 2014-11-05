@@ -1,0 +1,361 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Countries" xml:space="preserve">
+    <value>ABW;Aruba
+AFG;Afghanistan
+AGO;Angola
+AIA;Anguilla
+ALB;Albania
+AND;Andorra
+ANT;Netherlands Antilles
+ARE;United Arab Emirates
+ARG;Argentina
+ARM;Armenia
+ASM;American Samoa
+ATA;Antarctica
+ATF;French Southern territories
+ATG;Antigua and Barbuda
+AUS;Australia
+AUT;Austria
+AZE;Azerbaijan
+BDI;Burundi
+BEL;Belgium
+BEN;Benin
+BFA;Burkina Faso
+BGD;Bangladesh
+BGR;Bulgaria
+BHR;Bahrain
+BHS;Bahamas
+BIH;Bosnia and Herzegovina
+BLR;Belarus
+BLZ;Belize
+BMU;Bermuda
+BOL;Bolivia
+BRA;Brazil
+BRB;Barbados
+BRN;Brunei
+BTN;Bhutan
+BVT;Bouvet Island
+BWA;Botswana
+CAF;Central African Republic
+CAN;Canada
+CCK;Cocos (Keeling) Islands
+CHE;Switzerland
+CHL;Chile
+CHN;China
+CIV;Cote d’Ivoire
+CMR;Cameroon
+COD;Congo, The Democratic Republic of the
+COG;Congo
+COK;Cook Islands
+COL;Colombia
+COM;Comoros
+CPV;Cape Verde
+CRI;Costa Rica
+CUB;Cuba
+CXR;Christmas Island
+CYM;Cayman Islands
+CYP;Cyprus
+CZE;Czech Republic
+DEU;Germany
+DJI;Djibouti
+DMA;Dominica
+DNK;Denmark
+DOM;Dominican Republic
+DZA;Algeria
+ECU;Ecuador
+EGY;Egypt
+ERI;Eritrea
+ESH;Western Sahara
+ESP;Spain
+EST;Estonia
+ETH;Ethiopia
+FIN;Finland
+FJI;Fiji Islands
+FLK;Falkland Islands
+FRA;France
+FRO;Faroe Islands
+FSM;Micronesia, Federated States of
+GAB;Gabon
+GBR;United Kingdom
+GEO;Georgia
+GHA;Ghana
+GIB;Gibraltar
+GIN;Guinea
+GLP;Guadeloupe
+GMB;Gambia
+GNB;Guinea-Bissau
+GNQ;Equatorial Guinea
+GRC;Greece
+GRD;Grenada
+GRL;Greenland
+GTM;Guatemala
+GUF;French Guiana
+GUM;Guam
+GUY;Guyana
+HKG;Hong Kong
+HMD;Heard Island and McDonald Islands
+HND;Honduras
+HRV;Croatia
+HTI;Haiti
+HUN;Hungary
+IDN;Indonesia
+IND;India
+IOT;British Indian Ocean Territory
+IRL;Ireland
+IRN;Iran
+IRQ;Iraq
+ISL;Iceland
+ISR;Israel
+ITA;Italy
+JAM;Jamaica
+JOR;Jordan
+JPN;Japan
+KAZ;Kazakstan
+KEN;Kenya
+KGZ;Kyrgyzstan
+KHM;Cambodia
+KIR;Kiribati
+KNA;Saint Kitts and Nevis
+KOR;South Korea
+KWT;Kuwait
+LAO;Laos
+LBN;Lebanon
+LBR;Liberia
+LBY;Libyan Arab Jamahiriya
+LCA;Saint Lucia
+LIE;Liechtenstein
+LKA;Sri Lanka
+LSO;Lesotho
+LTU;Lithuania
+LUX;Luxembourg
+LVA;Latvia
+MAC;Macao
+MAR;Morocco
+MCO;Monaco
+MDA;Moldova
+MDG;Madagascar
+MDV;Maldives
+MEX;Mexico
+MHL;Marshall Islands
+MKD;Macedonia
+MLI;Mali
+MLT;Malta
+MMR;Myanmar
+MNG;Mongolia
+MNP;Northern Mariana Islands
+MOZ;Mozambique
+MRT;Mauritania
+MSR;Montserrat
+MTQ;Martinique
+MUS;Mauritius
+MWI;Malawi
+MYS;Malaysia
+MYT;Mayotte
+NAM;Namibia
+NCL;New Caledonia
+NER;Niger
+NFK;Norfolk Island
+NGA;Nigeria
+NIC;Nicaragua
+NIU;Niue
+NLD;Netherlands
+NOR;Norway
+NPL;Nepal
+NRU;Nauru
+NZL;New Zealand
+OMN;Oman
+PAK;Pakistan
+PAN;Panama
+PCN;Pitcairn
+PER;Peru
+PHL;Philippines
+PLW;Palau
+PNG;Papua New Guinea
+POL;Poland
+PRI;Puerto Rico
+PRK;North Korea
+PRT;Portugal
+PRY;Paraguay
+PSE;Palestine
+PYF;French Polynesia
+QAT;Qatar
+REU;Reunion
+ROM;Romania
+RUS;Russian Federation
+RWA;Rwanda
+SAU;Saudi Arabia
+SDN;Sudan
+SEN;Senegal
+SGP;Singapore
+SGS;South Georgia and the South Sandwich Islands
+SHN;Saint Helena
+SJM;Svalbard and Jan Mayen
+SLB;Solomon Islands
+SLE;Sierra Leone
+SLV;El Salvador
+SMR;San Marino
+SOM;Somalia
+SPM;Saint Pierre and Miquelon
+STP;Sao Tome and Principe
+SUR;Suriname
+SVK;Slovakia
+SVN;Slovenia
+SWE;Sweden
+SWZ;Swaziland
+SYC;Seychelles
+SYR;Syria
+TCA;Turks and Caicos Islands
+TCD;Chad
+TGO;Togo
+THA;Thailand
+TJK;Tajikistan
+TKL;Tokelau
+TKM;Turkmenistan
+TMP;East Timor
+TON;Tonga
+TTO;Trinidad and Tobago
+TUN;Tunisia
+TUR;Turkey
+TUV;Tuvalu
+TWN;Taiwan
+TZA;Tanzania
+UGA;Uganda
+UKR;Ukraine
+UMI;United States Minor Outlying Islands
+URY;Uruguay
+USA;United States
+UZB;Uzbekistan
+VAT;Holy See (Vatican City State)
+VCT;Saint Vincent and the Grenadines
+VEN;Venezuela
+VGB;Virgin Islands, British
+VIR;Virgin Islands, U.S.
+VNM;Vietnam
+VUT;Vanuatu
+WLF;Wallis and Futuna
+WSM;Samoa
+YEM;Yemen
+YUG;Yugoslavia
+ZAF;South Africa
+ZMB;Zambia
+ZWE;Zimbabwe</value>
+  </data>
+</root>

@@ -17,7 +17,7 @@
 
         IRepository<Review> Reviews { get; }
 
-        IRepository<Manufacturer> Manufacturers { get; }
+        IRepository<Supplier> Manufacturers { get; }
 
         IRepository<Image> Images { get; }
 

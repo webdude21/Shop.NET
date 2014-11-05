@@ -1,7 +1,6 @@
 namespace Shop.Net.Data.Migrations
 {
     using System.Data.Entity.Migrations;
-    using System.Linq;
 
     using Shop.Net.Resources;
 
@@ -18,6 +17,7 @@ namespace Shop.Net.Data.Migrations
             var seeder = new Seeder(context, new CountryLoader());
             seeder.SeedRolesAndUsers();
             seeder.SeedCountries();
+            seeder.SeedProducts();
         }
     }
 }

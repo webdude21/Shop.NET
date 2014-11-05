@@ -4,7 +4,7 @@
 
     using Shop.Net.Model.Shipping;
 
-    public class Manufacturer
+    public class Supplier
     {
         private const int DbStringMaxLength = 400;
 

@@ -7,6 +7,8 @@
     using Shop.Net.Data.Repositories;
     using Shop.Net.Model;
     using Shop.Net.Model.Catalog;
+    using Shop.Net.Model.Marketing;
+    using Shop.Net.Model.Order;
 
     public class ShopData : IShopData
     {
@@ -33,6 +35,54 @@
             get
             {
                 return this.GetRepository<Product>();
+            }
+        }
+
+        public IRepository<Category> Categories
+        {
+            get
+            {
+                return this.GetRepository<Category>();
+            }
+        }
+
+        public IRepository<Comment> Comments
+        {
+            get
+            {
+                return this.GetRepository<Comment>();
+            }
+        }
+
+        public IRepository<Review> Reviews
+        {
+            get
+            {
+                return this.GetRepository<Review>();
+            }
+        }
+
+        public IRepository<Supplier> Manufacturers
+        {
+            get
+            {
+                return this.GetRepository<Supplier>();
+            }
+        }
+
+        public IRepository<Image> Images
+        {
+            get
+            {
+                return this.GetRepository<Image>();
+            }
+        }
+
+        public IRepository<Order> Orders
+        {
+            get
+            {
+                return this.GetRepository<Order>();
             }
         }
 

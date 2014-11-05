@@ -12,15 +12,12 @@
         [NotMapped]
         private const int DbStringMaxLength = 400;
 
-        private ICollection<Category> categories;
-
         private ICollection<Image> images;
 
         private ICollection<Review> reviews;
 
         public Product()
         {
-            this.categories = new HashSet<Category>();
             this.reviews = new HashSet<Review>();
             this.images = new HashSet<Image>();
         }
@@ -32,10 +29,13 @@
         [MinLength(2)]
         public string Name { get; set; }
 
+        [MaxLength(1200)]
+        public string Description { get; set; }
+
         [MaxLength(DbStringMaxLength)]
         public string MetaTitle { get; set; }
 
-        [MaxLength(DbStringMaxLength)]
+        [MaxLength(1200)]
         public string MetaDescription { get; set; }
 
         [MaxLength(DbStringMaxLength)]
@@ -46,6 +46,9 @@
 
         [MaxLength(DbStringMaxLength)]
         public string ManufacturerPartNumber { get; set; }
+
+        [MaxLength(DbStringMaxLength)]
+        public string Manufacturer { get; set; }
 
         [Column(TypeName = "Money")]
         public decimal Price { get; set; }
@@ -77,18 +80,7 @@
 
         public DateTime? UpdatedOnUtc { get; set; }
 
-        public virtual ICollection<Category> Categories
-        {
-            get
-            {
-                return this.categories;
-            }
-
-            set
-            {
-                this.categories = value;
-            }
-        }
+        public virtual Category Category { get; set; }
 
         public virtual ICollection<Review> Reviews
         {
@@ -115,7 +107,5 @@
                 this.images = value;
             }
         }
-
-        public virtual Manufacturer Manufacturer { get; set; }
     }
 }
