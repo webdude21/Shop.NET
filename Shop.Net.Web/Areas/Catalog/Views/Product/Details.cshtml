@@ -1,4 +1,5 @@
-﻿@model Shop.Net.Web.Areas.Catalog.Models.Product.ProductDetailsModel
+﻿@using Shop.Net.Web.Infrastructure.Helpers
+@model Shop.Net.Web.Areas.Catalog.Models.Product.ProductDetailsModel
 
 @section MetaInformation {
     @Html.Partial("_SeoPartial", Model);
@@ -7,6 +8,10 @@
 <div id="product-wrapper">
     <div class="row">
         <div id="selected-image" class="col-lg-5">
+            @{
+                var firstImage = Model.Images.FirstOrDefault();
+            }
+            @Html.Image(firstImage.Url, firstImage.AltText);
         </div>
     </div>
 </div>

@@ -26,7 +26,10 @@ namespace Shop.Net.Web.Areas.Catalog
                             parameters = new { categoryFriendlyUrl = string.Empty, productFriendlyUrl = string.Empty }
                         });
 
-            context.MapRoute(name: "CatalogIndex", url: "Catalog", defaults: new { controller = "Product", action = "Index" });
+            context.MapRoute(
+                "Catalog_default",
+                "Catalog/{controller}/{action}/{id}",
+                new { action = "Index", id = UrlParameter.Optional });
         }
     }
 }

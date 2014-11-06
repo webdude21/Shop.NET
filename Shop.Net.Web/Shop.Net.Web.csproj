@@ -204,6 +204,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Infrastructure\Helpers\HtmlExtensions.cs" />
     <Compile Include="Infrastructure\Mapping\AutoMapperConfig.cs" />
     <Compile Include="Infrastructure\Mapping\IHaveCustomMappings.cs" />
     <Compile Include="Infrastructure\Mapping\IMapFrom.cs" />
@@ -250,8 +251,6 @@
     <Content Include="Areas\Administration\Views\web.config" />
     <Content Include="Areas\Catalog\Views\web.config" />
     <Content Include="Areas\Catalog\Views\_ViewStart.cshtml" />
-    <Content Include="Areas\Catalog\Views\Index.cshtml" />
-    <Content Include="Areas\Catalog\Views\Product\Index.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -307,14 +306,16 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Areas\Catalog\Views\Product\Details.cshtml" />
-    <Content Include="Areas\Catalog\Views\Shared\_ThumbnailPartial.cshtml" />
-    <Content Include="Areas\Catalog\Views\Shared\_SeoPartial.cshtml" />
+    <Content Include="Views\Pages\Index.cshtml" />
+    <Content Include="Views\Shared\_ThumbnailPartial.cshtml" />
+    <Content Include="Views\Shared\_SeoPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Administration\Controllers\" />
     <Folder Include="Areas\Administration\Models\" />
     <Folder Include="Areas\Administration\Views\Shared\" />
+    <Folder Include="Areas\Catalog\Views\Shared\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
