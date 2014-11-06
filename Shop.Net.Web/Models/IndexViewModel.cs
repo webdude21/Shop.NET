@@ -1,4 +1,4 @@
-﻿namespace Shop.Net.Web.ViewModels
+﻿namespace Shop.Net.Web.Models
 {
     using System.Collections.Generic;
 

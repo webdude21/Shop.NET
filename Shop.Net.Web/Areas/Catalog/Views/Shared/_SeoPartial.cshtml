@@ -1,0 +1,10 @@
+﻿@using Shop.Net.Resources
+@model Shop.Net.Web.ViewModels.SeoViewModel
+
+<meta name="keywords" content="@Model.MetaKeyWords" />
+<meta name="description" content="@Model.MetaDescription" />
+<meta name="robots" content="@GlobalConstants.RobotsIndexFollow" />
+<meta name="revisit-after" content="1 days" />
+<meta name="generator" content="@GlobalConstants.Credits - @GlobalConstants.GitHubLink" />
+<meta property="og:title" content="@Model.MetaTitle">
+<meta property="og:site_name" content="@GlobalConstants.ShopName">

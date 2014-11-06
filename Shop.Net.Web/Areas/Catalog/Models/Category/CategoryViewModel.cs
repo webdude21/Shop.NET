@@ -1,4 +1,4 @@
-﻿namespace Shop.Net.Web.ViewModels.Category
+﻿namespace Shop.Net.Web.Areas.Catalog.Models.Category
 {
     using Shop.Net.Web.Infrastructure.Mapping;
 

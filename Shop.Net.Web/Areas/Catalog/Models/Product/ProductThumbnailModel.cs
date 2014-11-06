@@ -1,12 +1,12 @@
-﻿namespace Shop.Net.Web.ViewModels.Product
+﻿namespace Shop.Net.Web.Areas.Catalog.Models.Product
 {
     using System.Linq;
 
     using AutoMapper;
 
     using Shop.Net.Model.Catalog;
+    using Shop.Net.Web.Areas.Catalog.Models.Category;
     using Shop.Net.Web.Infrastructure.Mapping;
-    using Shop.Net.Web.ViewModels.Category;
 
     public class ProductThumbnailModel : IMapFrom<Product>, IHaveCustomMappings
     {

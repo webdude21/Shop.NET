@@ -10,6 +10,7 @@
     using Microsoft.Owin.Security;
 
     using Shop.Net.Model;
+    using Shop.Net.Web.Models;
     using Shop.Net.Web.ViewModels;
     using Shop.Net.Web.ViewModels.Account;
 

@@ -1,4 +1,4 @@
-﻿namespace Shop.Net.Web.ViewModels.Product
+﻿namespace Shop.Net.Web.Areas.Catalog.Models.Product
 {
     using System;
     using System.Collections.Generic;
@@ -8,8 +8,9 @@
     using Shop.Net.Model.Catalog;
     using Shop.Net.Model.Marketing;
     using Shop.Net.Web.Infrastructure.Mapping;
+    using Shop.Net.Web.ViewModels;
 
-    public class ProductDetailsModel : IMapFrom<Product>
+    public class ProductDetailsModel : SeoViewModel, IMapFrom<Product> 
     {
         [NotMapped]
         private const int DbStringMaxLength = 400;
@@ -36,9 +37,6 @@
         [Column(TypeName = "Money")]
         public decimal Price { get; set; }
 
-        [Column(TypeName = "Money")]
-        public decimal ProductCost { get; set; }
-
         public double? Weight { get; set; }
 
         public double? Height { get; set; }
@@ -49,18 +47,14 @@
 
         public int Quantity { get; set; }
 
-        public bool Published { get; set; }
-
-        public bool Deleted { get; set; }
-
         public DateTime? CreatedOnUtc { get; set; }
 
         public DateTime? UpdatedOnUtc { get; set; }
 
         public Category Category { get; set; }
 
-        public ICollection<Review> Reviews { get; set; }
+        public IEnumerable<Review> Reviews { get; set; }
 
-        public ICollection<Image> Images { get; set; }
+        public IEnumerable<Image> Images { get; set; }
     }
 }

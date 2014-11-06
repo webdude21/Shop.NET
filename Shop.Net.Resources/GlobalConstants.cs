@@ -21,5 +21,7 @@
         public const string FacebookApiKey = "732252256855726";
 
         public const string FacebookSecretKey = "77d160c38105d70edb40d0e0263e7c89";
+
+        public const string RobotsIndexFollow = "index, follow";
     }
 }
