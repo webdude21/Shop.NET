@@ -12,5 +12,13 @@
         }
 
         protected IShopData ShopData { get; set; }
+
+        protected void ClearCache()
+        {
+            foreach (System.Collections.DictionaryEntry entry in HttpContext.Cache)
+            {
+                HttpContext.Cache.Remove((string)entry.Key);
+            }
+        }
     }
 }

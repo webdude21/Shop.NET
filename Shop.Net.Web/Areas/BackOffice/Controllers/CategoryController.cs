@@ -56,6 +56,7 @@
             if (this.ModelState.IsValid)
             {
                 this.ShopData.SaveChanges();
+                this.ClearCache();
                 return this.RedirectToAction("Index", "Category");
             }
 
@@ -89,6 +90,7 @@
             this.ShopData.Products.All().ToList().RemoveAll(x => x.Id > 0);
             this.ShopData.Categories.Delete(category);
             this.ShopData.SaveChanges();
+            this.ClearCache();
             return this.RedirectToAction("Index");
         }
 
