@@ -10,17 +10,33 @@
             @Html.DisplayNameFor(model => model.Name)
         </dt>
         <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.FriendlyUrl)
+        </dt>
+        <dd>
             @Html.DisplayFor(model => model.FriendlyUrl)
         </dd>
         <dt>
             @Html.DisplayNameFor(model => model.MetaTitle)
         </dt>
+        <dd>
+            @Html.DisplayFor(model => model.MetaTitle)
+        </dd>
         <dt>
             @Html.DisplayNameFor(model => model.MetaDescription)
         </dt>
         <dd>
             @Html.DisplayFor(model => model.MetaDescription)
         </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.MetaKeyWords)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.MetaKeyWords)
+        </dd>
+
     </dl>
     @using (Html.BeginForm())
     {

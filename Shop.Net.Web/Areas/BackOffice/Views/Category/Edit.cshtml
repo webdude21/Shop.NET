@@ -19,7 +19,7 @@
     <div class="form-group">
         @Html.LabelFor(m => m.MetaTitle, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
-            @Html.PasswordFor(m => m.MetaTitle, new { @class = "form-control " })
+            @Html.TextBoxFor(m => m.MetaTitle, new { @class = "form-control " })
         </div>
     </div>
     <div class="form-group">
@@ -43,6 +43,7 @@
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
             <input type="submit" class="btn btn-warning" value="Save Changes" />
+            @Html.ActionLink("Cancel", "Index", null, new { @class = "btn btn-info" })
         </div>
     </div>
 }

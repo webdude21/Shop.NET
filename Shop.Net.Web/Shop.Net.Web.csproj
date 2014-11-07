@@ -266,6 +266,7 @@
     <Content Include="Areas\BackOffice\Views\_ViewStart.cshtml" />
     <Content Include="Areas\BackOffice\Views\Category\Edit.cshtml" />
     <Content Include="Areas\BackOffice\Views\Category\Delete.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Category\Add.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />

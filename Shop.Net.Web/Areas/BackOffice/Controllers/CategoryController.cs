@@ -9,6 +9,7 @@
     using Microsoft.AspNet.Identity;
 
     using Shop.Net.Data.Contracts;
+    using Shop.Net.Model.Catalog;
     using Shop.Net.Web.Areas.BackOffice.Models;
     using Shop.Net.Web.Areas.Catalog.Models.Category;
     using Shop.Net.Web.Controllers;
@@ -44,6 +45,42 @@
             }
 
             return this.View(category);
+        }
+
+        [HttpGet]
+        public ActionResult Add()
+        {
+
+            return this.View(new CategoryEditModel());
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Add(CategoryEditModel model)
+        {
+            var newCategory = new Category
+                                  {
+                                      Name = model.Name,
+                                      FriendlyUrl = model.FriendlyUrl,
+                                      MetaTitle = model.MetaTitle,
+                                      MetaDescription = model.MetaDescription,
+                                      MetaKeyWords = model.MetaKeyWords
+                                  };
+
+            if (this.ShopData.Categories.All().Any(c => c.FriendlyUrl == model.FriendlyUrl || c.Name == model.Name))
+            {
+                this.ModelState.AddModelError(string.Empty, string.Format("Seo Friendly Url & Name must be unique!"));
+            }
+
+            this.TryValidateModel(model);
+            if (this.ModelState.IsValid)
+            {
+                this.ShopData.Categories.Add(newCategory);
+                this.ShopData.SaveChanges();
+                return this.RedirectToAction("Index");
+            }
+
+            return this.RedirectToAction("Index");
         }
 
         [HttpPost]
