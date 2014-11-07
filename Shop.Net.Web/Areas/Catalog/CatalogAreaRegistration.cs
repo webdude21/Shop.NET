@@ -1,7 +1,7 @@
-﻿using System.Web.Mvc;
-
-namespace Shop.Net.Web.Areas.Catalog
+﻿namespace Shop.Net.Web.Areas.Catalog
 {
+    using System.Web.Mvc;
+
     public class CatalogAreaRegistration : AreaRegistration
     {
         public override string AreaName
@@ -14,21 +14,21 @@ namespace Shop.Net.Web.Areas.Catalog
 
         public override void RegisterArea(AreaRegistrationContext context)
         {
+            context.MapRoute(
+                "Catalog", 
+                "Catalog/{categoryFriendlyUrl}/{productFriendlyUrl}", 
+                new { controller = "Product", action = "ByFriendlyUrl" }, 
+                new { categoryFriendlyUrl = @"\S+", productFriendlyUrl = @"\S+" });
 
             context.MapRoute(
-                name: "Catalog",
-                url: "Catalog/{categoryFriendlyUrl}/{productFriendlyUrl}",
-                defaults:
-                    new
-                        {
-                            controller = "Product",
-                            action = "ByFriendlyUrl",
-                            parameters = new { categoryFriendlyUrl = string.Empty, productFriendlyUrl = string.Empty }
-                        });
+                "Catalog_Categories", 
+                "Catalog/{categoryFriendlyUrl}", 
+                new { controller = "Category", action = "Index" }, 
+                new { categoryFriendlyUrl = @"\S+" });
 
             context.MapRoute(
-                "Catalog_default",
-                "Catalog/{controller}/{action}/{id}",
+                "Catalog_default", 
+                "Catalog/{controller}/{action}/{id}", 
                 new { action = "Index", id = UrlParameter.Optional });
         }
     }

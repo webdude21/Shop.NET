@@ -11,7 +11,6 @@
 
     public class ProductController : BaseController
     {
-        // GET: Product
         public ProductController(IShopData shopData)
             : base(shopData)
         {

@@ -1,5 +1,4 @@
-﻿@using Shop.Net.Web.Infrastructure.Helpers
-@model Shop.Net.Web.Areas.Catalog.Models.Product.ProductDetailsModel
+﻿@model Shop.Net.Web.Areas.Catalog.Models.Product.ProductDetailsModel
 
 @section MetaInformation {
     @Html.Partial("_SeoPartial", Model);
@@ -7,11 +6,18 @@
 
 <div id="product-wrapper">
     <div class="row">
-        <div id="selected-image" class="col-lg-5">
-            @{
-                var firstImage = Model.Images.FirstOrDefault();
+      @Html.Partial("_ImageGalleryPartial", Model)
+        <div class="col-lg-6">
+            <h5 class="product-title">@Model.Manufacturer @Model.Name</h5>
+            @if (Model.Sku != null)
+            {
+                <span class="label label-default">Sku: @Model.Sku</span>
             }
-            @Html.Image(firstImage.Url, firstImage.AltText);
+            <hr />
+            <p class="info text-justify">@Model.Description</p>
+            <hr />
+            @Html.Partial("_SocialSharerPartial")
+            <hr />
         </div>
     </div>
 </div>

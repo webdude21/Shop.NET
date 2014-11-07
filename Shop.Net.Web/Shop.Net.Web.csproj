@@ -194,6 +194,8 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Areas\Administration\AdministrationAreaRegistration.cs" />
     <Compile Include="Areas\Catalog\CatalogAreaRegistration.cs" />
+    <Compile Include="Areas\Catalog\Controllers\CategoryController.cs" />
+    <Compile Include="Areas\Catalog\Models\Product\ImageViewModel.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdministrationController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
@@ -251,6 +253,8 @@
     <Content Include="Areas\Administration\Views\web.config" />
     <Content Include="Areas\Catalog\Views\web.config" />
     <Content Include="Areas\Catalog\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Catalog\Views\Shared\_SocialSharerPartial.cshtml" />
+    <Content Include="Areas\Catalog\Views\Category\Index.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -268,6 +272,7 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\responsive-images.js" />
+    <Content Include="Scripts\thumbnail-gallery-script.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -309,13 +314,14 @@
     <Content Include="Views\Pages\Index.cshtml" />
     <Content Include="Views\Shared\_ThumbnailPartial.cshtml" />
     <Content Include="Views\Shared\_SeoPartial.cshtml" />
+    <Content Include="Views\Shared\_FacebookSdkPartial.cshtml" />
+    <Content Include="Views\Shared\_ImageGalleryPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Administration\Controllers\" />
     <Folder Include="Areas\Administration\Models\" />
     <Folder Include="Areas\Administration\Views\Shared\" />
-    <Folder Include="Areas\Catalog\Views\Shared\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

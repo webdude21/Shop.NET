@@ -28,3 +28,18 @@ body img {
 body .break-word {
   word-wrap: break-word;
 }
+
+.gallery-thumbnail {
+    width: 120px;
+    opacity: 0.5;
+    padding: 5px;
+}
+
+.gallery-thumbnail:hover {
+    opacity: 0.8;
+}
+
+.gallery-thumbnail.selected {
+    opacity: 1;
+    border: 1px dashed grey;
+}

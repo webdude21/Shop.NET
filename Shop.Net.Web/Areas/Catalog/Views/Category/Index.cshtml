@@ -1,0 +1,18 @@
+﻿@model ICollection<Shop.Net.Web.Areas.Catalog.Models.Product.ProductThumbnailModel>
+@{
+    var category = Model.FirstOrDefault().Category;
+    ViewBag.Title = category.Name;
+    
+    <div class="jumbotron">
+        <h2>@category.Name - @category.MetaTitle</h2>
+        <p class="lead text-justify">@category.MetaDescription</p>
+    </div>
+}
+
+<div class="row" id="thumbnails">
+    
+    @foreach (var product in Model)
+    {
+        @Html.Partial("_ThumbnailPartial", product);
+    }
+</div>

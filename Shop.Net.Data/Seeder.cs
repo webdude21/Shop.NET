@@ -71,7 +71,14 @@
                 return;
             }
 
-            var dslr = new Category { Name = "Dslr", MetaTitle = "This is the Home Category", FriendlyUrl = "dslr" };
+            var dslr = new Category
+                           {
+                               Name = "DSLRs", 
+                               MetaTitle = "Here you can find a great variety of Dslrs.", 
+                               FriendlyUrl = "dslr", 
+                               MetaDescription =
+                                   "A digital single-lens reflex camera (also called a digital SLR or DSLR) is a digital camera combining the optics and the mechanisms of a single-lens reflex camera with a digital imaging sensor, as opposed to photographic film. The reflex design scheme is the primary difference between a DSLR and other digital cameras. In the reflex design, light travels through the lens, then to a mirror that alternates to send the image to either the viewfinder or the image sensor. The alternative would be to have a viewfinder with its own lens, hence the term \"single lens\" for this design. By using only one lens, the viewfinder presents an image that will not perceptibly differ from what is captured by the camera's sensor."
+                           };
 
             const string Description =
                 "The D7000 sits above the D90 in Nikon's current lineup, and as befits its new position in the range, the D7000 combines elements of the D90 with elements of the D300S - Nikon's current APS-C flagship. The most obvious physical clue to its new position is a magnesium alloy body shell, which up to now has been reserved for Nikon's top-end APS-C and full frame cameras";
@@ -84,7 +91,7 @@
                         Category = dslr, 
                         CreatedOnUtc = DateTime.UtcNow, 
                         UpdatedOnUtc = DateTime.UtcNow, 
-                        FriendlyUrl = "canon-eos-5d-mk3",
+                        FriendlyUrl = "canon-eos-5d-mk3", 
                         Description = Description, 
                         MetaDescription = Description, 
                         MetaTitle = "Canon EOS 5D mk3", 
@@ -106,8 +113,8 @@
                         Name = "EOS 7D mk2", 
                         Manufacturer = "Canon", 
                         Category = dslr, 
-                        Price = 2000,
-                        FriendlyUrl = "canon-eos-7d-mk2",
+                        Price = 2000, 
+                        FriendlyUrl = "canon-eos-7d-mk2", 
                         CreatedOnUtc = DateTime.UtcNow, 
                         UpdatedOnUtc = DateTime.UtcNow, 
                         Description = Description, 
@@ -131,8 +138,8 @@
                         Name = "D7000", 
                         Manufacturer = "Nikon", 
                         Category = dslr, 
-                        Price = 1500,
-                        FriendlyUrl = "nikon-d7000",
+                        Price = 1500, 
+                        FriendlyUrl = "nikon-d7000", 
                         CreatedOnUtc = DateTime.UtcNow, 
                         UpdatedOnUtc = DateTime.UtcNow, 
                         Description = Description, 
@@ -143,8 +150,25 @@
                                 {
                                     new Image
                                         {
-                                            AltText = "D7000", 
+                                            AltText = "D7000 front", 
                                             Url = "http://www.kenrockwell.com/nikon/d7000/D3S_2871-1200.jpg"
+                                        }, 
+                                    new Image
+                                        {
+                                            Url = "http://www.kenrockwell.com/nikon/d7000/back-0600.jpg", 
+                                            AltText = "D7000 - back"
+                                        }, 
+                                    new Image
+                                        {
+                                            Url =
+                                                "http://www.kenrockwell.com/nikon/d7000/D3S_2888-top-0600.jpg", 
+                                            AltText = "D7000 - top"
+                                        }, 
+                                    new Image
+                                        {
+                                            Url =
+                                                "http://www.kenrockwell.com/nikon/d7000/D3S_2892-bottom-0600.jpg", 
+                                            AltText = "D7000 - bottom"
                                         }
                                 }
                     });
@@ -155,8 +179,8 @@
                         Name = "D5100", 
                         Manufacturer = "Nikon", 
                         Category = dslr, 
-                        Price = 700,
-                        FriendlyUrl = "nikon-d5100",
+                        Price = 700, 
+                        FriendlyUrl = "nikon-d5100", 
                         CreatedOnUtc = DateTime.UtcNow, 
                         UpdatedOnUtc = DateTime.UtcNow, 
                         Description = Description, 
@@ -180,8 +204,8 @@
                         Name = "K-5", 
                         Manufacturer = "Pentax", 
                         Category = dslr, 
-                        Price = 1500,
-                        FriendlyUrl = "pentax-k5",
+                        Price = 1500, 
+                        FriendlyUrl = "pentax-k5", 
                         CreatedOnUtc = DateTime.UtcNow, 
                         UpdatedOnUtc = DateTime.UtcNow, 
                         Description = Description, 
@@ -204,8 +228,8 @@
                         Name = "K-3", 
                         Manufacturer = "Pentax", 
                         Category = dslr, 
-                        Price = 1600,
-                        FriendlyUrl = "pentax-k3",
+                        Price = 1600, 
+                        FriendlyUrl = "pentax-k3", 
                         CreatedOnUtc = DateTime.UtcNow, 
                         UpdatedOnUtc = DateTime.UtcNow, 
                         Description = Description, 

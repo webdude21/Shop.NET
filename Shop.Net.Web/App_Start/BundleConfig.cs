@@ -20,7 +20,8 @@
 
             bundles.Add(
                 new ScriptBundle("~/bundles/responsive-images").Include("~/Scripts/masonry.pkgd.min.js")
-                    .Include("~/Scripts/responsive-images.js"));
+                    .Include("~/Scripts/responsive-images.js")
+                    .Include("~/Scripts/thumbnail-gallery-script.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include("~/Content/paper.css", "~/Content/site.css"));
 

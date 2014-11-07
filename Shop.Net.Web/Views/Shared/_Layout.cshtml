@@ -1,4 +1,5 @@
-﻿@using Shop.Net.Resources
+﻿@using Glimpse.Mvc.AlternateType
+@using Shop.Net.Resources
 <!DOCTYPE html>
 <html>
     <head>
@@ -9,9 +10,9 @@
         @Styles.Render("~/Content/css")
         @Scripts.Render("~/bundles/modernizr")
 
-
     </head>
     <body>
+        @Html.Partial("_FacebookSdkPartial");
         <div class="navbar navbar-inverse navbar-fixed-top">
             <div class="container">
                 <div class="navbar-header">

@@ -9,5 +9,11 @@
         public string Name { get; set; }
 
         public string FriendlyUrl { get; set; }
+
+        public string MetaTitle { get; set; }
+
+        public string MetaDescription { get; set; }
+
+        public string MetaKeyWords { get; set; }
     }
 }

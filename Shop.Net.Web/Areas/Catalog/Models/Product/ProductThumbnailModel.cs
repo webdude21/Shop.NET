@@ -14,7 +14,7 @@
 
         public decimal Price { get; set; }
 
-        public Image Image { get; set; }
+        public ImageViewModel Image { get; set; }
 
         public string FriendlyUrl { get; set; }
 
@@ -23,8 +23,7 @@
         public void CreateMappings(IConfiguration configuration)
         {
             configuration.CreateMap<Product, ProductThumbnailModel>()
-                .ForMember(model => model.Image, opt => opt.MapFrom(fullProduct => fullProduct.Images.FirstOrDefault()))
-                .ForMember(model => model.Category, opt => opt.MapFrom(fullProduct => fullProduct.Category));
+                .ForMember(model => model.Image, opt => opt.MapFrom(fullProduct => fullProduct.Images.FirstOrDefault()));
         }
     }
 }

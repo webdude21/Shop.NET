@@ -14,6 +14,5 @@
             image.MergeAttributes(otherAttributes);
             return MvcHtmlString.Create(image.ToString(TagRenderMode.SelfClosing));
         }
-
     }
 }
