@@ -1,5 +1,39 @@
-﻿@{
-    ViewBag.Title = "title";
+﻿@model IEnumerable<Shop.Net.Web.Areas.Catalog.Models.Category.CategoryViewModel>
+@{
+    ViewBag.Title = "Edit Categories";
 }
 
-<h2>title</h2>
+<div class="jumbotron">
+    <h1>Edit categories</h1>
+    <p class="lead">You can add/delete/edit categories from this panel!</p>
+</div>
+
+<div class="row">
+    <table class="table table-striped table-hover ">
+        <thead>
+            <tr>
+                <th class="col-lg-1">Id#</th>
+                <th class="col-lg-3">Name</th>
+                <th class="col-lg-2">Seo Friendly Url</th>
+                <th class="col-lg-5">Meta Title</th>
+                <th class="col-lg-1">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var category in Model)
+            {
+                <tr>
+                    <td>@category.Id</td>
+                    <td>@category.Name</td>
+                    <td>@category.FriendlyUrl</td>
+                    <td>@category.MetaTitle</td>
+                    <td>
+                        <a class="label label-primary" href="@Url.Action("Edit", new { id = category.Id })">Edit</a>
+                        <a class="label label-primary" href="@Url.Action("Delete", new { id = category.Id })">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+

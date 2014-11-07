@@ -1,14 +1,16 @@
 ﻿@using Shop.Net.Web.Infrastructure.Helpers
 @model Shop.Net.Web.Areas.Catalog.Models.Product.ProductThumbnailModel
+@{
+    var url = Url.RouteUrl("Catalog", new { categoryFriendlyUrl = Model.Category.FriendlyUrl, productFriendlyUrl = Model.FriendlyUrl });
+}
+
 <div class="col-md-4 item">
     <h4 class="text-center text-info">@Model.Name</h4>
-    <a href="@Url.RouteUrl("Catalog", new { categoryFriendlyUrl = Model.Category.FriendlyUrl, productFriendlyUrl = Model.FriendlyUrl })">
-       @Html.Image(@Model.Image.Url, @Model.Image.AltText, new { @class = "img-rounded"})
+    <a href="@url">
+        @Html.Image(@Model.Image.Url, @Model.Image.AltText, new { @class = "img-rounded"})
     </a>
     <div class="text-center">
         <p>Price: @string.Format("{0:C0}", Model.Price)</p>
-        <p>
-            @Html.RouteLink("Details", "Catalog", new { categoryFriendlyUrl = Model.Category.FriendlyUrl, productFriendlyUrl = Model.FriendlyUrl }, new { @class = "btn btn-info"} )
-        </p>
+        <a href="@url" class="btn btn-info">Details</a>
     </div>
 </div>

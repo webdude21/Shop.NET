@@ -9,13 +9,14 @@
         private const int DbStringMaxLength = 400;
 
         [Index(IsUnique = true)]
+        [Required]
         [MaxLength(50)]
         public string FriendlyUrl { get; set; }
 
         [MaxLength(DbStringMaxLength)]
         public string MetaTitle { get; set; }
 
-        [MaxLength(1200)]
+        [MaxLength(2000)]
         public string MetaDescription { get; set; }
 
         [MaxLength(DbStringMaxLength)]

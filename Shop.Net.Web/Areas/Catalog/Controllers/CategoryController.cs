@@ -17,7 +17,7 @@
         {
         }
 
-        public ActionResult Index(string categoryFriendlyUrl, int page = 0)
+        public ActionResult Index(string categoryFriendlyUrl, int? page = 0)
         {
             var products =
                  this.ShopData.Products.All()
@@ -25,7 +25,7 @@
             .OrderBy(p => p.Id)
             .Project()
             .To<ProductThumbnailModel>()
-            .Skip(GlobalConstants.ProductsPerPage * page)
+            .Skip(GlobalConstants.ProductsPerPage * page.GetValueOrDefault(0))
             .Take(GlobalConstants.ProductsPerPage).ToList();
 
             return this.View(products);

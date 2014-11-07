@@ -8,11 +8,12 @@
     using AutoMapper.QueryableExtensions;
 
     using Shop.Net.Data.Contracts;
+    using Shop.Net.Resources;
     using Shop.Net.Web.Areas.Catalog.Models.Category;
 
-    public class CategoryMenuController : BaseController
+    public class MenuController : BaseController
     {
-        public CategoryMenuController(IShopData shopData)
+        public MenuController(IShopData shopData)
             : base(shopData)
         {
         }
@@ -31,6 +32,17 @@
             var cachedCategories = this.HttpContext.Cache[CategoryNames];
 
             return this.PartialView("_CategoriesMenuPartial", cachedCategories);
+        }
+
+        [ChildActionOnly]
+        public ActionResult RenderBackOfficeMenu()
+        {
+            if (User.IsInRole(GlobalConstants.AdministratorRole) || User.IsInRole(GlobalConstants.EmployeeRole))
+            {
+                return this.PartialView("_BackOfficeMenu");
+            }
+
+            return null;
         }
     }
 }
