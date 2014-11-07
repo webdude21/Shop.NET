@@ -9,6 +9,7 @@
 
     using Shop.Net.Data.Contracts;
     using Shop.Net.Resources;
+    using Shop.Net.Web.Areas.Catalog.Models.Category;
     using Shop.Net.Web.Areas.Catalog.Models.Product;
 
     [RequireHttps]
@@ -18,6 +19,7 @@
             : base(shopData)
         {
         }
+
 
         public ActionResult Index()
         {
@@ -53,5 +55,6 @@
 
             return this.View();
         }
+
     }
 }

@@ -1,8 +1,9 @@
-﻿@model Shop.Net.Web.Areas.Catalog.Models.Product.ProductThumbnailModel
+﻿@using Shop.Net.Web.Infrastructure.Helpers
+@model Shop.Net.Web.Areas.Catalog.Models.Product.ProductThumbnailModel
 <div class="col-md-4 item">
     <h4 class="text-center text-info">@Model.Name</h4>
     <a href="@Url.RouteUrl("Catalog", new { categoryFriendlyUrl = Model.Category.FriendlyUrl, productFriendlyUrl = Model.FriendlyUrl })">
-        <img src="@Model.Image.Url" class="img-rounded" alt="@Model.Image.AltText" />
+       @Html.Image(@Model.Image.Url, @Model.Image.AltText, new { @class = "img-rounded"})
     </a>
     <div class="text-center">
         <p>Price: @string.Format("{0:C0}", Model.Price)</p>

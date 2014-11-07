@@ -193,12 +193,15 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Areas\Administration\AdministrationAreaRegistration.cs" />
+    <Compile Include="Areas\BackOffice\BackOfficeAreaRegistration.cs" />
+    <Compile Include="Areas\BackOffice\Controllers\CategoryController.cs" />
     <Compile Include="Areas\Catalog\CatalogAreaRegistration.cs" />
     <Compile Include="Areas\Catalog\Controllers\CategoryController.cs" />
     <Compile Include="Areas\Catalog\Models\Product\ImageViewModel.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdministrationController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\CategoryMenuController.cs" />
     <Compile Include="Controllers\PagesController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Areas\Catalog\Controllers\ProductController.cs" />
@@ -255,6 +258,10 @@
     <Content Include="Areas\Catalog\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Catalog\Views\Shared\_SocialSharerPartial.cshtml" />
     <Content Include="Areas\Catalog\Views\Category\Index.cshtml" />
+    <Content Include="Areas\BackOffice\Views\web.config" />
+    <Content Include="Areas\BackOffice\Views\Category\Index.cshtml" />
+    <Content Include="Areas\BackOffice\_ViewStart.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Shared\_Layout.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -316,12 +323,15 @@
     <Content Include="Views\Shared\_SeoPartial.cshtml" />
     <Content Include="Views\Shared\_FacebookSdkPartial.cshtml" />
     <Content Include="Views\Shared\_ImageGalleryPartial.cshtml" />
+    <Content Include="Views\Shared\_CategoriesMenuPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Administration\Controllers\" />
     <Folder Include="Areas\Administration\Models\" />
     <Folder Include="Areas\Administration\Views\Shared\" />
+    <Folder Include="Areas\BackOffice\Models\" />
+    <Folder Include="Views\CategoryMenu\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

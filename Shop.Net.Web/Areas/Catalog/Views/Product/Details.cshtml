@@ -3,6 +3,9 @@
 @section MetaInformation {
     @Html.Partial("_SeoPartial", Model);
 }
+@{
+    ViewBag.Title = Model.MetaTitle ?? Model.Name;
+}
 
 <div id="product-wrapper">
     <div class="row">
