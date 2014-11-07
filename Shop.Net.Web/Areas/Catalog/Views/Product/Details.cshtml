@@ -11,7 +11,7 @@
     <div class="row">
       @Html.Partial("_ImageGalleryPartial", Model)
         <div class="col-lg-6">
-            <h5 class="product-title">@Model.Manufacturer @Model.Name</h5>
+            <h4>@Model.Manufacturer @Model.Name</h4>
             @if (Model.Sku != null)
             {
                 <span class="label label-default">Sku: @Model.Sku</span>

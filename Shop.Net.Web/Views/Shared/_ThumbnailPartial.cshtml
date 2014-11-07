@@ -8,7 +8,7 @@
     <div class="text-center">
         <p>Price: @string.Format("{0:C0}", Model.Price)</p>
         <p>
-            <a class="btn btn-info" href="">Buy</a>
+            @Html.RouteLink("Details", "Catalog", new { categoryFriendlyUrl = Model.Category.FriendlyUrl, productFriendlyUrl = Model.FriendlyUrl }, new { @class = "btn btn-info"} )
         </p>
     </div>
 </div>

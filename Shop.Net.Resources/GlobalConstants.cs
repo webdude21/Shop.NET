@@ -2,7 +2,7 @@
 {
     public class GlobalConstants
     {
-        public const string ShopName = "PhotoLafka Demo Shop";
+        public const string ShopName = "PhotoLafka";
 
         public const string Credits = "Powered by Shop.Net";
 
