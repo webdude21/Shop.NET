@@ -194,10 +194,11 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Areas\Administration\AdministrationAreaRegistration.cs" />
     <Compile Include="Areas\BackOffice\BackOfficeAreaRegistration.cs" />
-    <Compile Include="Areas\BackOffice\Controllers\CategoryController.cs" />
-    <Compile Include="Areas\BackOffice\Controllers\ProductController.cs" />
+    <Compile Include="Areas\BackOffice\Controllers\CategoriesController.cs" />
+    <Compile Include="Areas\BackOffice\Controllers\ProductsController.cs" />
     <Compile Include="Areas\BackOffice\Models\CategoryEditModel.cs" />
     <Compile Include="Areas\BackOffice\Models\ProductEditModel.cs" />
+    <Compile Include="Areas\BackOffice\Models\ProductsListModel.cs" />
     <Compile Include="Areas\Catalog\CatalogAreaRegistration.cs" />
     <Compile Include="Areas\Catalog\Controllers\CategoryController.cs" />
     <Compile Include="Areas\Catalog\Models\Product\ImageViewModel.cs" />
@@ -236,6 +237,8 @@
     <Compile Include="Models\IndexViewModel.cs" />
     <Compile Include="Models\Marketing\SeoEditModel.cs" />
     <Compile Include="Models\Marketing\SeoViewModel.cs" />
+    <Compile Include="Models\PagerViewModel.cs" />
+    <Compile Include="Models\ViewModelWithPager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="Models\Account\SetPasswordViewModel.cs" />
@@ -263,15 +266,18 @@
     <Content Include="Areas\Catalog\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Catalog\Views\Shared\_SocialSharerPartial.cshtml" />
     <Content Include="Areas\Catalog\Views\Category\Index.cshtml" />
-    <Content Include="Areas\BackOffice\Views\Category\Index.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Categories\Index.cshtml" />
     <Content Include="Areas\BackOffice\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\BackOffice\Views\web.config" />
     <Content Include="Areas\BackOffice\Views\_ViewStart.cshtml" />
-    <Content Include="Areas\BackOffice\Views\Category\Edit.cshtml" />
-    <Content Include="Areas\BackOffice\Views\Category\Delete.cshtml" />
-    <Content Include="Areas\BackOffice\Views\Category\Add.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Categories\Edit.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Categories\Delete.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Categories\Add.cshtml" />
     <Content Include="Areas\BackOffice\Views\Shared\DisplayTemplates\CategoryEditModel.cshtml" />
     <Content Include="Areas\Catalog\Views\Category\EmptyCategory.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Products\Index.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Products\Edit.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Products\Add.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -335,13 +341,13 @@
     <Content Include="Views\Shared\_ImageGalleryPartial.cshtml" />
     <Content Include="Views\Shared\_CategoriesMenuPartial.cshtml" />
     <Content Include="Views\Menu\_BackOfficeMenu.cshtml" />
+    <Content Include="Views\Shared\_PagerPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Administration\Controllers\" />
     <Folder Include="Areas\Administration\Models\" />
     <Folder Include="Areas\Administration\Views\Shared\" />
-    <Folder Include="Areas\BackOffice\Views\Product\" />
     <Folder Include="Areas\BackOffice\Views\Shared\EditTemplates\" />
   </ItemGroup>
   <ItemGroup>

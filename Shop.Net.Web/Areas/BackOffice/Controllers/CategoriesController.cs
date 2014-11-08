@@ -4,30 +4,40 @@
     using System.Net;
     using System.Web.Mvc;
 
-    using AutoMapper;
     using AutoMapper.QueryableExtensions;
 
     using Microsoft.AspNet.Identity;
 
     using Shop.Net.Data.Contracts;
     using Shop.Net.Model.Catalog;
+    using Shop.Net.Resources;
     using Shop.Net.Web.Areas.BackOffice.Models;
     using Shop.Net.Web.Areas.Catalog.Models.Category;
     using Shop.Net.Web.Controllers;
 
-    public class CategoryController : BackOfficeController
+    public class CategoriesController : BackOfficeController
     {
         // GET: BackOffice/Category
-        public CategoryController(IShopData shopData)
+        public CategoriesController(IShopData shopData)
             : base(shopData)
         {
         }
 
-        public ActionResult Index()
+        public ActionResult Index(int? page)
         {
-            var categories = this.ShopData.Categories.All().OrderBy(x => x.Name).Project().To<CategoryViewModel>();
+            var categoriesCount = this.ShopData.Categories.All().Count();
+            var pager = GetPagerViewModel(page, categoriesCount);
 
-            return this.View(categories);
+            var categories = this.ShopData.Categories
+                .All()
+                .OrderBy(x => x.Name)
+                .Project().To<CategoryViewModel>()
+                .Skip(GlobalConstants.ItemsPerPage * pager.CurrentPage)
+                .Take(GlobalConstants.ItemsPerPage);
+
+            var pagerWithCategories = this.GetViewModelWithPager(categories, pager);
+
+            return this.View(pagerWithCategories);
         }
 
         [HttpGet]

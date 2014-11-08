@@ -1,0 +1,39 @@
+﻿@model Shop.Net.Web.Models.PagerViewModel
+
+<div class="row">
+    <ul class="pagination">
+        @if (Model.CurrentPage < 1)
+        {
+            <li class="disabled"><a href="#">«</a></li>
+        }
+        else
+        {
+            var url = Model.TargetUrl + "?page=" + (Model.CurrentPage);
+            <li><a href="@url">«</a></li>
+        }
+
+        @for (var i = 1; i <= Model.TotalPages; i++)
+        {
+            var url = Model.TargetUrl + "?page=" + i;
+            if (Model.CurrentPage + 1 == i)
+            {
+                <li class="active"><a href="@url">@i</a></li>
+            }
+            else
+            {
+                <li><a href="@url">@i</a></li>
+            }
+        }
+
+        @if (Model.CurrentPage < Model.TotalPages - 1)
+        {
+            var url = Model.TargetUrl + "?page=" + (Model.CurrentPage + 2);
+            <li><a href="@url">»</a></li>
+        }
+        else
+        {
+            <li class="disabled"><a href="#">»</a></li>
+        }
+
+    </ul>
+</div>

@@ -59,8 +59,6 @@
 
         public bool Published { get; set; }
 
-        public bool Deleted { get; set; }
-
         public bool AllowCustomerReviews { get; set; }
 
         public bool AllowCustomerComments { get; set; }

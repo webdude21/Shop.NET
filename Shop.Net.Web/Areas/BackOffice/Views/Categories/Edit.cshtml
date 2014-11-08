@@ -5,7 +5,7 @@
 }
 
 <h2>@ViewBag.Title - @Model.Name</h2>
-@using (Html.BeginForm("Edit", "Category", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+@using (Html.BeginForm("Edit", "Categories", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
 {
     @Html.AntiForgeryToken()
     <hr />

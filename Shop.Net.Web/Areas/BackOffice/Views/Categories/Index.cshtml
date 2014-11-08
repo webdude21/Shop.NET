@@ -1,12 +1,12 @@
-﻿@model IEnumerable<Shop.Net.Web.Areas.Catalog.Models.Category.CategoryViewModel>
+﻿@model Shop.Net.Web.Models.ViewModelWithPager<IQueryable<Shop.Net.Web.Areas.Catalog.Models.Category.CategoryViewModel>>
 @{
     ViewBag.Title = "Categories";
 }
 
 <div class="jumbotron">
-    <h1>Categories</h1>
+    <h1>@ViewBag.Title</h1>
     <p class="lead">You can add/edit/delete categories from this panel!</p>
-    @Html.ActionLink("Add New Category", "Add", "Category", new { area = "BackOffice" }, new { @class = "btn-success btn pull-right" })
+    @Html.ActionLink("Add New Category", "Add", "Categories", new { area = "BackOffice" }, new { @class = "btn-success btn pull-right" })
 </div>
 
 <div class="row">
@@ -21,7 +21,7 @@
             </tr>
         </thead>
         <tbody>
-            @foreach (var category in Model)
+            @foreach (var category in Model.ViewModel)
             {
                 <tr>
                     <td>@category.Id</td>
@@ -38,3 +38,7 @@
     </table>
 </div>
 
+@{
+    Model.Pager.TargetUrl = @Url.Action("Index");
+}
+@Html.Partial("_PagerPartial", Model.Pager)

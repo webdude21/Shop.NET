@@ -1,0 +1,48 @@
+﻿@model Shop.Net.Web.Models.ViewModelWithPager<IQueryable<Shop.Net.Web.Areas.BackOffice.Models.ProductsListModel>>
+
+@{
+    ViewBag.Title = "Products";
+}
+
+<div class="jumbotron">
+    <h1>@ViewBag.Title</h1>
+    <p class="lead">You can add/edit/delete products from this panel!</p>
+    @Html.ActionLink("Add New Product", "Add", "Products", new { area = "BackOffice" }, new { @class = "btn-success btn pull-right" })
+</div>
+
+<div class="row">
+    <table class="table table-striped table-hover ">
+        <thead>
+            <tr>
+                <th class="col-lg-1">Id#</th>
+                <th class="col-lg-2">Name</th>
+                <th class="col-lg-2">Price</th>
+                <th class="col-lg-2">Quantity</th>
+                <th class="col-lg-2">Category</th>
+                <th class="col-lg-2">Published?</th>
+                <th class="col-lg-1">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var product in Model.ViewModel)
+            {
+                <tr>
+                    <td>@product.Id</td>
+                    <td>@product.Name</td>
+                    <td>@product.Price</td>
+                    <td>@product.Quantity</td>
+                    <td>@product.Category.Name</td>
+                    <td>@product.Published</td>
+                    <td>
+                        <a class="label label-warning" href="@Url.Action("Edit", new { id = product.Id })">Edit</a>
+                        <a class="label label-danger" href="@Url.Action("Delete", new { id = product.Id })">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+@{
+    Model.Pager.TargetUrl = @Url.Action("Index");
+}
+@Html.Partial("_PagerPartial", Model.Pager)

@@ -22,12 +22,12 @@
         {
             var products =
                  this.ShopData.Products.All()
-            .Where(c => c.Category.FriendlyUrl == categoryFriendlyUrl && c.Deleted == false)
+            .Where(c => c.Category.FriendlyUrl == categoryFriendlyUrl && c.Published)
             .OrderBy(p => p.Id)
             .Project()
             .To<ProductThumbnailModel>()
-            .Skip(GlobalConstants.ProductsPerPage * page.GetValueOrDefault(0))
-            .Take(GlobalConstants.ProductsPerPage).ToList();
+            .Skip(GlobalConstants.ItemsPerPage * page.GetValueOrDefault(0))
+            .Take(GlobalConstants.ItemsPerPage).ToList();
 
             if (products.Count == 0)
             {
