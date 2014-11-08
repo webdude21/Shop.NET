@@ -3,6 +3,8 @@
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
 
+    using Shop.Net.Resources;
+
     public class Seo
     {
         [NotMapped]
@@ -11,9 +13,12 @@
         [Index(IsUnique = true)]
         [Required]
         [MaxLength(50)]
+        [RegularExpression(GlobalConstants.FriendlyUrlsRegexValidator,
+            ErrorMessage = GlobalConstants.FriendlyUrlsValidatorErrorMessage)]
         public string FriendlyUrl { get; set; }
 
         [MaxLength(DbStringMaxLength)]
+
         public string MetaTitle { get; set; }
 
         [MaxLength(2000)]

@@ -4,6 +4,7 @@
     using System.Net;
     using System.Web.Mvc;
 
+    using AutoMapper;
     using AutoMapper.QueryableExtensions;
 
     using Microsoft.AspNet.Identity;
@@ -72,15 +73,15 @@
                 this.ModelState.AddModelError(string.Empty, string.Format("Seo Friendly Url & Name must be unique!"));
             }
 
-            this.TryValidateModel(model);
             if (this.ModelState.IsValid)
             {
                 this.ShopData.Categories.Add(newCategory);
                 this.ShopData.SaveChanges();
+                this.ClearCache();
                 return this.RedirectToAction("Index");
             }
 
-            return this.RedirectToAction("Index");
+            return this.View(model);
         }
 
         [HttpPost]
@@ -88,6 +89,11 @@
         public ActionResult Edit(CategoryEditModel model)
         {
             var category = this.ShopData.Categories.Find(model.Id);
+
+            if (this.ShopData.Categories.All().Where(c => c.Id != model.Id).Any(c => c.FriendlyUrl == model.FriendlyUrl || c.Name == model.Name))
+            {
+                this.ModelState.AddModelError(string.Empty, string.Format("Seo Friendly Url & Name must be unique!"));
+            }
 
             this.TryUpdateModel(category);
             if (this.ModelState.IsValid)

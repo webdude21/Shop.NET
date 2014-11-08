@@ -1,4 +1,4 @@
-﻿namespace Shop.Net.Web.ViewModels
+﻿namespace Shop.Net.Web.Models.Marketing
 {
     using Shop.Net.Model.Marketing;
     using Shop.Net.Web.Infrastructure.Mapping;

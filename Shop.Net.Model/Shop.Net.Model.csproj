@@ -77,6 +77,12 @@
     <Folder Include="Contracts\" />
     <Folder Include="General\" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Shop.Net.Resources\Shop.Net.Resources.csproj">
+      <Project>{C4C4F305-65B1-4E69-93CB-19FDDF8DBE81}</Project>
+      <Name>Shop.Net.Resources</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

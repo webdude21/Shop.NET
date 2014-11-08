@@ -25,5 +25,10 @@
         public const string RobotsIndexFollow = "index, follow";
 
         public const int ProductsPerPage = 12;
+
+        public const string FriendlyUrlsRegexValidator = @"[\w-]+";
+
+        public const string FriendlyUrlsValidatorErrorMessage =
+            "Seo friendly urls must only contain Latin letters, digits, dash and underscore";
     }
 }

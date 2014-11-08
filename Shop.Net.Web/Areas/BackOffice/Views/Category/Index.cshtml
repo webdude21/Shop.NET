@@ -1,11 +1,12 @@
 ﻿@model IEnumerable<Shop.Net.Web.Areas.Catalog.Models.Category.CategoryViewModel>
 @{
-    ViewBag.Title = "Edit Categories";
+    ViewBag.Title = "Categories";
 }
 
 <div class="jumbotron">
-    <h1>Edit categories</h1>
-    <p class="lead">You can add/delete/edit categories from this panel!</p>
+    <h1>Categories</h1>
+    <p class="lead">You can add/edit/delete categories from this panel!</p>
+    @Html.ActionLink("Add New Category", "Add", "Category", new { area = "BackOffice" }, new { @class = "btn-success btn pull-right" })
 </div>
 
 <div class="row">
@@ -28,8 +29,8 @@
                     <td>@category.FriendlyUrl</td>
                     <td>@category.MetaTitle</td>
                     <td>
-                        <a class="label label-primary" href="@Url.Action("Edit", new { id = category.Id })">Edit</a>
-                        <a class="label label-primary" href="@Url.Action("Delete", new { id = category.Id })">Delete</a>
+                        <a class="label label-warning" href="@Url.Action("Edit", new { id = category.Id })">Edit</a>
+                        <a class="label label-danger" href="@Url.Action("Delete", new { id = category.Id })">Delete</a>
                     </td>
                 </tr>
             }

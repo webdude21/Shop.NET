@@ -10,7 +10,7 @@
     using Shop.Net.Model.Marketing;
     using Shop.Net.Web.Areas.Catalog.Models.Category;
     using Shop.Net.Web.Infrastructure.Mapping;
-    using Shop.Net.Web.ViewModels;
+    using Shop.Net.Web.Models.Marketing;
 
     public class ProductDetailsModel : SeoViewModel, IMapFrom<Product> 
     {

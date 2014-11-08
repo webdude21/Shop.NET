@@ -7,6 +7,7 @@
 
     using Shop.Net.Data.Contracts;
     using Shop.Net.Resources;
+    using Shop.Net.Web.Areas.Catalog.Models.Category;
     using Shop.Net.Web.Areas.Catalog.Models.Product;
     using Shop.Net.Web.Controllers;
 
@@ -27,6 +28,16 @@
             .To<ProductThumbnailModel>()
             .Skip(GlobalConstants.ProductsPerPage * page.GetValueOrDefault(0))
             .Take(GlobalConstants.ProductsPerPage).ToList();
+
+            if (products.Count == 0)
+            {
+                var category =
+                    this.ShopData.Categories.All()
+                        .Where(c => c.FriendlyUrl == categoryFriendlyUrl)
+                        .Project()
+                        .To<CategoryViewModel>().First();
+                return this.View("EmptyCategory", category);
+            }
 
             return this.View(products);
         }
