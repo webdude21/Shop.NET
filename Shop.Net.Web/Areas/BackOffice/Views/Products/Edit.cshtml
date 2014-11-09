@@ -14,15 +14,27 @@
         <hr />
         @Html.EditorFor(model => model)
     </div>
-    <input type="file" name="FileUpload1" />
+
+    <fieldset id="form-upload">
+        <legend>Upload Images</legend>
+        <div class="form-group">
+            <label for="file_0" class="control-label col-md-2">Filename:</label>
+            <div class="col-md-10">
+                <input class="form-control" type="file" name="file_0" id="file_0" />
+            </div>
+        </div>
+    </fieldset>
+
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
             <input type="submit" class="btn btn-warning" value="Save Changes" />
             @Html.ActionLink("Cancel", "Index", null, new { @class = "btn btn-info" })
+            <span id="add-input-file" class="btn btn-success">Upload more files</span>
         </div>
     </div>
 }
 
 @section scripts{
     @Scripts.Render("~/bundles/jqueryval");
+    @Scripts.Render("~/bundles/filesManagment");
 }

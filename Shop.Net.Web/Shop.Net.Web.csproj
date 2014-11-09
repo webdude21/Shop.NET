@@ -307,6 +307,7 @@
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\responsive-images.js" />
     <Content Include="Scripts\thumbnail-gallery-script.js" />
+    <Content Include="Scripts\upload.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">

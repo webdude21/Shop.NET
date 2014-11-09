@@ -24,6 +24,7 @@
                     .Include("~/Scripts/responsive-images.js")
                     .Include("~/Scripts/thumbnail-gallery-script.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/filesManagment").Include("~/Scripts/upload.js"));
 
             bundles.Add(
                 new StyleBundle("~/Content/css").Include(
