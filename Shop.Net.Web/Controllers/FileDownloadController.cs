@@ -5,9 +5,9 @@
 
     using Shop.Net.Data.Contracts;
 
-    public class ImageDownloadController : BaseController
+    public class FileDownloadController : BaseController
     {
-        public ImageDownloadController(IShopData shopData)
+        public FileDownloadController(IShopData shopData)
             : base(shopData)
         {
         }
@@ -15,7 +15,6 @@
         public FilePathResult GetImage(string fileName)
         {
             var image = this.ShopData.Images.All().FirstOrDefault(f => f.Url.Contains(fileName));
-
             return this.File(Server.MapPath("~" + image.Url), image.MimeType, image.FileName);
         }
     }

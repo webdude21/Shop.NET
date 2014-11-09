@@ -207,7 +207,7 @@
     <Compile Include="Controllers\AdministrationController.cs" />
     <Compile Include="Controllers\BackOfficeController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
-    <Compile Include="Controllers\ImageDownloadController.cs" />
+    <Compile Include="Controllers\FileDownloadController.cs" />
     <Compile Include="Controllers\MenuController.cs" />
     <Compile Include="Controllers\PagesController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
