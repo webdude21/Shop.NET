@@ -5,13 +5,16 @@
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
 
+    using AutoMapper;
+
     using Shop.Net.Model.Catalog;
     using Shop.Net.Model.Marketing;
     using Shop.Net.Resources;
+    using Shop.Net.Web.Areas.Catalog.Models.Product;
     using Shop.Net.Web.Infrastructure.Mapping;
     using Shop.Net.Web.Models.Marketing;
 
-    public class ProductEditModel : SeoEditModel, IMapFrom<Product>
+    public class ProductEditModel : SeoEditModel, IMapFrom<Product>, IHaveCustomMappings
     {
         [NotMapped]
         private const int DbStringMaxLength = 400;
@@ -36,18 +39,18 @@
         [MaxLength(DbStringMaxLength)]
         public string Manufacturer { get; set; }
 
-        [Range(0, double.MaxValue, ErrorMessage = "The value must be greater than 0")]
+        [Range(0, double.MaxValue, ErrorMessage = GlobalConstants.NonNegativeNumbers)]
         public decimal Price { get; set; }
 
         [DisplayName(@"Product Cost")]
-        [Range(0, double.MaxValue, ErrorMessage = "The value must be greater than 0")]
+        [Range(0, double.MaxValue, ErrorMessage = GlobalConstants.NonNegativeNumbers)]
         public decimal ProductCost { get; set; }
 
-        [Range(0, double.MaxValue, ErrorMessage = "The value must be greater than 0")]
+        [Range(0, double.MaxValue, ErrorMessage = GlobalConstants.NonNegativeNumbers)]
         public double? Weight { get; set; }
-        [Range(0, double.MaxValue, ErrorMessage = "The value must be greater than 0")]
+        [Range(0, double.MaxValue, ErrorMessage = GlobalConstants.NonNegativeNumbers)]
         public double? Height { get; set; }
-        [Range(0, double.MaxValue, ErrorMessage = "The value must be greater than 0")]
+        [Range(0, double.MaxValue, ErrorMessage = GlobalConstants.NonNegativeNumbers)]
         public double? Length { get; set; }
         [Range(0, double.MaxValue, ErrorMessage = GlobalConstants.NonNegativeNumbers)]
         public double? Width { get; set; }
@@ -65,10 +68,14 @@
         [DisplayName(@"Allow Customer Rating")]
         public bool AllowCustomerRating { get; set; }
 
-        public virtual Category Category { get; set; }
+        public CategorySimpleViewModel Category { get; set; }
 
-        public virtual ICollection<Review> Reviews { get; set; }
+        public IEnumerable<Review> Reviews { get; set; }
 
-        public virtual ICollection<Image> Images { get; set; }
+        public IEnumerable<ImageViewModel> Images { get; set; }
+
+        public void CreateMappings(IConfiguration configuration)
+        {
+        }
     }
 }

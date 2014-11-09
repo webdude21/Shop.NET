@@ -1,4 +1,5 @@
-﻿@model Shop.Net.Web.Areas.BackOffice.Models.ProductEditModel
+﻿@using System.Web.Mvc.Html
+@model Shop.Net.Web.Areas.BackOffice.Models.ProductEditModel
 
 @{
     ViewBag.Title = "Edit Category";
@@ -21,6 +22,9 @@
                 @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
             </div>
         </div>
+    
+        @Html.Partial("_CategoryDropDown", this.ViewData["Categories"]);
+
         <div class="form-group">
             @Html.LabelFor(model => model.FriendlyUrl, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">

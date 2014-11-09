@@ -197,6 +197,7 @@
     <Compile Include="Areas\BackOffice\Controllers\CategoriesController.cs" />
     <Compile Include="Areas\BackOffice\Controllers\ProductsController.cs" />
     <Compile Include="Areas\BackOffice\Models\CategoryEditModel.cs" />
+    <Compile Include="Areas\BackOffice\Models\CategorySimpleViewModel.cs" />
     <Compile Include="Areas\BackOffice\Models\ProductEditModel.cs" />
     <Compile Include="Areas\BackOffice\Models\ProductsListModel.cs" />
     <Compile Include="Areas\Catalog\CatalogAreaRegistration.cs" />
@@ -215,6 +216,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Infrastructure\Helpers\HtmlExtensions.cs" />
+    <Compile Include="Infrastructure\Helpers\SortHelper.cs" />
     <Compile Include="Infrastructure\Mapping\AutoMapperConfig.cs" />
     <Compile Include="Infrastructure\Mapping\IHaveCustomMappings.cs" />
     <Compile Include="Infrastructure\Mapping\IMapFrom.cs" />
@@ -267,7 +269,6 @@
     <Content Include="Areas\Catalog\Views\Shared\_SocialSharerPartial.cshtml" />
     <Content Include="Areas\Catalog\Views\Category\Index.cshtml" />
     <Content Include="Areas\BackOffice\Views\Categories\Index.cshtml" />
-    <Content Include="Areas\BackOffice\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\BackOffice\Views\web.config" />
     <Content Include="Areas\BackOffice\Views\_ViewStart.cshtml" />
     <Content Include="Areas\BackOffice\Views\Categories\Edit.cshtml" />
@@ -278,6 +279,7 @@
     <Content Include="Areas\BackOffice\Views\Products\Index.cshtml" />
     <Content Include="Areas\BackOffice\Views\Products\Edit.cshtml" />
     <Content Include="Areas\BackOffice\Views\Products\Add.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Shared\_CategoryDropDown.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />

@@ -30,7 +30,7 @@
 
             var categories = this.ShopData.Categories
                 .All()
-                .OrderBy(x => x.Name)
+                .OrderBy(x => x.Id)
                 .Project().To<CategoryViewModel>()
                 .Skip(GlobalConstants.ItemsPerPage * pager.CurrentPage)
                 .Take(GlobalConstants.ItemsPerPage);
