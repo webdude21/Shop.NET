@@ -17,6 +17,8 @@ namespace Shop.Net.Web
 
     using Shop.Net.Data;
     using Shop.Net.Data.Contracts;
+    using Shop.Net.Web.Infrastructure.Contracts;
+    using Shop.Net.Web.Infrastructure.Helpers;
 
     public static class NinjectWebCommon
     {
@@ -69,6 +71,7 @@ namespace Shop.Net.Web
         private static void RegisterServices(IKernel kernel)
         {
             kernel.Bind<IShopData>().To<ShopData>().WithConstructorArgument("context", c => new ShopDbContext());
+            kernel.Bind<IImageUploader>().To<ImageUploader>();
         }
     }
 }

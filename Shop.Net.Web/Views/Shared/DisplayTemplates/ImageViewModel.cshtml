@@ -1,0 +1,4 @@
+﻿@using Shop.Net.Web.Infrastructure.Helpers
+@model Shop.Net.Web.Areas.Catalog.Models.Product.ImageViewModel
+
+@Html.Image(Model.Url, Model.FileName, new { @class = "gallery-thumbnail" })

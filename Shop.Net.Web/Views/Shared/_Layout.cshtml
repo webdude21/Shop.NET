@@ -5,13 +5,12 @@
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>@ViewBag.Title - @GlobalConstants.ShopName</title>
-        @RenderSection("MetaInformation", required: false);
+        @RenderSection("MetaInformation", required: false)
         @Styles.Render("~/Content/css")
         @Scripts.Render("~/bundles/modernizr")
-
     </head>
     <body>
-        @Html.Partial("_FacebookSdkPartial");
+        @Html.Partial("_FacebookSdkPartial")
         <div class="navbar navbar-inverse navbar-fixed-top">
             <div class="container">
                 <div class="navbar-header">

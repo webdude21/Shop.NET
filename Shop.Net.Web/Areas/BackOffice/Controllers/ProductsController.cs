@@ -1,7 +1,7 @@
 ﻿namespace Shop.Net.Web.Areas.BackOffice.Controllers
 {
     using System;
-    using System.Collections.Generic;
+    using System.IO;
     using System.Linq;
     using System.Net;
     using System.Web.Mvc;
@@ -13,14 +13,13 @@
     using Shop.Net.Model.Catalog;
     using Shop.Net.Resources;
     using Shop.Net.Web.Areas.BackOffice.Models;
-    using Shop.Net.Web.Areas.Catalog.Models.Category;
     using Shop.Net.Web.Controllers;
+    using Shop.Net.Web.Infrastructure.Contracts;
 
     public class ProductsController : BackOfficeController
     {
-        // GET: BackOffice/Product
-        public ProductsController(IShopData shopData)
-            : base(shopData)
+        public ProductsController(IShopData shopData, IImageUploader imageUploader)
+            : base(shopData, imageUploader)
         {
         }
 
@@ -130,6 +129,7 @@
             this.TryUpdateModel(product);
             if (this.ModelState.IsValid)
             {
+                ImageUploader.UploadImages(this.Request, this.Server, product.Images);
                 this.ShopData.SaveChanges();
                 this.ClearCache();
                 return this.RedirectToAction("Index", "Products");
@@ -148,8 +148,7 @@
         private void PutCategoriesInTheViewDictionary(ProductEditModel product)
         {
 
-            this.ViewData["Categories"] =
-                this.ShopData.Categories.All().Project().To<CategorySimpleViewModel>().ToList();
+            this.ViewData["Categories"] = this.ShopData.Categories.All().Project().To<CategorySimpleViewModel>().ToList();
             this.ViewData["SelectedCategory"] = product.Category.Id;
         }
     }

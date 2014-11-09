@@ -7,7 +7,7 @@
 <div class="col-md-4 item">
     <h4 class="text-center text-info">@Model.Name</h4>
     <a href="@url">
-        @Html.Image(@Model.Image.Url, @Model.Image.AltText, new { @class = "img-rounded"})
+        @Html.Image(@Model.Image.Url, @Model.Image.FileName, new { @class = "img-rounded"})
     </a>
     <div class="text-center">
         <p>Price: @string.Format("{0:C0}", Model.Price)</p>

@@ -48,13 +48,17 @@
 
         [Range(0, double.MaxValue, ErrorMessage = GlobalConstants.NonNegativeNumbers)]
         public double? Weight { get; set; }
+
         [Range(0, double.MaxValue, ErrorMessage = GlobalConstants.NonNegativeNumbers)]
         public double? Height { get; set; }
+
         [Range(0, double.MaxValue, ErrorMessage = GlobalConstants.NonNegativeNumbers)]
         public double? Length { get; set; }
+
         [Range(0, double.MaxValue, ErrorMessage = GlobalConstants.NonNegativeNumbers)]
         public double? Width { get; set; }
 
+        [Range(0, int.MaxValue, ErrorMessage = GlobalConstants.NonNegativeNumbers)]
         public int Quantity { get; set; }
 
         public bool Published { get; set; }
@@ -72,7 +76,7 @@
 
         public IEnumerable<Review> Reviews { get; set; }
 
-        public IEnumerable<ImageViewModel> Images { get; set; }
+        public IList<ImageViewModel> Images { get; set; }
 
         public void CreateMappings(IConfiguration configuration)
         {

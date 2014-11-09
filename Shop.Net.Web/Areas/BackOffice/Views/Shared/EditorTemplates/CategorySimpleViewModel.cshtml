@@ -1,0 +1,24 @@
+﻿@using System.Globalization
+@using System.Web.Mvc.Html
+@using Shop.Net.Web.Areas.BackOffice.Models
+@model CategorySimpleViewModel
+@{
+    var categories = new List<SelectListItem>();
+    var categoriesList = this.ViewData["Categories"] as IEnumerable<CategorySimpleViewModel>;
+    var selectedCategory = (int)this.ViewData["SelectedCategory"]; 
+
+    foreach (var category in categoriesList)
+    {
+        var selectItem = new SelectListItem { Text = category.Name, Value = category.Id.ToString(CultureInfo.InvariantCulture) };
+
+        if (category.Id == selectedCategory)
+        {
+            selectItem.Selected = true;
+        }
+
+        categories.Add(selectItem);
+    }
+}
+
+@Html.DropDownListFor(model => model.Id, categories, new { @class = "form-control" })
+

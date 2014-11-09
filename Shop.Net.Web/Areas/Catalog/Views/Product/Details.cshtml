@@ -5,11 +5,12 @@
 }
 @{
     ViewBag.Title = Model.MetaTitle ?? Model.Name;
+
 }
 
 <div id="product-wrapper">
     <div class="row">
-      @Html.Partial("_ImageGalleryPartial", Model)
+        @Html.Partial("_ImageGalleryPartial", Model)
         <div class="col-lg-7">
             <h4>@Model.Manufacturer @Model.Name</h4>
             @if (Model.Sku != null)

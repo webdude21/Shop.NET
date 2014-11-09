@@ -20,10 +20,16 @@
 
             bundles.Add(
                 new ScriptBundle("~/bundles/responsive-images").Include("~/Scripts/masonry.pkgd.min.js")
+                .Include("~/Scripts/jquery.magnific-popup.js")
                     .Include("~/Scripts/responsive-images.js")
                     .Include("~/Scripts/thumbnail-gallery-script.js"));
 
-            bundles.Add(new StyleBundle("~/Content/css").Include("~/Content/paper.css", "~/Content/site.css"));
+
+            bundles.Add(
+                new StyleBundle("~/Content/css").Include(
+                    "~/Content/paper.css",
+                    "~/Content/site.css",
+                    "~/Content/magnific-popup/magnific-popup.css"));
 
             // Set EnableOptimizations to false for debugging. For more information,
             // visit http://go.microsoft.com/fwlink/?LinkId=301862

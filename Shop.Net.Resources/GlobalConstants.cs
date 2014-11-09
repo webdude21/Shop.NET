@@ -32,5 +32,9 @@
             "Seo friendly urls must only contain Latin letters, digits, dash and underscore";
 
         public const string NonNegativeNumbers = "The value must be greater than or equal to 0";
+
+        public const string ProductImagesRelativePath = "/Content/Images/Products/";
+
+        public const string GuidRegEx = @"\b[A-F0-9]{8}(?:-[A-F0-9]{4}){3}-[A-F0-9]{12}\b";
     }
 }

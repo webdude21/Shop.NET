@@ -14,12 +14,12 @@
     using Shop.Net.Web.Areas.BackOffice.Models;
     using Shop.Net.Web.Areas.Catalog.Models.Category;
     using Shop.Net.Web.Controllers;
+    using Shop.Net.Web.Infrastructure.Contracts;
 
     public class CategoriesController : BackOfficeController
     {
-        // GET: BackOffice/Category
-        public CategoriesController(IShopData shopData)
-            : base(shopData)
+        public CategoriesController(IShopData shopData, IImageUploader imageUploader)
+            : base(shopData, imageUploader)
         {
         }
 
@@ -110,7 +110,7 @@
             {
                 this.ShopData.SaveChanges();
                 this.ClearCache();
-                return this.RedirectToAction("Index", "Category");
+                return this.RedirectToAction("Index", "Categories");
             }
 
             return this.View(model);

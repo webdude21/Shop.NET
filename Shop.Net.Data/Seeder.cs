@@ -101,7 +101,7 @@
                                 {
                                     new Image
                                         {
-                                            AltText = "Canon EOS 5D mk3", 
+                                            FileName = "Canon EOS 5D mk3", 
                                             Url =
                                                 "http://www.dpreview.com/reviews/CanonEOS5D/Images/frontview.jpg"
                                         }
@@ -127,7 +127,7 @@
                                 {
                                     new Image
                                         {
-                                            AltText = "Canon EOS 7D mk2", 
+                                            FileName = "Canon EOS 7D mk2", 
                                             Url =
                                                 "http://www.dpreview.com/reviews/CanonEOS7D/Images/Front.jpg"
                                         }
@@ -153,25 +153,25 @@
                                 {
                                     new Image
                                         {
-                                            AltText = "D7000 front", 
+                                            FileName = "D7000 front", 
                                             Url = "http://www.kenrockwell.com/nikon/d7000/D3S_2871-1200.jpg"
                                         }, 
                                     new Image
                                         {
                                             Url = "http://www.kenrockwell.com/nikon/d7000/back-0600.jpg", 
-                                            AltText = "D7000 - back"
+                                            FileName = "D7000 - back"
                                         }, 
                                     new Image
                                         {
                                             Url =
                                                 "http://www.kenrockwell.com/nikon/d7000/D3S_2888-top-0600.jpg", 
-                                            AltText = "D7000 - top"
+                                            FileName = "D7000 - top"
                                         }, 
                                     new Image
                                         {
                                             Url =
                                                 "http://www.kenrockwell.com/nikon/d7000/D3S_2892-bottom-0600.jpg", 
-                                            AltText = "D7000 - bottom"
+                                            FileName = "D7000 - bottom"
                                         }
                                 }
                     });
@@ -195,7 +195,7 @@
                                 {
                                     new Image
                                         {
-                                            AltText = "D5100", 
+                                            FileName = "D5100", 
                                             Url =
                                                 "http://www.dpreview.com/reviews/NikonD5100/images/Front.jpg"
                                         }
@@ -221,7 +221,7 @@
                                 {
                                     new Image
                                         {
-                                            AltText = "Pentax K-5", 
+                                            FileName = "Pentax K-5", 
                                             Url = "http://www.dpreview.com/reviews/pentaxk5/images/intro.jpg"
                                         }
                                 }
@@ -246,7 +246,7 @@
                                 {
                                     new Image
                                         {
-                                            AltText = "Pentax K-3", 
+                                            FileName = "Pentax K-3", 
                                             Url =
                                                 "http://www.blogcdn.com/www.engadget.com/media/2013/10/pentax-k-3.jpg"
                                         }

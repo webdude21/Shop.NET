@@ -1,4 +1,4 @@
-﻿var initGallery = function() {
+﻿var initGallery = function () {
     var $selectedImage = $("#selected-image");
     var $imageGallery = $(".image-gallery");
     var $thumbs = $imageGallery.find(".gallery-thumbnail");
@@ -12,6 +12,7 @@
         $selectedImage.attr("src", $image.attr("src"));
         $selectedImage.attr("alt", $image.attr("alt"));
         $image.addClass("selected");
+
     }
 
     $imageGallery.on("click", ".gallery-thumbnail", function (ev) {

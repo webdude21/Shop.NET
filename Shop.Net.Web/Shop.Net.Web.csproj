@@ -20,6 +20,7 @@
     <IISExpressAnonymousAuthentication>enabled</IISExpressAnonymousAuthentication>
     <IISExpressWindowsAuthentication>disabled</IISExpressWindowsAuthentication>
     <IISExpressUseClassicPipelineMode>false</IISExpressUseClassicPipelineMode>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -72,17 +73,15 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Web" />
-    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Web.Routing" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Configuration" />
@@ -123,6 +122,7 @@
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.0\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
     </Reference>
+    <Reference Include="System.Xml.Linq" />
     <Reference Include="WebActivatorEx">
       <HintPath>..\packages\WebActivatorEx.2.0\lib\net40\WebActivatorEx.dll</HintPath>
     </Reference>
@@ -207,6 +207,7 @@
     <Compile Include="Controllers\AdministrationController.cs" />
     <Compile Include="Controllers\BackOfficeController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\ImageDownloadController.cs" />
     <Compile Include="Controllers\MenuController.cs" />
     <Compile Include="Controllers\PagesController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -216,6 +217,8 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Infrastructure\Helpers\HtmlExtensions.cs" />
+    <Compile Include="Infrastructure\Contracts\IImageUploader.cs" />
+    <Compile Include="Infrastructure\Helpers\ImageUploader.cs" />
     <Compile Include="Infrastructure\Helpers\SortHelper.cs" />
     <Compile Include="Infrastructure\Mapping\AutoMapperConfig.cs" />
     <Compile Include="Infrastructure\Mapping\IHaveCustomMappings.cs" />
@@ -253,6 +256,7 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\magnific-popup\magnific-popup.css" />
     <Content Include="Content\paper.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -280,6 +284,10 @@
     <Content Include="Areas\BackOffice\Views\Products\Edit.cshtml" />
     <Content Include="Areas\BackOffice\Views\Products\Add.cshtml" />
     <Content Include="Areas\BackOffice\Views\Shared\_CategoryDropDown.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Shared\EditorTemplates\CategorySimpleViewModel.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Shared\EditorTemplates\ProductEditModel.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Shared\EditorTemplates\CategoryEditModel.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Shared\EditorTemplates\ImageViewModel.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -288,6 +296,7 @@
     <Content Include="Scripts\jquery-2.1.1.min.map" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <None Include="Scripts\jquery-2.1.1-vsdoc.js" />
+    <Content Include="Scripts\jquery.magnific-popup.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -340,17 +349,18 @@
     <Content Include="Views\Shared\_ThumbnailPartial.cshtml" />
     <Content Include="Views\Shared\_SeoPartial.cshtml" />
     <Content Include="Views\Shared\_FacebookSdkPartial.cshtml" />
-    <Content Include="Views\Shared\_ImageGalleryPartial.cshtml" />
     <Content Include="Views\Shared\_CategoriesMenuPartial.cshtml" />
     <Content Include="Views\Menu\_BackOfficeMenu.cshtml" />
     <Content Include="Views\Shared\_PagerPartial.cshtml" />
+    <Content Include="Views\Shared\_ImageGalleryPartial.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\ImageViewModel.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Administration\Controllers\" />
     <Folder Include="Areas\Administration\Models\" />
     <Folder Include="Areas\Administration\Views\Shared\" />
-    <Folder Include="Areas\BackOffice\Views\Shared\EditTemplates\" />
+    <Folder Include="Content\Images\Products\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

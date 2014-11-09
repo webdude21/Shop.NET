@@ -1,11 +1,7 @@
-﻿@using Shop.Net.Web.Infrastructure.Helpers
-@model Shop.Net.Web.Areas.Catalog.Models.Product.ProductDetailsModel
+﻿@model Shop.Net.Web.Areas.Catalog.Models.Product.ProductDetailsModel
 
 <div class="image-gallery col-lg-1">
-    @foreach (var image in Model.Images)
-    {
-        @Html.Image(image.Url, image.AltText, new { @class = "gallery-thumbnail" })
-    }
+   @Html.DisplayFor(model => model.Images)
 </div>
 <div class="col-lg-4">
     <div id="selected-image-container" class="zoom" data-image="">
