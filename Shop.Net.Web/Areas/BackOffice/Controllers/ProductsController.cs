@@ -1,5 +1,6 @@
 ﻿namespace Shop.Net.Web.Areas.BackOffice.Controllers
 {
+    using System;
     using System.Linq;
     using System.Net;
     using System.Web.Mvc;
@@ -41,34 +42,50 @@
         [HttpGet]
         public ActionResult Add()
         {
-
-            return this.View(new ProductEditModel());
+            var newProduct = new ProductEditModel();
+            this.PutCategoriesInTheViewDictionary(newProduct);
+            return this.View(newProduct);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Add(ProductEditModel model)
         {
-            //var newPorduct = new Product
-            //{
-            //    Name = model.Name,
-            //    FriendlyUrl = model.FriendlyUrl,
-            //    MetaTitle = model.MetaTitle,
-            //    MetaDescription = model.MetaDescription,
-            //    MetaKeyWords = model.MetaKeyWords,
-            //    Category = model.Category,
-            //    Price = model.Price,
-            //    Manufacturer = model.Manufacturer,
-            //    ManufacturerPartNumber = model.ManufacturerPartNumber,
-            //    AllowCustomerComments = model.AllowCustomerComments,
-            //    AllowCustomerReviews = model.AllowCustomerReviews,
-            //    AllowCustomerRating = model.AllowCustomerRating,
-            //    CreatedOnUtc = DateTime.UtcNow,
-            //    Description = model.Description,
-            //    Height = model.Height
-            //};
 
-            var newPorduct = Mapper.Map<Product>(model);
+            var category = this.ShopData.Categories.Find(model.Category.Id);
+
+            if (category == null)
+            {
+                this.ModelState.AddModelError(string.Empty, string.Format("You must add a valid category!"));
+                return this.View(model);
+            }
+
+            var newPorduct = new Product
+            {
+                Name = model.Name,
+                FriendlyUrl = model.FriendlyUrl,
+                MetaTitle = model.MetaTitle,
+                MetaDescription = model.MetaDescription,
+                MetaKeyWords = model.MetaKeyWords,
+                Category = category,
+                Price = model.Price,
+                Manufacturer = model.Manufacturer,
+                ManufacturerPartNumber = model.ManufacturerPartNumber,
+                AllowCustomerComments = model.AllowCustomerComments,
+                AllowCustomerReviews = model.AllowCustomerReviews,
+                AllowCustomerRating = model.AllowCustomerRating,
+                CreatedOnUtc = DateTime.UtcNow,
+                UpdatedOnUtc = DateTime.UtcNow,
+                Description = model.Description,
+                Height = model.Height,
+                Published = model.Published,
+                Length = model.Length,
+                ProductCost = model.ProductCost,
+                Quantity = model.Quantity,
+                Sku = model.Sku,
+                Weight = model.Weight,
+                Width = model.Width,
+            };
 
             if (this.ShopData.Products.All().Any(c => c.FriendlyUrl == model.FriendlyUrl || c.Name == model.Name))
             {
@@ -77,6 +94,8 @@
 
             if (this.ModelState.IsValid)
             {
+                ImageUploader.UploadImages(this.Request, this.Server, newPorduct.Images);
+                this.ShopData.SaveChanges();
                 this.ShopData.Products.Add(newPorduct);
                 this.ShopData.SaveChanges();
                 this.ClearCache();
@@ -145,9 +164,8 @@
 
         private void PutCategoriesInTheViewDictionary(ProductEditModel product)
         {
-
             this.ViewData["Categories"] = this.ShopData.Categories.All().Project().To<CategorySimpleViewModel>().ToList();
-            this.ViewData["SelectedCategory"] = product.Category.Id;
+            this.ViewData["SelectedCategory"] = product.Category == null ? (object)null : product.Category.Id;
         }
     }
 }

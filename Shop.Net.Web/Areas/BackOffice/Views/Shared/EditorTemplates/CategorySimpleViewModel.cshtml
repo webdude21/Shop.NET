@@ -5,7 +5,7 @@
 @{
     var categories = new List<SelectListItem>();
     var categoriesList = this.ViewData["Categories"] as IEnumerable<CategorySimpleViewModel>;
-    var selectedCategory = (int)this.ViewData["SelectedCategory"]; 
+    var selectedCategory = this.ViewData["SelectedCategory"] is int ? (int)this.ViewData["SelectedCategory"] : 0; 
 
     foreach (var category in categoriesList)
     {

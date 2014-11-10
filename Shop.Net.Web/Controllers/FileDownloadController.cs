@@ -12,7 +12,7 @@
         {
         }
 
-        public FilePathResult GetImage(string fileName)
+        public ActionResult GetImage(string fileName)
         {
             var image = this.ShopData.Images.All().FirstOrDefault(f => f.Url.Contains(fileName));
             return this.File(Server.MapPath("~" + image.Url), image.MimeType, image.FileName);

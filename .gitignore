@@ -57,6 +57,9 @@ build/
 node_modules/
 /public/lib
 
+# Project Files
+/Shop.Net.Web/Content/Images
+
 # StyleCop
 *.StyleCop
 StyleCop*
