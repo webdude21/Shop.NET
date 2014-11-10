@@ -3,7 +3,7 @@
     using Shop.Net.Model.Order;
     using Shop.Net.Web.Infrastructure.Mapping;
 
-    public class OrderItemEmployeeViewModel : IMapFrom<Order>
+    public class OrderItemEmployeeViewModel : IMapFrom<OrderItem>
     {
         public int Id { get; set; }
 

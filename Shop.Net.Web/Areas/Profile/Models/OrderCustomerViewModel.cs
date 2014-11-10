@@ -37,6 +37,14 @@
             }
         }
 
+        public int TotalQuantity
+        {
+            get
+            {
+                return this.OrderItems.Sum(i => i.Quantity);
+            }
+        }
+
         public void CreateMappings(IConfiguration configuration)
         {
         }

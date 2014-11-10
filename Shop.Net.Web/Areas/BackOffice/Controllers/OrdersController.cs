@@ -10,7 +10,6 @@
 
     using Shop.Net.Data.Contracts;
     using Shop.Net.Web.Areas.BackOffice.Models;
-    using Shop.Net.Web.Areas.Profile.Models;
     using Shop.Net.Web.Controllers;
     using Shop.Net.Web.Infrastructure.Contracts;
 
@@ -26,11 +25,17 @@
             var orders =
                 this.ShopData.Orders.All()
                     .Include(o => o.OrderItems)
+                    .Include("AspNetUsers")
                     .Include("Products")
                     .Project()
                     .To<OrderEmployeeViewModel>();
 
             return this.Json(orders.ToDataSourceResult(request), JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult Index()
+        {
+            return this.View();
         }
     }
 }
