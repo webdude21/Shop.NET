@@ -7,6 +7,7 @@
         <title>@ViewBag.Title - @GlobalConstants.ShopName</title>
         @RenderSection("MetaInformation", required: false)
         @Styles.Render("~/Content/css")
+        @Styles.Render("~/Content/kendo")
         @Scripts.Render("~/bundles/modernizr")
     </head>
     <body>
@@ -43,6 +44,7 @@
         @Scripts.Render("~/bundles/jquery")
         @Scripts.Render("~/bundles/bootstrap")
         @Scripts.Render("~/bundles/responsive-images")
+        @Scripts.Render("~/bundles/kendo")
         @RenderSection("scripts", false)
     </body>
 </html>

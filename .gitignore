@@ -59,6 +59,9 @@ node_modules/
 
 # Project Files
 /Shop.Net.Web/Content/Images
+/Shop.Net.Web/Kendo
+/Shop.Net.Web/Scripts/Kendo
+/Shop.Net.Web/Content/Kendo
 
 # StyleCop
 *.StyleCop

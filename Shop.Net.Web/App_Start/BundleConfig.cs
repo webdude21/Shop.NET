@@ -26,6 +26,15 @@
                     .Include("~/Scripts/thumbnail-gallery-script.js"));
 
             bundles.Add(
+                new ScriptBundle("~/bundles/kendo").Include("~/Scripts/Kendo/kendo.all.min.js")
+                    .Include("~/Scripts/Kendo/kendo.aspnetmvc.min.js"));
+
+            bundles.Add(
+               new StyleBundle("~/Content/kendo").Include(
+                         "~/Content/Kendo/common-bootstrap.min.css",
+                   "~/Content/Kendo/kendo.bootstrap.min.css"));
+
+            bundles.Add(
                 new StyleBundle("~/Content/css").Include(
                     "~/Content/paper.css",
                     "~/Content/site.css",
@@ -34,6 +43,7 @@
             // Set EnableOptimizations to false for debugging. For more information,
             // visit http://go.microsoft.com/fwlink/?LinkId=301862
             BundleTable.EnableOptimizations = true;
+            bundles.IgnoreList.Clear();
         }
     }
 }
