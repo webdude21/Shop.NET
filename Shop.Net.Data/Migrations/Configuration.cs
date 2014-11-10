@@ -18,6 +18,7 @@ namespace Shop.Net.Data.Migrations
             seeder.SeedRolesAndUsers();
             seeder.SeedCountries();
             seeder.SeedProducts();
+            seeder.SeedOrders();
         }
     }
 }

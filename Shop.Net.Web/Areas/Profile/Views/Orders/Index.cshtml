@@ -1,0 +1,31 @@
+﻿@using Kendo.Mvc.UI
+@using Shop.Net.Web.Areas.Profile.Models
+
+@{
+    ViewBag.Title = "Orders";
+}
+
+<div class="jumbotron">
+    <h1>@ViewBag.Title</h1>
+    <p class="lead">You can add/edit/delete Orders from this panel!</p>
+    @Html.ActionLink("Add New Product", "Add", "Products", new { area = "BackOffice" }, new { @class = "btn-success btn pull-right" })
+</div>
+<div class="row">
+    @(Html.Kendo().Grid<OrderCustomerViewModel>().Name("orders-grid").Columns(columns =>
+          {
+                columns.Bound(c => c.Id);
+                columns.Bound(c => c.TotalAmmout);
+                columns.Bound(c => c.OrderStatus);
+                columns.Bound(c => c.ItemsCount);
+                columns.Bound(c => c.CreatedOnDateTimeLocal);
+          }).Scrollable()
+        .Groupable()
+        .Sortable()
+        .Pageable(pageable => pageable
+            .Refresh(true)
+            .PageSizes(true)
+            .ButtonCount(5))
+        .DataSource(dataSource => dataSource
+            .Ajax().Read(read => read.Action("GetOrders", "Orders"))
+        ))
+</div>

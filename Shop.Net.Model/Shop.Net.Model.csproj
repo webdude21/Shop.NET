@@ -63,6 +63,7 @@
     <Compile Include="Marketing\Tag.cs" />
     <Compile Include="Order\Cart.cs" />
     <Compile Include="Order\Order.cs" />
+    <Compile Include="Order\OrderItem.cs" />
     <Compile Include="Order\OrderStatus.cs" />
     <Compile Include="Shipping\ContactInformation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

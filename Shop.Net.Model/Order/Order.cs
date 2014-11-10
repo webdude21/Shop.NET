@@ -5,15 +5,13 @@
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Linq;
 
-    using Shop.Net.Model.Catalog;
-
     public class Order
     {
-        private ICollection<Product> products;
+        private ICollection<OrderItem> orderItems;
 
         public Order()
         {
-            this.products = new HashSet<Product>();
+            this.orderItems = new HashSet<OrderItem>();
         }
 
         public ApplicationUser Customer { get; set; }
@@ -26,15 +24,15 @@
 
         public int Id { get; set; }
 
-        public virtual ICollection<Product> Products
+        public virtual ICollection<OrderItem> OrderItems
         {
             get
             {
-                return this.products;
+                return this.orderItems;
             }
             set
             {
-                this.products = value;
+                this.orderItems = value;
             }
         }
 
@@ -49,7 +47,7 @@
         {
             get
             {
-                return this.products.Sum(p => p.Price);
+                return this.OrderItems.Sum(x => x.Quantity * x.OrderedProduct.Price);
             }
         }
 
@@ -58,7 +56,7 @@
         {
             get
             {
-                return this.products.Sum(p => p.ProductCost);
+                return this.OrderItems.Sum(x => x.Quantity * x.OrderedProduct.ProductCost);
             }
         }
 
@@ -68,7 +66,7 @@
         {
             get
             {
-                return this.TotalAmmout - TotalCost;
+                return this.TotalAmmout - this.TotalCost;
             }
         }
     }

@@ -1,6 +1,8 @@
 ﻿namespace Shop.Net.Data
 {
     using System;
+    using System.Collections.Generic;
+    using System.Collections.ObjectModel;
     using System.Linq;
 
     using Microsoft.AspNet.Identity;
@@ -8,6 +10,7 @@
 
     using Shop.Net.Model;
     using Shop.Net.Model.Catalog;
+    using Shop.Net.Model.Order;
     using Shop.Net.Model.Shipping;
     using Shop.Net.Resources;
 
@@ -36,6 +39,31 @@
             {
                 this.context.Countries.Add(new Country { Code = country.Key, Name = country.Value });
             }
+
+            this.context.SaveChanges();
+        }
+
+
+        public void SeedOrders()
+        {
+            if (this.context.Orders.Any())
+            {
+                return;
+            }
+
+            var user = this.context.Users.FirstOrDefault();
+            var products = this.context.Products.ToList();
+            var orderItems = products.Select((t, i) => new OrderItem { OrderedProduct = t, Quantity = i }).ToList();
+
+            this.context.Orders.Add(
+                new Order
+                    {
+                        Customer = user,
+                        OrderItems = orderItems,
+                        CreatedOnUtc = DateTime.UtcNow,
+                        UpdatedOnUtc = DateTime.UtcNow,
+                        OrderStatus = OrderStatus.AwatingForPaymentConfirmation
+                    });
 
             this.context.SaveChanges();
         }
@@ -255,6 +283,7 @@
 
             this.context.SaveChanges();
         }
+
 
         private static void CreateRoleIfItDoesntExist(RoleManager<IdentityRole> roleManager, string role)
         {

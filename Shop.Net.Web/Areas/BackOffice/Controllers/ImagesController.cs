@@ -17,7 +17,6 @@
 
         public ActionResult Delete(int? id)
         {
-
             if (!Request.IsAjaxRequest())
             {
                 Response.StatusCode = (int)HttpStatusCode.BadRequest;
