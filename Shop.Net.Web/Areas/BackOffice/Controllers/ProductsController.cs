@@ -5,7 +5,6 @@
     using System.Linq;
     using System.Net;
     using System.Web.Mvc;
-    using System.Web.UI.WebControls;
 
     using AutoMapper.QueryableExtensions;
 
@@ -15,8 +14,6 @@
     using Shop.Net.Web.Areas.BackOffice.Models;
     using Shop.Net.Web.Controllers;
     using Shop.Net.Web.Infrastructure.Contracts;
-
-    using WebGrease.Css.Extensions;
 
     public class ProductsController : BackOfficeController
     {
@@ -41,6 +38,7 @@
 
             return this.View(pagerWithProducts);
         }
+
 
         [HttpGet]
         public ActionResult Add()
@@ -108,7 +106,10 @@
         {
             var product = this.ShopData.Products.Find(model.Id);
 
-            this.CheckForDuplicateFriendlyUrlAndName(model);
+            if (this.ShopData.Products.All().Where(c => c.Id != model.Id).Any(c => c.FriendlyUrl == model.FriendlyUrl || c.Name == model.Name))
+            {
+                this.ModelState.AddModelError(string.Empty, string.Format("Seo Friendly Url & Name must be unique!"));
+            }
                
             var category = this.ShopData.Categories.Find(model.Category.Id);
 

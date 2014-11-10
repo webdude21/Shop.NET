@@ -195,6 +195,7 @@
     <Compile Include="Areas\Administration\AdministrationAreaRegistration.cs" />
     <Compile Include="Areas\BackOffice\BackOfficeAreaRegistration.cs" />
     <Compile Include="Areas\BackOffice\Controllers\CategoriesController.cs" />
+    <Compile Include="Areas\BackOffice\Controllers\ImagesController.cs" />
     <Compile Include="Areas\BackOffice\Controllers\ProductsController.cs" />
     <Compile Include="Areas\BackOffice\Models\CategoryEditModel.cs" />
     <Compile Include="Areas\BackOffice\Models\CategorySimpleViewModel.cs" />
@@ -290,6 +291,7 @@
     <Content Include="Areas\BackOffice\Views\Shared\EditorTemplates\ImageViewModel.cshtml" />
     <Content Include="Areas\BackOffice\Views\Products\Delete.cshtml" />
     <Content Include="Areas\BackOffice\Views\Shared\DisplayTemplates\ProductEditModel.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Shared\DisplayTemplates\ImageViewModel.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -299,6 +301,8 @@
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <None Include="Scripts\jquery-2.1.1-vsdoc.js" />
     <Content Include="Scripts\jquery.magnific-popup.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />

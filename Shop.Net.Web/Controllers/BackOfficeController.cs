@@ -1,9 +1,11 @@
 ﻿namespace Shop.Net.Web.Controllers
 {
+    using System.Collections.Generic;
     using System.Linq;
     using System.Web.Mvc;
 
     using Shop.Net.Data.Contracts;
+    using Shop.Net.Model.Catalog;
     using Shop.Net.Resources;
     using Shop.Net.Web.Infrastructure.Contracts;
 
@@ -17,6 +19,20 @@
         }
 
         public IImageUploader ImageUploader { get; set; }
+
+        [NonAction]
+        protected void DeleteImageById(int? id)
+        {
+            var imageToDelete = this.ShopData.Images.Find(id);
+            var imagesToDelete = new List<Image>();
+            imagesToDelete.Add(imageToDelete);
+
+            if (imageToDelete != null)
+            {
+                this.ImageUploader.DeleteImagesFromFileSystem(imagesToDelete, this.Server);
+                this.ShopData.Images.Delete(imageToDelete);
+            }
+        }
 
         [NonAction]
         protected void DeleteImagesByProductId(int id)
@@ -55,8 +71,8 @@
 
             foreach (var product in productToDelete)
             {
-                this.DeleteImagesByProductId(product.Id);
-                this.DeleteReviewsByProductId(product.Id);
+                this.DeleteProductDependencies(id);
+                this.ShopData.Products.Delete(product);
             }
         }
     }

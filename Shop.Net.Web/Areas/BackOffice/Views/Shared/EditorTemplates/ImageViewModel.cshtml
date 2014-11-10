@@ -1,4 +1,19 @@
 ﻿@using Shop.Net.Web.Infrastructure.Helpers
 @model Shop.Net.Web.Areas.Catalog.Models.Product.ImageViewModel
 
-@Html.Image(Model.Url, Model.FileName, new { @class = "gallery-thumbnail" })
+@{
+    var contaienerId = "container" + @Model.Id;
+}
+
+<div class="image-delete-container" id="@contaienerId">
+    @Html.Image(Model.Url, Model.FileName, new { @class = "gallery-thumbnail" })
+    @Ajax.ActionLink(@"Delete", "Delete", "Images",
+        new { id = Model.Id }, new AjaxOptions
+                                   {
+                                       HttpMethod = "GET",
+                                       Confirm = "Are you sure you want to delete this image?",
+                                       UpdateTargetId = contaienerId,
+                                       InsertionMode = InsertionMode.Replace
+
+                                   }, new { @class = "delete-img" })
+</div>

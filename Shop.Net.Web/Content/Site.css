@@ -14,15 +14,18 @@
    will truncate terms that are too long to fit in the left column 
 */
 
-.dl-horizontal dt { white-space: normal; }
+.dl-horizontal dt {
+    white-space: normal;
+}
 
 /* Set width on the form input elements since they're 100% wide by default */
 
 body img {
-  max-width: 100%;
+    max-width: 100%;
 }
+
 body .break-word {
-  word-wrap: break-word;
+    word-wrap: break-word;
 }
 
 .gallery-thumbnail {
@@ -31,12 +34,22 @@ body .break-word {
     padding: 5px;
 }
 
-.gallery-thumbnail:hover {
-    opacity: 0.8;
+    .gallery-thumbnail:hover {
+        opacity: 0.8;
+    }
+
+    .gallery-thumbnail.selected {
+        opacity: 1;
+        border: 1px dashed grey;
+    }
+
+.delete-img {
+    position: absolute;
+    top: 100px;
+    left: 40px;
 }
 
-.gallery-thumbnail.selected {
-    opacity: 1;
-    border: 1px dashed grey;
+.image-delete-container {
+    position: relative;
+    float: left
 }
-

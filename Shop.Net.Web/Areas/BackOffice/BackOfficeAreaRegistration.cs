@@ -17,7 +17,7 @@
             context.MapRoute(
                 "BackOffice_default", 
                 "BackOffice/{controller}/{action}/{id}", 
-                new { action = "Index", id = UrlParameter.Optional });
+                new { controller = "Products", action = "Index", id = UrlParameter.Optional });
         }
     }
 }
