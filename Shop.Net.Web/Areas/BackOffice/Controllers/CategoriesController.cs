@@ -140,7 +140,7 @@
         {
             var category = this.ShopData.Categories.Find(id);
 
-            this.ShopData.Products.All().ToList().RemoveAll(x => x.Id > 0);
+            this.DeleteCategoryDependencies(id);
             this.ShopData.Categories.Delete(category);
             this.ShopData.SaveChanges();
             this.ClearCache();

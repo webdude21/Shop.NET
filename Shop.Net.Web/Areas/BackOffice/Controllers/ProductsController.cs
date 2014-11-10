@@ -5,10 +5,9 @@
     using System.Linq;
     using System.Net;
     using System.Web.Mvc;
+    using System.Web.UI.WebControls;
 
     using AutoMapper.QueryableExtensions;
-
-    using Ninject.Infrastructure.Language;
 
     using Shop.Net.Data.Contracts;
     using Shop.Net.Model.Catalog;
@@ -16,6 +15,8 @@
     using Shop.Net.Web.Areas.BackOffice.Models;
     using Shop.Net.Web.Controllers;
     using Shop.Net.Web.Infrastructure.Contracts;
+
+    using WebGrease.Css.Extensions;
 
     public class ProductsController : BackOfficeController
     {
@@ -138,7 +139,10 @@
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            var product = this.ShopData.Products.All().Where(x => x.Id == id.Value).Project().To<ProductEditModel>().FirstOrDefault();
+            var product = this.ShopData.Products.All()
+                .Where(x => x.Id == id.Value)
+                .Include(p => p.Images)
+                .Project().To<ProductEditModel>().FirstOrDefault();
 
             if (product == null)
             {
@@ -153,11 +157,13 @@
         public ActionResult DeleteConfirmed(int id)
         {
             var product = this.ShopData.Products.Find(id);
-            this.ShopData.Categories.Delete(product);
+            this.DeleteProductDependencies(id);
+            this.ShopData.Products.Delete(product);
             this.ShopData.SaveChanges();
             this.ClearCache();
             return this.RedirectToAction("Index");
         }
+
 
         private static Product ConvertEditModelToModel(ProductEditModel model, Category category)
         {
@@ -202,6 +208,5 @@
                 this.ModelState.AddModelError(string.Empty, string.Format("Seo Friendly Url & Name must be unique!"));
             }
         }
-
     }
 }

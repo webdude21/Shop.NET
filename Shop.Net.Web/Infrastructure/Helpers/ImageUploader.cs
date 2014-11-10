@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.IO;
+    using System.Linq;
     using System.Web;
 
     using Shop.Net.Model.Catalog;
@@ -11,7 +12,10 @@
 
     public class ImageUploader : IImageUploader
     {
-        public void UploadImages(HttpRequestBase request,  HttpServerUtilityBase serverUtility, ICollection<Image> images)
+        public void UploadImages(
+            HttpRequestBase request, 
+            HttpServerUtilityBase serverUtility, 
+            ICollection<Image> images)
         {
             foreach (string upload in request.Files)
             {
@@ -37,14 +41,27 @@
                 var resultFileName = Guid.NewGuid() + "_" + originalFileName;
                 var fileTosave = new Image
                                      {
-                                         FileName = originalFileName,
-                                         Url = relativePath + resultFileName,
+                                         FileName = originalFileName, 
+                                         Url = relativePath + resultFileName, 
                                          MimeType = fileBase.ContentType
                                      };
 
                 images.Add(fileTosave);
                 var postedFileBase = fileBase;
                 postedFileBase.SaveAs(Path.Combine(pathToSave, resultFileName));
+            }
+        }
+
+        public void DeleteImagesFromFileSystem(List<Image> imagesToDelete, HttpServerUtilityBase server)
+        {
+            var pathsToDelete =
+                imagesToDelete.Where(image => image.Url.Contains(GlobalConstants.ProductImagesRelativePath))
+                    .Select(image => server.MapPath("~" + image.Url))
+                    .Where(File.Exists);
+
+            foreach (var pathToDelete in pathsToDelete)
+            {
+                File.Delete(pathToDelete);
             }
         }
 

@@ -1,6 +1,7 @@
 ﻿namespace Shop.Net.Web.Controllers
 {
     using System;
+    using System.Data.Entity;
     using System.Linq;
     using System.Web.Caching;
     using System.Web.Mvc;
@@ -29,6 +30,7 @@
                 var listOfProducts =
                                 this.ShopData.Products.All()
                                 .OrderByDescending(product => product.CreatedOnUtc)
+                                .Include(p => p.Images)
                                 .Project()
                                 .To<ProductThumbnailModel>()
                                 .Take(GlobalConstants.ProductsOnHomePage)
