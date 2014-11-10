@@ -5,57 +5,55 @@
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Linq;
 
-    using global::Shop.Net.Model.Order;
-    using global::Shop.Net.Web.Areas.Profile.Models;
+    using Shop.Net.Model;
+    using Shop.Net.Model.Order;
 
-    namespace Shop.Net.Model.Order
+    public class OrderEmployeeViewModel
     {
-        public class OrderEmployeeViewModel
+        public ApplicationUser Customer { get; set; }
+
+        public string CustomerId { get; set; }
+
+        public ApplicationUser ApprovedBy { get; set; }
+
+        public string ApprovedById { get; set; }
+
+        public int Id { get; set; }
+
+        public virtual ICollection<OrderItemEmployeeViewModel> OrderItems { get; set; }
+
+        public OrderStatus OrderStatus { get; set; }
+
+        public DateTime? CreatedOnUtc { get; set; }
+
+        public DateTime? UpdatedOnUtc { get; set; }
+
+        [NotMapped]
+        public decimal TotalAmmout
         {
-
-            public ApplicationUser Customer { get; set; }
-
-            public string CustomerId { get; set; }
-
-            public ApplicationUser ApprovedBy { get; set; }
-
-            public string ApprovedById { get; set; }
-
-            public int Id { get; set; }
-
-            public virtual ICollection<OrderItemViewModel> OrderItems { get; set; }
-
-            public OrderStatus OrderStatus { get; set; }
-
-            public DateTime? CreatedOnUtc { get; set; }
-
-            public DateTime? UpdatedOnUtc { get; set; }
-
-            [NotMapped]
-            public decimal TotalAmmout
+            get
             {
-                get
-                {
-                    return this.OrderItems.Sum(x => x.Quantity * x.OrderedProduct.Price);
-                }
+                return this.OrderItems.Sum(x => x.Quantity * x.OrderedProduct.Price);
             }
+        }
 
-            [NotMapped]
-            public decimal TotalCost
+
+
+        [NotMapped]
+        public decimal TotalCost
+        {
+            get
             {
-                get
-                {
-                    return this.OrderItems.Sum(x => x.Quantity * x.OrderedProduct.ProductCost);
-                }
+                return this.OrderItems.Sum(x => x.Quantity * x.OrderedProduct.ProductCost);
             }
+        }
 
-            [NotMapped]
-            public decimal TotalGrossProfit
+        [NotMapped]
+        public decimal TotalGrossProfit
+        {
+            get
             {
-                get
-                {
-                    return this.TotalAmmout - this.TotalCost;
-                }
+                return this.TotalAmmout - this.TotalCost;
             }
         }
     }

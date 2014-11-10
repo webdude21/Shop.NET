@@ -1,5 +1,5 @@
 ﻿@using Kendo.Mvc.UI
-@using Shop.Net.Web.Areas.Profile.Models
+@using Shop.Net.Web.Areas.BackOffice.Models
 @{
     ViewBag.Title = "Orders";
 }
@@ -9,7 +9,7 @@
     <p class="lead">You can manage your Orders from this panel!</p>
 </div>
 <div class="row">
-    @(Html.Kendo().Grid<OrderCustomerViewModel>().Name("orders-grid").Columns(columns =>
+    @(Html.Kendo().Grid<OrderEmployeeViewModel>().Name("orders-grid").Columns(columns =>
           {
               columns.Bound(c => c.Id);
               columns.Bound(c => c.TotalAmmout);

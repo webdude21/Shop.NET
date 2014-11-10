@@ -1,7 +1,7 @@
 ﻿namespace Shop.Net.Web.Areas.BackOffice.Models
 {
-    using global::Shop.Net.Model.Order;
-    using global::Shop.Net.Web.Infrastructure.Mapping;
+    using Shop.Net.Model.Order;
+    using Shop.Net.Web.Infrastructure.Mapping;
 
     public class OrderItemEmployeeViewModel : IMapFrom<Order>
     {
