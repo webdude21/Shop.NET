@@ -39,7 +39,6 @@
 
         public void CreateMappings(IConfiguration configuration)
         {
-            throw new NotImplementedException();
         }
     }
 }
