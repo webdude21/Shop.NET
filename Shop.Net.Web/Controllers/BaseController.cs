@@ -28,7 +28,7 @@
 
         protected static int GetTotalPages(int itemsCount)
         {
-            return itemsCount / GlobalConstants.ItemsPerPage;
+            return (itemsCount + GlobalConstants.ItemsPerPage - 1) / GlobalConstants.ItemsPerPage;
         }
 
         protected PagerViewModel GetPagerViewModel(int? page, int itemsCount)

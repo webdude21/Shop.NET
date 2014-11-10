@@ -288,6 +288,8 @@
     <Content Include="Areas\BackOffice\Views\Shared\EditorTemplates\ProductEditModel.cshtml" />
     <Content Include="Areas\BackOffice\Views\Shared\EditorTemplates\CategoryEditModel.cshtml" />
     <Content Include="Areas\BackOffice\Views\Shared\EditorTemplates\ImageViewModel.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Products\Delete.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Shared\DisplayTemplates\ProductEditModel.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />

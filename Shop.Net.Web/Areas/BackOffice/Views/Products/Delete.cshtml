@@ -1,11 +1,11 @@
-﻿@model Shop.Net.Web.Areas.BackOffice.Models.CategoryEditModel
+﻿@model Shop.Net.Web.Areas.BackOffice.Models.ProductEditModel
 
 @{
-    ViewBag.Title = "Delete category";
+    ViewBag.Title = "Delete Product";
 }
-<h3>Are you sure you want to delete this category? Doing so will delete all the products that are in the Category!</h3>
+<h3>Are you sure you want to delete this product?</h3>
 <div>
-   @Html.DisplayFor(x => x)
+    @Html.DisplayFor(x => x)
     @using (Html.BeginForm())
     {
         @Html.AntiForgeryToken()
@@ -13,5 +13,5 @@
             <input type="submit" value="Delete" class="btn btn-danger" /> |
             @Html.ActionLink("Cancel", "Index", null, new { @class = "btn btn-info" })
         </div>
-    }   
+    }
 </div>

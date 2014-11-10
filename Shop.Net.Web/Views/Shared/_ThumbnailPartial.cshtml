@@ -2,15 +2,17 @@
 @model Shop.Net.Web.Areas.Catalog.Models.Product.ProductThumbnailModel
 @{
     var url = Url.RouteUrl("Catalog", new { categoryFriendlyUrl = Model.Category.FriendlyUrl, productFriendlyUrl = Model.FriendlyUrl });
+    if (Model.Image != null)
+    {
+        <div class="col-md-4 item">
+            <h4 class="text-center text-info">@Model.Name</h4>
+            <a href="@url">
+                @Html.Image(@Model.Image.Url, @Model.Image.FileName, new { @class = "img-rounded" })
+            </a>
+            <div class="text-center">
+                <p>Price: @string.Format("{0:C0}", Model.Price)</p>
+                <a href="@url" class="btn btn-info">Details</a>
+            </div>
+        </div>
+    }
 }
-
-<div class="col-md-4 item">
-    <h4 class="text-center text-info">@Model.Name</h4>
-    <a href="@url">
-        @Html.Image(@Model.Image.Url, @Model.Image.FileName, new { @class = "img-rounded"})
-    </a>
-    <div class="text-center">
-        <p>Price: @string.Format("{0:C0}", Model.Price)</p>
-        <a href="@url" class="btn btn-info">Details</a>
-    </div>
-</div>

@@ -33,7 +33,7 @@
                 .OrderBy(x => x.Id)
                 .Project().To<CategoryViewModel>()
                 .Skip(GlobalConstants.ItemsPerPage * pager.CurrentPage)
-                .Take(GlobalConstants.ItemsPerPage);
+                .Take(GlobalConstants.ItemsPerPage).ToList();
 
             var pagerWithCategories = this.GetViewModelWithPager(categories, pager);
 

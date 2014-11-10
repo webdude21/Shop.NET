@@ -5,8 +5,6 @@
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
 
-    using AutoMapper;
-
     using Shop.Net.Model.Catalog;
     using Shop.Net.Model.Marketing;
     using Shop.Net.Resources;
@@ -14,7 +12,7 @@
     using Shop.Net.Web.Infrastructure.Mapping;
     using Shop.Net.Web.Models.Marketing;
 
-    public class ProductEditModel : SeoEditModel, IMapFrom<Product>, IHaveCustomMappings
+    public class ProductEditModel : SeoEditModel, IMapFrom<Product>
     {
         [NotMapped]
         private const int DbStringMaxLength = 400;
@@ -77,9 +75,5 @@
         public IEnumerable<Review> Reviews { get; set; }
 
         public IList<ImageViewModel> Images { get; set; }
-
-        public void CreateMappings(IConfiguration configuration)
-        {
-        }
     }
 }

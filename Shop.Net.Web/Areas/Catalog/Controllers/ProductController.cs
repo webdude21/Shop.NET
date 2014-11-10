@@ -1,5 +1,6 @@
 ﻿namespace Shop.Net.Web.Areas.Catalog.Controllers
 {
+    using System.Data.Entity;
     using System.Linq;
     using System.Web.Mvc;
 
@@ -22,6 +23,8 @@
             var product =
                 this.ShopData.Products.All()
                     .Where(x => x.Id == id)
+                    .Include(p => p.Images)
+                    .Include(p => p.Reviews)
                     .Project().To<ProductDetailsModel>()
                     .FirstOrDefault();
 
