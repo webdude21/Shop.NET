@@ -16,7 +16,7 @@
 
         public virtual ApplicationUser Customer { get; set; }
 
-        public int CustumerId { get; set; }
+        public string CustumerId { get; set; }
 
         public ICollection<Product> Products { get; set; }
 

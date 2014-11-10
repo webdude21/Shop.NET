@@ -204,7 +204,8 @@
     <Compile Include="Areas\Catalog\CatalogAreaRegistration.cs" />
     <Compile Include="Areas\Catalog\Controllers\CategoryController.cs" />
     <Compile Include="Areas\Catalog\Models\Product\ImageViewModel.cs" />
-    <Compile Include="Areas\Profile\Controllers\OrdersController.cs" />
+    <Compile Include="Areas\Profile\Models\OrderCustomerViewModel.cs" />
+    <Compile Include="Areas\Profile\OrdersController.cs" />
     <Compile Include="Areas\Profile\ProfileAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdministrationController.cs" />
@@ -297,11 +298,6 @@
     <Content Include="Areas\BackOffice\Views\Shared\DisplayTemplates\ImageViewModel.cshtml" />
     <Content Include="Areas\Profile\Views\web.config" />
     <Content Include="Areas\Profile\Views\_ViewStart.cshtml" />
-    <Content Include="Areas\Profile\Views\Orders\Create.cshtml" />
-    <Content Include="Areas\Profile\Views\Orders\Delete.cshtml" />
-    <Content Include="Areas\Profile\Views\Orders\Details.cshtml" />
-    <Content Include="Areas\Profile\Views\Orders\Edit.cshtml" />
-    <Content Include="Areas\Profile\Views\Orders\Index.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -377,7 +373,8 @@
     <Folder Include="Areas\Administration\Controllers\" />
     <Folder Include="Areas\Administration\Models\" />
     <Folder Include="Areas\Administration\Views\Shared\" />
-    <Folder Include="Areas\Profile\Models\" />
+    <Folder Include="Areas\Profile\Controllers\" />
+    <Folder Include="Areas\Profile\Views\Orders\" />
     <Folder Include="Areas\Profile\Views\Shared\" />
     <Folder Include="Content\Images\Products\" />
   </ItemGroup>
