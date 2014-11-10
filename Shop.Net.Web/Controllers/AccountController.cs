@@ -10,6 +10,7 @@
     using Microsoft.Owin.Security;
 
     using Shop.Net.Model;
+    using Shop.Net.Resources;
     using Shop.Net.Web.ViewModels.Account;
 
     [Authorize]
@@ -164,11 +165,13 @@
         {
             if (this.ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var user = new ApplicationUser { UserName = model.Email, Email = model.Email};
                 var result = await this.UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
                     await this.SignInManager.SignInAsync(user, false, false);
+                    var currentUser = UserManager.FindByName(user.UserName); 
+                    this.UserManager.AddToRole(currentUser.Id, GlobalConstants.CustomerRole);
 
                     // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
                     // Send an email with this link
@@ -394,6 +397,8 @@
                     result = await this.UserManager.AddLoginAsync(user.Id, info.Login);
                     if (result.Succeeded)
                     {
+                        var currentUser = UserManager.FindByName(user.UserName);
+                        this.UserManager.AddToRole(currentUser.Id, GlobalConstants.CustomerRole);
                         await this.SignInManager.SignInAsync(user, false, false);
                         return this.RedirectToLocal(returnUrl);
                     }

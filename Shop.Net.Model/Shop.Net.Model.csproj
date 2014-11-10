@@ -61,6 +61,7 @@
     <Compile Include="Marketing\Rating.cs" />
     <Compile Include="Marketing\Review.cs" />
     <Compile Include="Marketing\Tag.cs" />
+    <Compile Include="Order\Cart.cs" />
     <Compile Include="Order\Order.cs" />
     <Compile Include="Order\OrderStatus.cs" />
     <Compile Include="Shipping\ContactInformation.cs" />

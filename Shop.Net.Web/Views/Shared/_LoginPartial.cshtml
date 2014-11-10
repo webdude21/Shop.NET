@@ -6,10 +6,18 @@
         @Html.AntiForgeryToken()
 
         <ul class="nav navbar-nav navbar-right">
-            <li>
-                @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", new { area = string.Empty }, new { title = "Manage" })
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">@User.Identity.GetUserName()<b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                    <li>
+                        @Html.ActionLink("Edit Profile", "Index", "Manage", new { area = string.Empty }, new { title = "Edit Profile" })
+                    </li>
+                    <li>
+                        @Html.ActionLink("Orders", "Index", "Orders", new { area = "Profile" }, new { title = "Orders" })
+                    </li>
+                    <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
+                </ul>
             </li>
-            <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
         </ul>
     }
 }

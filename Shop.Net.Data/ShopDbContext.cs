@@ -47,5 +47,7 @@
             base.SaveChanges();
         }
 
+        public System.Data.Entity.DbSet<Shop.Net.Model.Order.Order> Orders { get; set; }
+
     }
 }
