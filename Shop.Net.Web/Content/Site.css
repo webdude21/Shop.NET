@@ -1,6 +1,8 @@
 ﻿body {
     padding-bottom: 20px;
     padding-top: 50px;
+    word-wrap: break-word;
+    word-break: break-all;
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -26,6 +28,7 @@ body img {
 
 body .break-word {
     word-wrap: break-word;
+    word-break: break-all;
 }
 
 .gallery-thumbnail {
@@ -51,5 +54,5 @@ body .break-word {
 
 .image-delete-container {
     position: relative;
-    float: left
+    float: left;
 }

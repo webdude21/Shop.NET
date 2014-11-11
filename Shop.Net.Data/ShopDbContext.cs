@@ -9,6 +9,7 @@
     using Shop.Net.Model;
     using Shop.Net.Model.Catalog;
     using Shop.Net.Model.Marketing;
+    using Shop.Net.Model.Order;
     using Shop.Net.Model.Shipping;
 
     public class ShopDbContext : IdentityDbContext<ApplicationUser>, IDbContext
@@ -31,6 +32,12 @@
 
         public IDbSet<Comment> Comments { get; set; }
 
+        public IDbSet<Order> Orders { get; set; }
+
+        public IDbSet<OrderItem> OrderItems { get; set; }
+
+        public IDbSet<ContactInformation> ContactInformations { get; set; }
+
         public static ShopDbContext Create()
         {
             return new ShopDbContext();
@@ -46,8 +53,6 @@
         {
             base.SaveChanges();
         }
-
-        public System.Data.Entity.DbSet<Shop.Net.Model.Order.Order> Orders { get; set; }
 
     }
 }

@@ -28,18 +28,19 @@
             return this.View();
         }
 
-        public JsonResult GetOrders([DataSourceRequest]DataSourceRequest request)
+        public JsonResult GetMyOrders([DataSourceRequest]DataSourceRequest request)
         {
             var userId = this.User.Identity.GetUserId();
             var orders =
                 this.ShopData.Orders.All()
                     .Where(o => o.CustomerId == userId)
-                    .Include(o => o.OrderItems)
-                    .Include("Products")
                     .Project()
                     .To<OrderCustomerViewModel>();
 
-            return this.Json(orders.ToDataSourceResult(request), JsonRequestBehavior.AllowGet);
+            var result = this.Json(orders.ToDataSourceResult(request), JsonRequestBehavior.AllowGet);
+            result.MaxJsonLength = int.MaxValue;
+
+            return result;
         }
     }
 }

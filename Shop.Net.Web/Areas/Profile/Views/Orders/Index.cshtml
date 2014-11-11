@@ -4,9 +4,8 @@
     ViewBag.Title = "My orders";
 }
 
-<div class="jumbotron">
+<div class="row">
     <h1>@ViewBag.Title</h1>
-    <p class="lead">You can manage your Orders from this panel!</p>
 </div>
 <div class="row">
     @(Html.Kendo().Grid<OrderCustomerViewModel>().Name("orders-grid").Columns(columns =>
@@ -16,10 +15,12 @@
               columns.Bound(c => c.OrderStatus);
               columns.Bound(c => c.ItemsCount);
               columns.Bound(c => c.CreatedOnUtc).Format("{0:MM/dd/yyyy HH:MM:ss}");
-          }).Scrollable().Groupable().Resizable(resize => resize.Columns(true))
+          })
+          .Groupable()
+          .Resizable(resize => resize.Columns(true))
           .Sortable(sortable => sortable.AllowUnsort(true).SortMode(GridSortMode.MultipleColumn))
-          .Filterable(ftb => ftb.Mode(GridFilterMode.Row)).Pageable(pageable => pageable.Refresh(true)
-              .PageSizes(true).ButtonCount(10))
+          .Filterable(ftb => ftb.Mode(GridFilterMode.Row))
+          .Pageable(pageable => pageable.Refresh(true).PageSizes(true).ButtonCount(10))
               .DataSource(dataSource => dataSource.Ajax()
-                  .Read(read => read.Action("GetOrders", "Orders"))))
+                  .Read(read => read.Action("GetMyOrders", "Orders"))))
 </div>

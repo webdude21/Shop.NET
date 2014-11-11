@@ -17,6 +17,8 @@ namespace Shop.Net.Data.Migrations
             var seeder = new Seeder(context, new CountryLoader(), new RandomDataGenerator());
             seeder.SeedRolesAndUsers();
             seeder.SeedCountries();
+            seeder.SeedContactInformaton(100);
+            seeder.SeedCategories(200);
             seeder.SeedProducts(1000);
             seeder.SeedOrders(1500);
         }

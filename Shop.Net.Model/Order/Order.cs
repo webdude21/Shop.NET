@@ -42,32 +42,5 @@
 
         public DateTime? UpdatedOnUtc { get; set; }
 
-        [NotMapped]
-        public decimal TotalAmmout
-        {
-            get
-            {
-                return this.OrderItems.Sum(x => x.Quantity * x.OrderedProduct.Price);
-            }
-        }
-
-        [NotMapped]
-        public decimal TotalCost
-        {
-            get
-            {
-                return this.OrderItems.Sum(x => x.Quantity * x.OrderedProduct.ProductCost);
-            }
-        }
-
-        [NotMapped]
-
-        public decimal TotalGrossProfit
-        {
-            get
-            {
-                return this.TotalAmmout - this.TotalCost;
-            }
-        }
     }
 }

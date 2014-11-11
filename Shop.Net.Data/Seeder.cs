@@ -102,6 +102,35 @@
             this.context.SaveChanges();
         }
 
+        public void SeedContactInformaton(int count)
+        {
+            var user = this.context.Users.FirstOrDefault();
+
+            if (user == null || user.Adresses.Any())
+            {
+                return;
+            }
+
+            var countries = this.context.Countries.ToList();
+
+            for (var i = 0; i < count; i++)
+            {
+                user.Adresses.Add(new ContactInformation
+                                      {
+                                          ContactPerson = this.randomDataGenerator.GetString(15, 200),
+                                          Address1 = this.randomDataGenerator.GetString(15, 200),
+                                          City = this.randomDataGenerator.GetString(15, 200),
+                                          PhoneNumber = this.randomDataGenerator.GetString(15, 200),
+                                          StateProvince = this.randomDataGenerator.GetString(15, 200),
+                                          ZipCode = this.randomDataGenerator.GetString(5, 15),
+                                          Country = countries[this.randomDataGenerator.GetInt(0, countries.Count - 1)],
+                                          Company = this.randomDataGenerator.GetString(15, 200),
+                                      });
+            }
+
+            this.context.SaveChanges();
+        }
+
         private void SeedRandomProducts(int count)
         {
 
