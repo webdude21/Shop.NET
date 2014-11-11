@@ -1,8 +1,6 @@
 ﻿namespace Shop.Net.Data
 {
     using System;
-    using System.Collections.Generic;
-    using System.Collections.ObjectModel;
     using System.Linq;
 
     using Microsoft.AspNet.Identity;
@@ -51,21 +49,10 @@
                 return;
             }
 
-            var user = this.context.Users.FirstOrDefault();
-            var products = this.context.Products.ToList();
-            var orderItems = products.Select((t, i) => new OrderItem { OrderedProduct = t, Quantity = i }).ToList();
-
-            this.context.Orders.Add(
-                new Order
-                    {
-                        Customer = user,
-                        OrderItems = orderItems,
-                        CreatedOnUtc = DateTime.UtcNow,
-                        UpdatedOnUtc = DateTime.UtcNow,
-                        OrderStatus = OrderStatus.AwatingForPaymentConfirmation
-                    });
-
-            this.context.SaveChanges();
+            for (var i = 0; i < 100; i++)
+            {
+                this.SeedOrder();
+            }
         }
 
         public void SeedRolesAndUsers()
@@ -122,7 +109,9 @@
                         UpdatedOnUtc = DateTime.UtcNow, 
                         FriendlyUrl = "canon-eos-5d-mk3", 
                         Description = Description, 
-                        MetaDescription = Description, 
+                        MetaDescription = Description,
+                        Sku = Guid.NewGuid().ToString(),
+                        ManufacturerPartNumber = Guid.NewGuid().ToString(),
                         MetaTitle = "Canon EOS 5D mk3", 
                         Images =
                             new[]
@@ -148,7 +137,9 @@
                         CreatedOnUtc = DateTime.UtcNow, 
                         UpdatedOnUtc = DateTime.UtcNow, 
                         Description = Description, 
-                        MetaDescription = Description, 
+                        MetaDescription = Description,
+                        Sku = Guid.NewGuid().ToString(),
+                        ManufacturerPartNumber = Guid.NewGuid().ToString(),
                         MetaTitle = "Canon EOS 5D mk3", 
                         Images =
                             new[]
@@ -175,7 +166,9 @@
                         UpdatedOnUtc = DateTime.UtcNow, 
                         Description = Description, 
                         MetaDescription = Description, 
-                        MetaTitle = "Nikon D7000", 
+                        MetaTitle = "Nikon D7000",
+                        Sku = Guid.NewGuid().ToString(),
+                        ManufacturerPartNumber = Guid.NewGuid().ToString(),
                         Images =
                             new[]
                                 {
@@ -216,6 +209,8 @@
                         CreatedOnUtc = DateTime.UtcNow, 
                         UpdatedOnUtc = DateTime.UtcNow, 
                         Description = Description, 
+                        Sku = Guid.NewGuid().ToString(),
+                        ManufacturerPartNumber = Guid.NewGuid().ToString(),
                         MetaDescription = Description, 
                         MetaTitle = "Nikon D5100", 
                         Images =
@@ -242,7 +237,9 @@
                         CreatedOnUtc = DateTime.UtcNow, 
                         UpdatedOnUtc = DateTime.UtcNow, 
                         Description = Description, 
-                        MetaDescription = Description, 
+                        MetaDescription = Description,
+                        Sku = Guid.NewGuid().ToString(),
+                        ManufacturerPartNumber = Guid.NewGuid().ToString(),
                         MetaTitle = "Pentax K-5", 
                         Images =
                             new[]
@@ -267,7 +264,9 @@
                         CreatedOnUtc = DateTime.UtcNow, 
                         UpdatedOnUtc = DateTime.UtcNow, 
                         Description = Description, 
-                        MetaDescription = Description, 
+                        MetaDescription = Description,
+                        Sku = Guid.NewGuid().ToString(),
+                        ManufacturerPartNumber = Guid.NewGuid().ToString(),
                         MetaTitle = "Pentax K-3", 
                         Images =
                             new[]
@@ -284,6 +283,24 @@
             this.context.SaveChanges();
         }
 
+        private void SeedOrder()
+        {
+            var user = this.context.Users.FirstOrDefault();
+            var products = this.context.Products.ToList();
+            var orderItems = products.Select((t, i) => new OrderItem { OrderedProduct = t, Quantity = i }).ToList();
+
+            this.context.Orders.Add(
+                new Order
+                {
+                    Customer = user,
+                    OrderItems = orderItems,
+                    CreatedOnUtc = DateTime.UtcNow,
+                    UpdatedOnUtc = DateTime.UtcNow,
+                    OrderStatus = OrderStatus.AwatingForPaymentConfirmation
+                });
+
+            this.context.SaveChanges();
+        }
 
         private static void CreateRoleIfItDoesntExist(RoleManager<IdentityRole> roleManager, string role)
         {

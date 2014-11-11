@@ -10,10 +10,10 @@
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">@User.Identity.GetUserName()<b class="caret"></b></a>
                 <ul class="dropdown-menu">
                     <li>
-                        @Html.ActionLink("Edit Profile", "Index", "Manage", new { area = string.Empty }, new { title = "Edit Profile" })
+                        @Html.ActionLink("Profile", "Index", "Manage", new { area = string.Empty }, new { title = "Profile" })
                     </li>
                     <li>
-                        @Html.ActionLink("Orders", "Index", "Orders", new { area = "Profile" }, new { title = "Orders" })
+                        @Html.ActionLink("My orders", "Index", "Orders", new { area = "Profile" }, new { title = "My orders" })
                     </li>
                     <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
                 </ul>

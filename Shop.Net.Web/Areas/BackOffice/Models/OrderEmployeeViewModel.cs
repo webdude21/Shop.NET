@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel;
     using System.Linq;
 
     using AutoMapper;
@@ -25,6 +26,7 @@
 
         public OrderStatus OrderStatus { get; set; }
 
+        [DisplayName(@"Created On")]
         public DateTime? CreatedOnUtc { get; set; }
 
         public DateTime? UpdatedOnUtc { get; set; }

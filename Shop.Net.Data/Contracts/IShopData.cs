@@ -19,7 +19,9 @@
 
         IRepository<Image> Images { get; }
 
-        IRepository<Order> Orders { get; } 
+        IRepository<Order> Orders { get; }
+
+        IRepository<OrderItem> OrderItems { get; } 
 
         void SaveChanges();
     }

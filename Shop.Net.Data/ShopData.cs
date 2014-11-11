@@ -86,6 +86,14 @@
             }
         }
 
+        public IRepository<OrderItem> OrderItems
+        {
+            get
+            {
+                return this.GetRepository<OrderItem>();
+            }
+        }
+
         public void SaveChanges()
         {
             this.context.SaveChanges();

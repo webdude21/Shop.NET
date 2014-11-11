@@ -4,55 +4,71 @@
     ViewBag.Title = "Orders";
 }
 
-<div class="jumbotron">
+<div class="row">
     <h1>@ViewBag.Title</h1>
-    <p class="lead">You can manage your Orders from this panel!</p>
 </div>
 <div class="row">
-    @(Html.Kendo().Grid<OrderEmployeeViewModel>().Name("orders-grid").Columns(columns =>
-          {
-              columns.Bound(c => c.Id).Width(30);
-              columns.Bound(c => c.OrderStatus).Width(250);
-              columns.Bound(c => c.ItemsCount).Width(100);
-              columns.Bound(c => c.OrderItems);
-              columns.Bound(c => c.TotalAmmout);
-              columns.Bound(c => c.TotalCost);
-              columns.Bound(c => c.TotalGrossProfit);
-              columns.Bound(c => c.TotalQuantity);
-              columns.Bound(c => c.CreatedOnUtc).Format("{0:MM/dd/yyyy HH:MM:ss}");
-          })
+    @(Html.Kendo().Grid<OrderEmployeeViewModel>()
+          .Name("orders-grid")
+          .Columns(columns =>
+              {
+                  columns.Bound(c => c.Id).Width(40);
+                  columns.Bound(c => c.OrderStatus).Width(250);
+                  columns.Bound(c => c.TotalAmmout).Width(100).Format("{0:C2}");
+                  columns.Bound(c => c.TotalCost).Width(80).Format("{0:C2}");
+                  columns.Bound(c => c.TotalGrossProfit).Width(120).Format("{0:C2}");
+                  columns.Bound(c => c.TotalQuantity).Width(100);
+                  columns.Bound(c => c.Customer).Width(250);
+                  columns.Bound(c => c.CreatedOnUtc).Format("{0:MM/dd/yyyy HH:MM:ss}");
+              })
           .Scrollable()
           .Groupable()
-          .ClientDetailTemplateId("template")
+          .HtmlAttributes(new { style = "height: 500px;" })
+          .ClientDetailTemplateId("order-detail-template")
           .Resizable(resize => resize.Columns(true))
-          .Sortable(sortable => sortable.AllowUnsort(true).SortMode(GridSortMode.MultipleColumn))
+          .Sortable(sortable => sortable.AllowUnsort(true).SortMode(GridSortMode.SingleColumn))
           .Pageable(pageable => pageable.Refresh(true).PageSizes(true).ButtonCount(10))
-          .DataSource(dataSource => dataSource.Ajax().Read(read => read.Action("GetOrders", "Orders"))))
+          .DataSource(dataSource => dataSource.Ajax().Read(read => read.Action("GetOrders", "Orders")))
+          .Events(events => events.DataBound("dataBound")))
 </div>
 
-<script id="template" type="text/kendo-tmpl">
-     @(Html.Kendo().Grid<OrderItemEmployeeViewModel>
-           ()
-           .Name("grid_#=EmployeeID#")
-           .Columns(columns =>
-               {
-                   columns.Bound(o => o.Id).Width(70);
-                   columns.Bound(o => o.OrderedProduct).Width(110);
-                   columns.Bound(o => o.Quantity);
-                   columns.Bound(o => o.Quantity).Width(200);
-               })
-           .DataSource(dataSource => dataSource
-                                         .Ajax()
-                                         .PageSize(10)
-                                         .Read(read => read.Action("HierarchyBinding_Orders", "Grid", new { employeeID = "#=EmployeeID#" }))
-           )
-           .Pageable()
-           .Sortable()
-           .ToClientTemplate()
-           )
+<script id="order-detail-template" type="text/kendo-tmpl">
+    @(Html.Kendo().Grid<OrderItemEmployeeViewModel>()
+        .Name("orders-grid_#=Id#")
+        .Columns(columns =>
+        {
+            columns.Bound(o => o.OrderedProduct.Id).Width(40);
+            columns.Bound(o => o.OrderedProduct.Name).Width(130);
+            columns.Bound(o => o.OrderedProduct.Manufacturer).Width(130);
+            columns.Bound(o => o.OrderedProduct.Category.Name).Width(130).Title("Category");
+            columns.Bound(o => o.OrderedProduct.Price).Width(90).Format("{0:C2}");
+            columns.Bound(o => o.OrderedProduct.ProductCost).Width(90).Format("{0:C2}").Title("Cost");
+            columns.Bound(o => o.Quantity).Width(90);
+            columns.Bound(o => o.OrderedProduct.Sku);
+        })
+        .DataSource(dataSource => dataSource
+        .Ajax()
+        .Read(read => read.Action("GetOrderDetails", "Orders", new { orderId = "#=Id#" })))
+        .Resizable(resize => resize.Columns(true))
+        .Sortable(sortable => sortable.AllowUnsort(true).SortMode(GridSortMode.SingleColumn))
+        .Pageable(pageable => pageable.Refresh(true).PageSizes(true).ButtonCount(10))
+        .ToClientTemplate())
 </script>
 <script>
-        function dataBound() {
-            this.expandRow(this.tbody.find("tr.k-master-row").first());
+    function dataBound() {
+        this.expandRow(this.tbody.find("tr.k-master-row").first());
+    }
+        function error_handler(e) {    
+        if (e.errors) {
+            var message = "Errors:\n";
+            $.each(e.errors, function (key, value) {
+                if ('errors' in value) {
+                    $.each(value.errors, function() {
+                        message += this + "\n";
+                    });
+                }
+            });        
+            alert(message);
         }
+    }
 </script>

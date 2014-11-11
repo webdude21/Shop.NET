@@ -8,6 +8,10 @@
 
         public int Quantity { get; set; }
 
+        public virtual Order Order { get; set; }
+
+        public int OrderId { get; set; }
+
         public Product OrderedProduct { get; set; }
 
         public int OrderedProductId { get; set; }
