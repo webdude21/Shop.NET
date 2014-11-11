@@ -1,8 +1,13 @@
-﻿namespace Shop.Net.Model.Shipping
+﻿namespace Shop.Net.Web.Areas.Profile.Models
 {
     using System.ComponentModel.DataAnnotations;
 
-    public class ContactInformation
+    using AutoMapper;
+
+    using Shop.Net.Model.Shipping;
+    using Shop.Net.Web.Infrastructure.Mapping;
+
+    public class ContactInformationViewModel : IMapFrom<ContactInformation>, IHaveCustomMappings
     {
         private const int DbStringMaxLength = 400;
 
@@ -26,9 +31,9 @@
         [MaxLength(DbStringMaxLength)]
         public string Company { get; set; }
 
-        [Required]
-        public virtual Country Country { get; set; }
+        public string Country { get; set; }
 
+        [Required]
         public int CountryId { get; set; }
 
         [MaxLength(DbStringMaxLength)]
@@ -49,5 +54,11 @@
         [MaxLength(20)]
         [Required]
         public string ZipCode { get; set; }
+
+        public void CreateMappings(IConfiguration configuration)
+        {
+            configuration.CreateMap<ContactInformation, ContactInformationViewModel>()
+                .ForMember(viewModel => viewModel.Country, configure => configure.MapFrom(fullModel => fullModel.Country.Name));
+        }
     }
 }

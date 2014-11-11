@@ -14,11 +14,11 @@ namespace Shop.Net.Data.Migrations
 
         protected override void Seed(ShopDbContext context)
         {
-            var seeder = new Seeder(context, new CountryLoader());
+            var seeder = new Seeder(context, new CountryLoader(), new RandomDataGenerator());
             seeder.SeedRolesAndUsers();
             seeder.SeedCountries();
-            seeder.SeedProducts();
-            seeder.SeedOrders();
+            seeder.SeedProducts(1000);
+            seeder.SeedOrders(1500);
         }
     }
 }

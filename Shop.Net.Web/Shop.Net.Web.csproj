@@ -213,6 +213,8 @@
     <Compile Include="Areas\Catalog\Models\Product\ImageViewModel.cs" />
     <Compile Include="Areas\Catalog\Models\Product\UploadedPictureModel.cs" />
     <Compile Include="Areas\Profile\Controllers\CartController.cs" />
+    <Compile Include="Areas\Profile\Controllers\ContactInformationController.cs" />
+    <Compile Include="Areas\Profile\Models\ContactInformationViewModel.cs" />
     <Compile Include="Areas\Profile\Models\OrderCustomerViewModel.cs" />
     <Compile Include="Areas\Profile\Models\OrderItemViewModel.cs" />
     <Compile Include="Areas\Profile\Controllers\OrdersController.cs" />
@@ -332,6 +334,7 @@
     <Content Include="fonts\fontawesome-webfont.ttf" />
     <Content Include="fonts\fontawesome-webfont.eot" />
     <Content Include="fonts\FontAwesome.otf" />
+    <Content Include="Areas\Profile\Views\ContactInformation\Index.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Kendo\Kendo.Mvc.dll" />
     <Content Include="Kendo\Kendo.Mvc.xml" />
