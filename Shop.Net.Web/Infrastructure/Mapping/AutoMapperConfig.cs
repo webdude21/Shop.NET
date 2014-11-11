@@ -20,7 +20,7 @@
 
         private static void LoadStandardMappings(IEnumerable<Type> types)
         {
-            var maps = (from t in types
+            var maps = from t in types
                         from i in t.GetInterfaces()
                         where i.IsGenericType && i.GetGenericTypeDefinition() == typeof(IMapFrom<>) &&
                               !t.IsAbstract &&
@@ -29,7 +29,7 @@
                         {
                             Source = i.GetGenericArguments()[0],
                             Destination = t
-                        }).ToArray();
+                        };
 
             foreach (var map in maps)
             {
@@ -39,17 +39,31 @@
 
         private static void LoadCustomMappings(IEnumerable<Type> types)
         {
-            var maps = (from t in types
+            var maps = from t in types
                         from i in t.GetInterfaces()
                         where typeof(IHaveCustomMappings).IsAssignableFrom(t) &&
                               !t.IsAbstract &&
                               !t.IsInterface
-                        select (IHaveCustomMappings)Activator.CreateInstance(t)).ToArray();
+                        select (IHaveCustomMappings)Activator.CreateInstance(t);
 
             foreach (var map in maps)
             {
                 map.CreateMappings(Mapper.Configuration);
             }
         }
+
+
+        private void LoadGlobbalMappings()
+        {
+            Mapper.CreateMap<string, Guid>().ConvertUsing(s =>
+            {
+                var guid = Guid.Empty;
+                Guid.TryParse(s, out guid);
+                return guid;
+            });
+
+            Mapper.CreateMap<Guid, string>().ConvertUsing(g => g.ToString());
+        }
+
     }
 }

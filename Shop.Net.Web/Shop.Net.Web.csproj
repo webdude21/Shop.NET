@@ -211,6 +211,8 @@
     <Compile Include="Areas\Catalog\CatalogAreaRegistration.cs" />
     <Compile Include="Areas\Catalog\Controllers\CategoryController.cs" />
     <Compile Include="Areas\Catalog\Models\Product\ImageViewModel.cs" />
+    <Compile Include="Areas\Catalog\Models\Product\UploadedPictureModel.cs" />
+    <Compile Include="Areas\Profile\Controllers\CartController.cs" />
     <Compile Include="Areas\Profile\Models\OrderCustomerViewModel.cs" />
     <Compile Include="Areas\Profile\Models\OrderItemViewModel.cs" />
     <Compile Include="Areas\Profile\Controllers\OrdersController.cs" />
@@ -229,6 +231,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Infrastructure\Filters\ValidateImageFileAttribute.cs" />
     <Compile Include="Infrastructure\Helpers\HtmlExtensions.cs" />
     <Compile Include="Infrastructure\Contracts\IImageUploader.cs" />
     <Compile Include="Infrastructure\Helpers\ImageUploader.cs" />
@@ -269,6 +272,8 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\font-awesome.css" />
+    <Content Include="Content\font-awesome.min.css" />
     <Content Include="Content\Kendo\Default\editor.png" />
     <Content Include="Content\Kendo\Default\imagebrowser.png" />
     <Content Include="Content\Kendo\Default\indeterminate.gif" />
@@ -286,6 +291,7 @@
     <Content Include="Content\magnific-popup\magnific-popup.css" />
     <Content Include="Content\paper.css" />
     <Content Include="favicon.ico" />
+    <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\site.css" />
@@ -322,6 +328,10 @@
     <Content Include="Areas\Profile\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Profile\Views\Orders\Index.cshtml" />
     <Content Include="Areas\BackOffice\Views\Orders\Index.cshtml" />
+    <Content Include="fonts\fontawesome-webfont.woff" />
+    <Content Include="fonts\fontawesome-webfont.ttf" />
+    <Content Include="fonts\fontawesome-webfont.eot" />
+    <Content Include="fonts\FontAwesome.otf" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Kendo\Kendo.Mvc.dll" />
     <Content Include="Kendo\Kendo.Mvc.xml" />

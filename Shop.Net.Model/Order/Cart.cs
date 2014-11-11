@@ -4,6 +4,7 @@
     using System.Collections.Generic;
 
     using Shop.Net.Model.Catalog;
+    using Shop.Net.Model.Shipping;
 
     public class Cart
     {
@@ -19,6 +20,10 @@
         public string CustumerId { get; set; }
 
         public ICollection<Product> Products { get; set; }
+
+        public ContactInformation ShippingInformation { get; set; }
+
+        public ContactInformation BillingInformation { get; set; }
 
         public DateTime? CreatedOnUtc { get; set; }
     }

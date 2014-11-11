@@ -36,7 +36,8 @@
                     "~/Content/site.css",
                     "~/Content/magnific-popup/magnific-popup.css",
                     "~/Content/Kendo/kendo.common-bootstrap.min.css",
-                    "~/Content/Kendo/kendo.bootstrap.min.css"));
+                    "~/Content/Kendo/kendo.bootstrap.min.css",
+                    "~/Content/font-awesome.min.css"));
 
             // Set EnableOptimizations to false for debugging. For more information,
             // visit http://go.microsoft.com/fwlink/?LinkId=301862
