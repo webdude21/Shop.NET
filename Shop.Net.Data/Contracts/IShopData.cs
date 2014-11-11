@@ -4,6 +4,7 @@
     using Shop.Net.Model.Catalog;
     using Shop.Net.Model.Marketing;
     using Shop.Net.Model.Order;
+    using Shop.Net.Model.Shipping;
 
     public interface IShopData
     {
@@ -21,7 +22,11 @@
 
         IRepository<Order> Orders { get; }
 
-        IRepository<OrderItem> OrderItems { get; } 
+        IRepository<OrderItem> OrderItems { get; }
+
+        IRepository<ContactInformation> ContactInformations { get; }
+
+        IRepository<Country> Countries { get; } 
 
         void SaveChanges();
     }

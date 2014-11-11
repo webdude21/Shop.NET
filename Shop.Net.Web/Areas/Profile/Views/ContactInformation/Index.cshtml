@@ -4,35 +4,41 @@
     ViewBag.Title = "My Addresses";
 }
 
-@(Html.Kendo().Grid<ContactInformationViewModel>()
+<div class="row">
+    <h2>@ViewBag.Title</h2>
+</div>
+
+<div class="row">
+    @(Html.Kendo().Grid<ContactInformationViewModel>()
     .Name("grid")
     .Columns(columns =>
-    {
-        columns.Bound(p => p.Id).Width(80);
+        {
+        columns.Bound(p => p.Id).Width(20);
         columns.Bound(p => p.ContactPerson).Width(100);
         columns.Bound(p => p.City).Width(100);
         columns.Bound(p => p.Country).Width(100);
         columns.Bound(p => p.ZipCode).Width(100);
-        columns.Bound(p => p.Address1).Width(100);
-        columns.Command(command => { command.Edit(); command.Destroy(); }).Width(160);
+        columns.Bound(p => p.Address1).Width(60);
+        columns.Command(command => { command.Edit(); command.Destroy(); }).Width(100);
     })
     .ToolBar(toolbar => toolbar.Create())
     .Editable(editable => editable.Mode(GridEditMode.PopUp))
     .Pageable()
     .Sortable()
     .Scrollable()
-    .HtmlAttributes(new { style = "height:430px;" })
+    .HtmlAttributes(new { style = "height:500px;" })
     .DataSource(dataSource => dataSource
         .Ajax()
         .PageSize(20)
         .Events(events => events.Error("error_handler"))
-        .Model(model => model.Id(p => p.ProductID))
-        .Create(update => update.Action("EditingPopup_Create", "Grid"))
-        .Read(read => read.Action("EditingPopup_Read", "Grid"))
-        .Update(update => update.Action("EditingPopup_Update", "Grid"))
-        .Destroy(update => update.Action("EditingPopup_Destroy", "Grid"))
+        .Model(model => model.Id(p => p.Id))
+            .Create(update => update.Action("Add", "ContactInformation"))
+            .Read(read => read.Action("Get", "ContactInformation"))
+            .Update(update => update.Action("Update", "ContactInformation"))
+            .Destroy(update => update.Action("Delete", "ContactInformation"))
     )
-)
+    )
+</div>
 <script type="text/javascript">
     function error_handler(e) {
         if (e.errors) {

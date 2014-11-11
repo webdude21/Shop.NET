@@ -14,13 +14,14 @@ namespace Shop.Net.Data.Migrations
 
         protected override void Seed(ShopDbContext context)
         {
+            context.Configuration.AutoDetectChangesEnabled = false;
             var seeder = new Seeder(context, new CountryLoader(), new RandomDataGenerator());
             seeder.SeedRolesAndUsers();
-            seeder.SeedCountries();
-            seeder.SeedContactInformaton(100);
-            seeder.SeedCategories(200);
-            seeder.SeedProducts(1000);
-            seeder.SeedOrders(1500);
+            seeder.SeedContactInformaton(50);
+            seeder.SeedCategories(15);
+            seeder.SeedProducts(200);
+            seeder.SeedOrders(200);
+            context.Configuration.AutoDetectChangesEnabled = true;
         }
     }
 }

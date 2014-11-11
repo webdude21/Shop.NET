@@ -26,8 +26,13 @@
         [MaxLength(DbStringMaxLength)]
         public string Company { get; set; }
 
+        [MaxLength(DbStringMaxLength)]
         [Required]
-        public virtual Country Country { get; set; }
+        public string Country { get; set; }
+
+        public ApplicationUser Customer { get; set; }
+
+        public string CustomerId { get; set; }
 
         public int CountryId { get; set; }
 

@@ -9,6 +9,7 @@
     using Shop.Net.Model.Catalog;
     using Shop.Net.Model.Marketing;
     using Shop.Net.Model.Order;
+    using Shop.Net.Model.Shipping;
 
     public class ShopData : IShopData
     {
@@ -91,6 +92,22 @@
             get
             {
                 return this.GetRepository<OrderItem>();
+            }
+        }
+
+        public IRepository<ContactInformation> ContactInformations
+        {
+            get
+            {
+                return this.GetRepository<ContactInformation>();
+            }
+        }
+
+        public IRepository<Country> Countries
+        {
+            get
+            {
+                return this.GetRepository<Country>();
             }
         }
 

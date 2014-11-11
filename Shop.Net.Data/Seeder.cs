@@ -123,7 +123,7 @@
                                           PhoneNumber = this.randomDataGenerator.GetString(15, 200),
                                           StateProvince = this.randomDataGenerator.GetString(15, 200),
                                           ZipCode = this.randomDataGenerator.GetString(5, 15),
-                                          Country = countries[this.randomDataGenerator.GetInt(0, countries.Count - 1)],
+                                          Country = countries[this.randomDataGenerator.GetInt(0, countries.Count - 1)].Name,
                                           Company = this.randomDataGenerator.GetString(15, 200),
                                       });
             }
