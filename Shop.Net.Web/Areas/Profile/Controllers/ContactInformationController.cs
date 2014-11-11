@@ -11,6 +11,8 @@
     using Microsoft.AspNet.Identity;
 
     using Shop.Net.Data.Contracts;
+    using Shop.Net.Model;
+    using Shop.Net.Model.Shipping;
     using Shop.Net.Web.Areas.Profile.Models;
     using Shop.Net.Web.Controllers;
 
@@ -26,7 +28,7 @@
         {
             return this.View();
         }
-  
+
         public ActionResult Get([DataSourceRequest] DataSourceRequest request)
         {
             var userId = this.User.Identity.GetUserId();
@@ -40,37 +42,68 @@
             return this.Json(addresses.ToDataSourceResult(request), JsonRequestBehavior.AllowGet);
         }
 
-        //[AcceptVerbs(HttpVerbs.Post)]
-        //public ActionResult Add([DataSourceRequest] DataSourceRequest request, ProductViewModel product)
-        //{
-        //    if (product != null && ModelState.IsValid)
-        //    {
-        //        productService.Create(product);
-        //    }
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult Add([DataSourceRequest] DataSourceRequest request, ContactInformationViewModel contactInformation)
+        {
+            var userId = this.User.Identity.GetUserId();
+            var user = this.ShopData.Users.Find(userId);
 
-        //    return Json(new[] { product }.ToDataSourceResult(request, ModelState));
-        //}
+            if (contactInformation != null && ModelState.IsValid)
+            {
+                var newInfo = GetNewContactInformation(contactInformation, user);
+                user.Adresses.Add(newInfo);
+                this.ShopData.SaveChanges();
+            }
 
-        //[AcceptVerbs(HttpVerbs.Post)]
-        //public ActionResult Update([DataSourceRequest] DataSourceRequest request, ProductViewModel product)
-        //{
-        //    if (product != null && ModelState.IsValid)
-        //    {
-        //        productService.Update(product);
-        //    }
+            return Json(new[] { contactInformation }.ToDataSourceResult(request, ModelState));
+        }
 
-        //    return Json(new[] { product }.ToDataSourceResult(request, ModelState));
-        //}
+        private static ContactInformation GetNewContactInformation(ContactInformationViewModel contactInformation, ApplicationUser user)
+        {
+            var newInfo = new ContactInformation
+            {
+                Address1 = contactInformation.Address1,
+                Address2 = contactInformation.Address2,
+                City = contactInformation.City,
+                Country = contactInformation.Country,
+                Company = contactInformation.Company,
+                PhoneNumber = contactInformation.PhoneNumber,
+                StateProvince = contactInformation.StateProvince,
+                ZipCode = contactInformation.StateProvince,
+                ContactPerson = contactInformation.ContactPerson,
+                Customer = user,
+                Email = contactInformation.ContactPerson,
+                FaxNumber = contactInformation.FaxNumber
+            };
+            return newInfo;
+        }
 
-        //[AcceptVerbs(HttpVerbs.Post)]
-        //public ActionResult Delete([DataSourceRequest] DataSourceRequest request, ProductViewModel product)
-        //{
-        //    if (product != null)
-        //    {
-        //        productService.Destroy(product);
-        //    }
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult Update([DataSourceRequest] DataSourceRequest request, ContactInformationViewModel contactInformation)
+        {
+            this.ShopData.ContactInformations.Find(contactInformation.Id);
+            this.TryUpdateModel(contactInformation);
 
-        //    return Json(new[] { product }.ToDataSourceResult(request, ModelState));
-        //}
+            if (contactInformation != null && ModelState.IsValid)
+            {
+                ShopData.SaveChanges();
+            }
+
+            return Json(new[] { contactInformation }.ToDataSourceResult(request, ModelState));
+        }
+
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult Delete([DataSourceRequest] DataSourceRequest request, ContactInformationViewModel contactInformation)
+        {
+           var contact = this.ShopData.ContactInformations.Find(contactInformation.Id);
+
+            if (contactInformation != null)
+            {
+                this.ShopData.ContactInformations.Delete(contact);
+                this.ShopData.SaveChanges();
+            }
+
+            return Json(new[] { contactInformation }.ToDataSourceResult(request, ModelState));
+        }
     }
 }

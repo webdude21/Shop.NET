@@ -12,42 +12,44 @@
         public int Id { get; set; }
 
         [Required]
-        [MaxLength(DbStringMaxLength)]
+        [StringLength(DbStringMaxLength)]
         public string ContactPerson { get; set; }
 
         [Required]
-        [MaxLength(DbStringMaxLength)]
+        [StringLength(DbStringMaxLength)]
         public string PhoneNumber { get; set; }
 
-        [MaxLength(DbStringMaxLength)]
+        [StringLength(DbStringMaxLength)]
         public string FaxNumber { get; set; }
 
-        [MaxLength(DbStringMaxLength)]
+        [StringLength(DbStringMaxLength)]
         [EmailAddress]
+        [Required]
         public string Email { get; set; }
 
-        [MaxLength(DbStringMaxLength)]
+        [StringLength(DbStringMaxLength)]
         public string Company { get; set; }
 
+        [StringLength(DbStringMaxLength)]
         [Required]
         public string Country { get; set; }
 
-        [MaxLength(DbStringMaxLength)]
+        [StringLength(DbStringMaxLength)]
         [Required]
         public string StateProvince { get; set; }
 
-        [MaxLength(DbStringMaxLength)]
+        [StringLength(DbStringMaxLength)]
         [Required]
         public string City { get; set; }
 
-        [MaxLength(DbStringMaxLength)]
+        [StringLength(DbStringMaxLength)]
         [Required]
         public string Address1 { get; set; }
 
-        [MaxLength(DbStringMaxLength)]
+        [StringLength(DbStringMaxLength)]
         public string Address2 { get; set; }
 
-        [MaxLength(20)]
+        [StringLength(20)]
         [Required]
         public string ZipCode { get; set; }
 

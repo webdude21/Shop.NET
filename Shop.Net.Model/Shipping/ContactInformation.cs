@@ -34,8 +34,6 @@
 
         public string CustomerId { get; set; }
 
-        public int CountryId { get; set; }
-
         [MaxLength(DbStringMaxLength)]
         [Required]
         public string StateProvince { get; set; }

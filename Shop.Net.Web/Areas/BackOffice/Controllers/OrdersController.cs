@@ -9,7 +9,6 @@
     using Kendo.Mvc.Extensions;
     using Kendo.Mvc.UI;
 
-    using Shop.Net.Data;
     using Shop.Net.Data.Contracts;
     using Shop.Net.Web.Areas.BackOffice.Models;
     using Shop.Net.Web.Controllers;
