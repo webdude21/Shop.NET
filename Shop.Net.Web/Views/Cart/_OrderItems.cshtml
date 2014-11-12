@@ -18,7 +18,7 @@
 
     @foreach (var item in Model)
     {
-        <tr>
+        <tr id="cart-item-@item.Id">
             <td>
                 @Html.ActionLink(item.OrderedProduct.Name, "Details", "Product", new { area = "Catalog", id = item.OrderedProductId }, null)
             </td>
@@ -29,9 +29,17 @@
                 @Html.DisplayFor(modelItem => item.OrderedProduct.Sku)
             </td>
             <td>
-                @Html.ActionLink("Remove item", "Remove", new { id = item.Id })
+                @Ajax.ActionLink(@"Remove item", "Remove", "Cart", new { area = string.Empty, id = item.Id },
+                    new AjaxOptions { HttpMethod = "GET", Confirm = "Are you sure that you want to delete this item?",
+                                      InsertionMode = InsertionMode.Replace,
+                                      UpdateTargetId = ("cart-item-" + item.Id),
+                                      OnSuccess = "updateCartItemCount",
+                                    })
             </td>
         </tr>
     }
 
 </table>
+<script>
+    var cartPage = true;
+</script>

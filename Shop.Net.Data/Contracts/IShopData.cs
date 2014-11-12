@@ -11,6 +11,8 @@
     {
         IRepository<ApplicationUser> Users { get; }
 
+        IRepository<CartItem> CartItems { get; }
+
         IRepository<Product> Products { get; }
 
         IRepository<Category> Categories { get; }

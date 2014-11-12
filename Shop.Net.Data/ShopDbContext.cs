@@ -21,6 +21,8 @@
             Database.SetInitializer(new MigrateDatabaseToLatestVersion<ShopDbContext, Configuration>());
         }
 
+        public IDbSet<CartItem> CartItems { get; set; }
+
         public IDbSet<Country> Countries { get; set; }
 
         public IDbSet<Cart> Carts { get; set; } 

@@ -222,7 +222,9 @@
     <Compile Include="Controllers\AdministrationController.cs" />
     <Compile Include="Controllers\BackOfficeController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
-    <Compile Include="Controllers\CartController.cs" />
+    <Compile Include="Controllers\CartController.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Controllers\FileDownloadController.cs" />
     <Compile Include="Controllers\MenuController.cs" />
     <Compile Include="Controllers\PagesController.cs" />
@@ -384,6 +386,7 @@
     <Content Include="Content\Kendo\textures\stripe6.png" />
     <Content Include="Content\Kendo\textures\transparency.png" />
     <Content Include="Content\Kendo\textures\transtexture.png" />
+    <Content Include="Scripts\better-dialogs.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-2.1.1.js" />

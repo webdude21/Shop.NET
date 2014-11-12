@@ -32,6 +32,14 @@
             }
         }
 
+        public IRepository<CartItem> CartItems
+        {
+            get
+            {
+                return this.GetRepository<CartItem>();
+            }
+        }
+
         public IRepository<Product> Products
         {
             get
