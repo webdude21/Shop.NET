@@ -46,7 +46,6 @@
             return new ShopDbContext();
         }
 
-
         public new IDbSet<T> Set<T>() where T : class
         {
             return base.Set<T>();

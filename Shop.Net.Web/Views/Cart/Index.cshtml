@@ -1,27 +1,12 @@
 ﻿@model Shop.Net.Web.Models.CartViewModel
 
-<div>
-    <h4>CartViewModel</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.CustumerId)
-        </dt>
+@{
+    ViewBag.Title = "Cart";
+}
 
-        <dd>
-            @Html.DisplayFor(model => model.CustumerId)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.CreatedOnUtc)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.CreatedOnUtc)
-        </dd>
-
-    </dl>
+<div class="row">
+    <h1>@ViewBag.Title</h1>
 </div>
-<p>
-    @Html.ActionLink("Back to List", "Index")
-</p>
+<div class="row">
+   @Html.Partial("_OrderItems", Model.CartItems)
+</div>

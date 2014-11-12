@@ -5,9 +5,11 @@
 
     public class Cart
     {
+        private ICollection<CartItem> cartItems;
+
         public Cart()
         {
-            this.CartItems = new HashSet<CartItem>();
+            this.cartItems = new HashSet<CartItem>();
         }
 
         public int Id { get; set; }
@@ -16,7 +18,17 @@
 
         public string CustomerId { get; set; }
 
-        public ICollection<CartItem> CartItems { get; set; }
+        public virtual ICollection<CartItem> CartItems
+        {
+            get
+            {
+                return this.cartItems;
+            }
+            set
+            {
+                this.cartItems = value;
+            }
+        }
 
         public DateTime? CreatedOnUtc { get; set; }
     }

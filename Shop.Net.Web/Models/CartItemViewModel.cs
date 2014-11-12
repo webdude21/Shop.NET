@@ -1,8 +1,9 @@
 ﻿namespace Shop.Net.Web.Models
 {
+    using Shop.Net.Model.Cart;
     using Shop.Net.Web.Infrastructure.Mapping;
 
-    public class CartItemViewModel : IMapFrom<CartItemViewModel>
+    public class CartItemViewModel : IMapFrom<CartItem>
     {
         public int Id { get; set; }
 

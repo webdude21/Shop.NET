@@ -1,7 +1,6 @@
 ﻿namespace Shop.Net.Model.Cart
 {
     using Shop.Net.Model.Catalog;
-    using Shop.Net.Model.Order;
 
     public class CartItem
     {
