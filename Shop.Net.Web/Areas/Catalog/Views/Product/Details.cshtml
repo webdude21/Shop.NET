@@ -7,40 +7,47 @@
     ViewBag.Title = Model.MetaTitle ?? Model.Name;
 }
 
-<div id="product-wrapper">
-    <div class="row">
-        @Html.Partial("_ImageGalleryPartial", Model)
-        <div class="col-lg-7">
-            <h4>@Model.Manufacturer @Model.Name</h4>
-            @if (Model.Sku != null)
-            {
-                <span class="label label-default">Sku: @Model.Sku</span>
-            }
-            <hr />
-            <p class="info text-justify">@Model.Description</p>
-            <hr />
-            @Html.Partial("_SocialSharerPartial")
-            <hr />
-            <div id="order-form">
+@using (Ajax.BeginForm("Add", "Cart", new { area = string.Empty}, new AjaxOptions
+                                                                      {
+                                                                          HttpMethod = "POST",
+                                                                          UpdateTargetId = "order-count",
+                                                                          InsertionMode = InsertionMode.Replace,
+                                                                          Confirm = "Are you sure you want to add this item to the shopping Cart"
+                                                                      }, new { id = "searchForm" }))
+{
+    @Html.AntiForgeryToken()
+    <div id="product-wrapper">
+        <div class="row">
+            @Html.Partial("_ImageGalleryPartial", Model)
+            <div class="col-lg-7">
+                <h4>@Model.Manufacturer @Model.Name</h4>
+                @if (Model.Sku != null)
+                {
+                    <span class="label label-default">Sku: @Model.Sku</span>
+                }
+                <hr />
+                <p class="info text-justify">@Model.Description</p>
+                <hr />
+                @Html.Partial("_SocialSharerPartial")
+                <hr />
                 <div class="form-group">
+                    @Html.HiddenFor(m => m.Id)
                     @Html.LabelFor(m => m.OrderQuantity, new { @class = "col-md-2 control-label" })
                     <div class="col-md-2">
-                        @Html.TextBoxFor(m => m.OrderQuantity, new { @class = "form-control", type="number" })
+                        @Html.TextBoxFor(m => m.OrderQuantity, new { @class = "form-control", type = "number" })
                     </div>
+                    <input type="submit" class="btn btn-warning" value="Buy" />
                 </div>
-                <div class="form-group">
-                    @Ajax.ActionLink(@"Buy", "Add", "Cart",  
-                        new { productId = Model.Id, quantity = Model.OrderQuantity, area = string.Empty },
-                        new AjaxOptions
-                            {
-                                HttpMethod = "POST",
-                                Confirm = "Are you sure you want to add this item to the shopping Cart"
-                            }, new { @class = "btn btn-warning" })
+                <div class="row">
+                    @Html.ValidationMessageFor(model => model.OrderQuantity, "", new { @class = "text-danger" })
+                </div>
+                <div class="row" id="results">
+                    
                 </div>
             </div>
         </div>
     </div>
-</div>
+}
 
 @section scripts{
     @Scripts.Render("~/bundles/jqueryval")

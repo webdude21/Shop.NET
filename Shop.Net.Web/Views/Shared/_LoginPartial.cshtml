@@ -8,7 +8,7 @@
         <ul class="nav navbar-nav navbar-right">
             <li>
                 <a href="@Url.Action("Index", "Cart", new { area = string.Empty })">
-                <i class="fa fa-shopping-cart fa-2x"></i>
+                    <i class="fa fa-shopping-cart fa-2x"></i><span class="badge" id="order-count">0</span>
                 </a>
             </li>
         </ul>
@@ -29,6 +29,14 @@
                 </ul>
             </li>
         </ul>
+        <script>
+            $( document ).ready(function (e) {
+                var $counter = $("#order-count");
+                $.get('@Url.Action("GetCartItemsCount", "Cart", new { area = string.Empty, userId = this.User.Identity.GetUserId()})', function (data) {
+                    $counter.html(data);
+                });
+            })
+        </script>
     }
 }
 else

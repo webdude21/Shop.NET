@@ -401,6 +401,7 @@
     <Content Include="Scripts\Kendo\jquery.min.js" />
     <Content Include="Scripts\Kendo\kendo.all.min.js" />
     <Content Include="Scripts\Kendo\kendo.aspnetmvc.min.js" />
+    <Content Include="Scripts\load-cart-count.js" />
     <Content Include="Scripts\masonry.pkgd.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />

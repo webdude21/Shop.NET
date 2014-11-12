@@ -61,3 +61,8 @@ body .break-word {
 .buy-quantity {
     width: 50px;
 }
+
+#order-count  {
+    background-color: red;
+    margin-left: -1px;
+}
