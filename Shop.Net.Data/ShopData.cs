@@ -95,6 +95,14 @@
             }
         }
 
+        public IRepository<Cart> ShoppingCarts
+        {
+            get
+            {
+                return this.GetRepository<Cart>();
+            }
+        }
+
         public IRepository<ContactInformation> ContactInformations
         {
             get

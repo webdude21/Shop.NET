@@ -16,7 +16,7 @@
     using Shop.Net.Web.Areas.Profile.Models;
     using Shop.Net.Web.Controllers;
 
-    public class OrdersController : ProfileBaseController
+    public class OrdersController : CustomerController
     {
         public OrdersController(IShopData shopData)
             : base(shopData)

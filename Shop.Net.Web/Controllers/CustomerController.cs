@@ -6,9 +6,9 @@
     using Shop.Net.Resources;
 
     [Authorize(Roles = GlobalConstants.AdministratorRole + "," + GlobalConstants.EmployeeRole + "," + GlobalConstants.CustomerRole)]
-    public class ProfileBaseController : BaseController
+    public class CustomerController : BaseController
     {
-        public ProfileBaseController(IShopData shopData)
+        public CustomerController(IShopData shopData)
             : base(shopData)
         {
         }

@@ -16,7 +16,7 @@
 
         private ICollection<Review> reviews;
 
-        public Product() 
+        public Product()
         {
             this.reviews = new HashSet<Review>();
             this.images = new HashSet<Image>();

@@ -2,8 +2,6 @@
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations.Schema;
-    using System.Linq;
 
     public class Order
     {
@@ -30,6 +28,7 @@
             {
                 return this.orderItems;
             }
+
             set
             {
                 this.orderItems = value;
@@ -41,6 +40,5 @@
         public DateTime? CreatedOnUtc { get; set; }
 
         public DateTime? UpdatedOnUtc { get; set; }
-
     }
 }

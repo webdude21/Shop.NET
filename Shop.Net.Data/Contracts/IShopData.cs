@@ -24,9 +24,11 @@
 
         IRepository<OrderItem> OrderItems { get; }
 
+        IRepository<Cart> ShoppingCarts { get; }
+
         IRepository<ContactInformation> ContactInformations { get; }
 
-        IRepository<Country> Countries { get; } 
+        IRepository<Country> Countries { get; }
 
         void SaveChanges();
     }

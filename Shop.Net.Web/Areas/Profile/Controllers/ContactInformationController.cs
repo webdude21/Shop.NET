@@ -16,7 +16,7 @@
     using Shop.Net.Web.Areas.Profile.Models;
     using Shop.Net.Web.Controllers;
 
-    public class ContactInformationController : ProfileBaseController
+    public class ContactInformationController : CustomerController
     {
         public ContactInformationController(IShopData shopData)
             : base(shopData)

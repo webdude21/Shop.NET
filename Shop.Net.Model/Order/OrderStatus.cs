@@ -2,12 +2,18 @@
 {
     public enum OrderStatus
     {
-        AwatingForPaymentConfirmation,
-        Rejected,
-        PaymentRecieved,
-        PaymentError,
-        Shipped,
-        InPreperation,
+        AwatingForPaymentConfirmation, 
+
+        Rejected, 
+
+        PaymentRecieved, 
+
+        PaymentError, 
+
+        Shipped, 
+
+        InPreperation, 
+
         RecievedByTheCustomer
     }
 }

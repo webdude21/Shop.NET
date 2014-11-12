@@ -212,7 +212,6 @@
     <Compile Include="Areas\Catalog\Controllers\CategoryController.cs" />
     <Compile Include="Areas\Catalog\Models\Product\ImageViewModel.cs" />
     <Compile Include="Areas\Catalog\Models\Product\UploadedPictureModel.cs" />
-    <Compile Include="Areas\Profile\Controllers\CartController.cs" />
     <Compile Include="Areas\Profile\Controllers\ContactInformationController.cs" />
     <Compile Include="Areas\Profile\Models\ContactInformationViewModel.cs" />
     <Compile Include="Areas\Profile\Models\OrderCustomerViewModel.cs" />
@@ -223,12 +222,13 @@
     <Compile Include="Controllers\AdministrationController.cs" />
     <Compile Include="Controllers\BackOfficeController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\FileDownloadController.cs" />
     <Compile Include="Controllers\MenuController.cs" />
     <Compile Include="Controllers\PagesController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Areas\Catalog\Controllers\ProductController.cs" />
-    <Compile Include="Controllers\ProfileBaseController.cs" />
+    <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="GlimpseSecurityPolicy.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -257,9 +257,12 @@
     <Compile Include="Models\Account\IdentityModels.cs" />
     <Compile Include="Models\Account\ManageLoginsViewModel.cs" />
     <Compile Include="Areas\Catalog\Models\Category\CategoryViewModel.cs" />
+    <Compile Include="Models\CartProductViewModel.cs" />
+    <Compile Include="Models\CartViewModel.cs" />
     <Compile Include="Models\IndexViewModel.cs" />
     <Compile Include="Models\Marketing\SeoEditModel.cs" />
     <Compile Include="Models\Marketing\SeoViewModel.cs" />
+    <Compile Include="Models\CartItemViewModel.cs" />
     <Compile Include="Models\PagerViewModel.cs" />
     <Compile Include="Models\ViewModelWithPager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -452,6 +455,7 @@
     <Content Include="Views\Shared\_PagerPartial.cshtml" />
     <Content Include="Views\Shared\_ImageGalleryPartial.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\ImageViewModel.cshtml" />
+    <Content Include="Views\Cart\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
