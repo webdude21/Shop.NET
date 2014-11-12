@@ -10,7 +10,7 @@
 
         public int Quantity { get; set; }
 
-        public ProductDetailsModel OrderedProduct { get; set; }
+        public ProductDetailsViewModel OrderedProduct { get; set; }
 
         public int OrderedProductId { get; set; }
 

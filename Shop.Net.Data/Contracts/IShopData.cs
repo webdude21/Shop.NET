@@ -1,6 +1,7 @@
 ﻿namespace Shop.Net.Data.Contracts
 {
     using Shop.Net.Model;
+    using Shop.Net.Model.Cart;
     using Shop.Net.Model.Catalog;
     using Shop.Net.Model.Marketing;
     using Shop.Net.Model.Order;

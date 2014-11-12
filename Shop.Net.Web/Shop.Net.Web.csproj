@@ -269,7 +269,7 @@
     <Compile Include="Startup.cs" />
     <Compile Include="Models\Account\SetPasswordViewModel.cs" />
     <Compile Include="Models\Account\VerifyPhoneNumberViewModel.cs" />
-    <Compile Include="Areas\Catalog\Models\Product\ProductDetailsModel.cs" />
+    <Compile Include="Areas\Catalog\Models\Product\ProductDetailsViewModel.cs" />
     <Compile Include="Areas\Catalog\Models\Product\ProductThumbnailModel.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -456,6 +456,7 @@
     <Content Include="Views\Shared\_ImageGalleryPartial.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\ImageViewModel.cshtml" />
     <Content Include="Views\Cart\Index.cshtml" />
+    <Content Include="Views\Cart\Empty.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

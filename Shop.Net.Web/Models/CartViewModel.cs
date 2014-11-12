@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
 
+    using Shop.Net.Model.Cart;
     using Shop.Net.Model.Order;
     using Shop.Net.Web.Infrastructure.Mapping;
 

@@ -2,18 +2,26 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel;
+    using System.ComponentModel.DataAnnotations;
     using System.Linq;
 
     using AutoMapper;
 
     using Shop.Net.Model.Catalog;
     using Shop.Net.Model.Marketing;
+    using Shop.Net.Resources;
     using Shop.Net.Web.Areas.Catalog.Models.Category;
     using Shop.Net.Web.Infrastructure.Mapping;
     using Shop.Net.Web.Models.Marketing;
 
-    public class ProductDetailsModel : SeoViewModel, IMapFrom<Product> 
+    public class ProductDetailsViewModel : SeoViewModel, IMapFrom<Product>
     {
+        public ProductDetailsViewModel()
+        {
+            this.OrderQuantity = 1;
+        }
+
         public int Id { get; set; }
 
         public string Name { get; set; }
@@ -38,6 +46,11 @@
 
         public int Quantity { get; set; }
 
+        [DisplayName(@"Quantity")]
+        [Range(1, int.MaxValue, ErrorMessage = @"You should order at least one!")]
+        [DefaultValue(1)]
+        public int OrderQuantity { get; set; }
+
         public DateTime? CreatedOnUtc { get; set; }
 
         public DateTime? UpdatedOnUtc { get; set; }
@@ -52,7 +65,7 @@
 
         public void CreateMappings(IConfiguration configuration)
         {
-            configuration.CreateMap<Product, ProductDetailsModel>()
+            configuration.CreateMap<Product, ProductDetailsViewModel>()
                    .ForMember(model => model.FirstImage, opt => opt.MapFrom(fullProduct => fullProduct.Images.FirstOrDefault()));
         }
     }

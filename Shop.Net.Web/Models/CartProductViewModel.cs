@@ -28,8 +28,8 @@
 
         public void CreateMappings(IConfiguration configuration)
         {
-            
-            configuration.CreateMap<Product, ProductDetailsModel>()
+
+            configuration.CreateMap<Product, CartProductViewModel>()
                    .ForMember(model => model.FirstImage, opt => opt.MapFrom(fullProduct => fullProduct.Images.FirstOrDefault()));
         }
     }

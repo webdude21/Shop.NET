@@ -3,6 +3,7 @@
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
 
+    using Shop.Net.Model.Cart;
     using Shop.Net.Model.Catalog;
     using Shop.Net.Model.Marketing;
     using Shop.Net.Model.Order;
@@ -10,6 +11,8 @@
 
     public interface IDbContext
     {
+        IDbSet<Cart> Carts { get; set; }
+
         IDbSet<Country> Countries { get; set; }
 
         IDbSet<Category> Categories { get; set; }

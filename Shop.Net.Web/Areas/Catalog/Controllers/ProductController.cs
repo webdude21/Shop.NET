@@ -25,7 +25,7 @@
                     .Where(x => x.Id == id)
                     .Include(p => p.Images)
                     .Include(p => p.Reviews)
-                    .Project().To<ProductDetailsModel>()
+                    .Project().To<ProductDetailsViewModel>()
                     .FirstOrDefault();
 
             return this.View(product);
@@ -37,7 +37,7 @@
                 this.ShopData.Products.All()
                     .Where(c => c.Category.FriendlyUrl == categoryFriendlyUrl)
                     .Where(x => x.FriendlyUrl == productFriendlyUrl)
-                    .Project().To<ProductDetailsModel>()
+                    .Project().To<ProductDetailsViewModel>()
                     .FirstOrDefault();
 
             return this.View("Details", product);

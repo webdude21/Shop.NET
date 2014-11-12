@@ -57,3 +57,7 @@ body .break-word {
     position: relative;
     float: left;
 }
+
+.buy-quantity {
+    width: 50px;
+}

@@ -21,7 +21,6 @@
         public ContactInformationController(IShopData shopData)
             : base(shopData)
         {
-
         }
 
         public ActionResult Index()
@@ -43,19 +42,46 @@
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult Add([DataSourceRequest] DataSourceRequest request, ContactInformationViewModel contactInformation)
+        public ActionResult Add(
+            [DataSourceRequest] DataSourceRequest request,
+            ContactInformationViewModel contactInformation)
         {
             var userId = this.User.Identity.GetUserId();
             var user = this.ShopData.Users.Find(userId);
 
-            if (contactInformation != null && ModelState.IsValid)
+            if (contactInformation != null && this.ModelState.IsValid)
             {
                 var newInfo = GetNewContactInformation(contactInformation, user);
                 user.Adresses.Add(newInfo);
                 this.ShopData.SaveChanges();
             }
 
-            return Json(new[] { contactInformation }.ToDataSourceResult(request, ModelState));
+            return this.Json(new[] { contactInformation }.ToDataSourceResult(request, this.ModelState));
+        }
+
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult Update([DataSourceRequest] DataSourceRequest request, ContactInformationViewModel contactInformation)
+        {
+            this.ShopData.ContactInformations.Find(contactInformation.Id);
+            this.TryUpdateModel(contactInformation);
+
+            if (this.ModelState.IsValid)
+            {
+                this.ShopData.SaveChanges();
+            }
+
+            return this.Json(new[] { contactInformation }.ToDataSourceResult(request, this.ModelState));
+        }
+
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult Delete([DataSourceRequest] DataSourceRequest request, ContactInformationViewModel contactInformation)
+        {
+            var contact = this.ShopData.ContactInformations.Find(contactInformation.Id);
+
+            this.ShopData.ContactInformations.Delete(contact);
+            this.ShopData.SaveChanges();
+
+            return this.Json(new[] { contactInformation }.ToDataSourceResult(request, this.ModelState));
         }
 
         private static ContactInformation GetNewContactInformation(ContactInformationViewModel contactInformation, ApplicationUser user)
@@ -76,34 +102,6 @@
                 FaxNumber = contactInformation.FaxNumber
             };
             return newInfo;
-        }
-
-        [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult Update([DataSourceRequest] DataSourceRequest request, ContactInformationViewModel contactInformation)
-        {
-            this.ShopData.ContactInformations.Find(contactInformation.Id);
-            this.TryUpdateModel(contactInformation);
-
-            if (contactInformation != null && ModelState.IsValid)
-            {
-                ShopData.SaveChanges();
-            }
-
-            return Json(new[] { contactInformation }.ToDataSourceResult(request, ModelState));
-        }
-
-        [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult Delete([DataSourceRequest] DataSourceRequest request, ContactInformationViewModel contactInformation)
-        {
-           var contact = this.ShopData.ContactInformations.Find(contactInformation.Id);
-
-            if (contactInformation != null)
-            {
-                this.ShopData.ContactInformations.Delete(contact);
-                this.ShopData.SaveChanges();
-            }
-
-            return Json(new[] { contactInformation }.ToDataSourceResult(request, ModelState));
         }
     }
 }

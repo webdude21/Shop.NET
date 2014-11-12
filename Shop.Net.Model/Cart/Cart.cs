@@ -1,4 +1,4 @@
-﻿namespace Shop.Net.Model.Order
+﻿namespace Shop.Net.Model.Cart
 {
     using System;
     using System.Collections.Generic;
@@ -7,16 +7,16 @@
     {
         public Cart()
         {
-            this.OrderItems = new HashSet<OrderItem>();
+            this.CartItems = new HashSet<CartItem>();
         }
 
         public int Id { get; set; }
 
         public virtual ApplicationUser Customer { get; set; }
 
-        public string CustumerId { get; set; }
+        public string CustomerId { get; set; }
 
-        public ICollection<OrderItem> OrderItems { get; set; }
+        public ICollection<CartItem> CartItems { get; set; }
 
         public DateTime? CreatedOnUtc { get; set; }
     }

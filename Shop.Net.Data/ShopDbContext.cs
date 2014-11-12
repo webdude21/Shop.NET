@@ -7,6 +7,7 @@
     using Shop.Net.Data.Contracts;
     using Shop.Net.Data.Migrations;
     using Shop.Net.Model;
+    using Shop.Net.Model.Cart;
     using Shop.Net.Model.Catalog;
     using Shop.Net.Model.Marketing;
     using Shop.Net.Model.Order;
@@ -21,6 +22,8 @@
         }
 
         public IDbSet<Country> Countries { get; set; }
+
+        public IDbSet<Cart> Carts { get; set; } 
 
         public IDbSet<Category> Categories { get; set; }
 
