@@ -23,13 +23,13 @@
         })
     .ToolBar(toolbar => toolbar.Create())
     .Editable(editable => editable.Mode(GridEditMode.PopUp))
-    .Pageable()
-    .Sortable()
-    .Scrollable()
-    .HtmlAttributes(new { style = "height:500px;" })
+    .Pageable(pageable => pageable.Refresh(true).PageSizes(true).ButtonCount(5))
+    .Resizable(resize => resize.Columns(true))
+    .Sortable(sortable => sortable.AllowUnsort(true).SortMode(GridSortMode.SingleColumn))
+    .Filterable(ftb => ftb.Mode(GridFilterMode.Menu))
     .DataSource(dataSource => dataSource
         .Ajax()
-        .PageSize(20)
+        .PageSize(5)
         .Events(events => events.Error("error_handler"))
         .Model(model =>
             {
@@ -40,8 +40,7 @@
             .Read(read => read.Action("Get", "ContactInformation"))
             .Update(update => update.Action("Update", "ContactInformation"))
             .Destroy(update => update.Action("Delete", "ContactInformation"))
-    )
-    )
+    ))
 </div>
 <script type="text/javascript">
     function error_handler(e) {

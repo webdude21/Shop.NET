@@ -1,6 +1,7 @@
 namespace Shop.Net.Data.Migrations
 {
     using System.Data.Entity.Migrations;
+    using System.Linq;
 
     using Shop.Net.Resources;
 
@@ -14,6 +15,11 @@ namespace Shop.Net.Data.Migrations
 
         protected override void Seed(ShopDbContext context)
         {
+            if (context.Products.Any())
+            {
+                return;
+            }
+
             context.Configuration.AutoDetectChangesEnabled = false;
             var seeder = new Seeder(context, new CountryLoader(), new RandomDataGenerator());
             seeder.SeedRolesAndUsers();

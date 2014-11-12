@@ -13,7 +13,7 @@
               columns.Bound(c => c.Id);
               columns.Bound(c => c.TotalAmmout);
               columns.Bound(c => c.OrderStatus);
-              columns.Bound(c => c.ItemsCount);
+              columns.Bound(c => c.ItemsCount).Sortable(false).Filterable(false).Groupable(false);
               columns.Bound(c => c.CreatedOnUtc).Format("{0:MM/dd/yyyy HH:MM:ss}");
           })
           .Groupable()

@@ -24,7 +24,6 @@
 
         [StringLength(DbStringMaxLength)]
         [EmailAddress]
-        [Required]
         public string Email { get; set; }
 
         [StringLength(DbStringMaxLength)]

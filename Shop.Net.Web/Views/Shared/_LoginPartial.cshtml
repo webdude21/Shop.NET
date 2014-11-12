@@ -22,11 +22,13 @@
                     <li>
                         @Html.ActionLink("My orders", "Index", "Orders", new { area = "Profile" }, new { title = "My orders" })
                     </li>
+                    <li>
+                        @Html.ActionLink("My addresses", "Index", "ContactInformation", new { area = "Profile" }, new { title = "My addresses" })
+                    </li>
                     <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
                 </ul>
             </li>
         </ul>
-
     }
 }
 else

@@ -55,27 +55,18 @@
 
             var user = this.context.Users.FirstOrDefault();
             var products = this.context.Products.ToList();
-            var orderItems = products.Select((t, i) => new OrderItem { OrderedProduct = t, Quantity = i }).ToList();
+            var items = products.Select(product => new OrderItem { OrderedProduct = product, Quantity = this.randomDataGenerator.GetInt(1, 5) }).ToList();
+            const int OrderItemsPerOrder = 5;
 
-            for (var i = 0; i < count; i++)
+            for (var i = 3; i < count; i++)
             {
-                this.SeedOrder(user, orderItems);
+                if (i % OrderItemsPerOrder == 0)
+                {
+                    this.SeedOrder(user, items.GetRange(i - OrderItemsPerOrder, OrderItemsPerOrder));
+                }
             }
 
             this.context.SaveChanges();
-        }
-
-        private void SeedOrder(ApplicationUser user, List<OrderItem> orderItems)
-        {
-            this.context.Orders.Add(
-                new Order
-                {
-                    Customer = user,
-                    OrderItems = orderItems.GetRange(0, this.randomDataGenerator.GetInt(4, orderItems.Count - 1)),
-                    CreatedOnUtc = this.randomDataGenerator.GeneraDateTime(),
-                    UpdatedOnUtc = DateTime.UtcNow,
-                    OrderStatus = (OrderStatus)this.randomDataGenerator.GetInt(0, 6)
-                });
         }
 
         public void SeedRolesAndUsers()
@@ -115,57 +106,22 @@
 
             for (var i = 0; i < count; i++)
             {
-                user.Adresses.Add(new ContactInformation
-                                      {
-                                          ContactPerson = this.randomDataGenerator.GetString(15, 200),
-                                          Address1 = this.randomDataGenerator.GetString(15, 200),
-                                          City = this.randomDataGenerator.GetString(15, 200),
-                                          PhoneNumber = this.randomDataGenerator.GetString(15, 200),
-                                          StateProvince = this.randomDataGenerator.GetString(15, 200),
-                                          ZipCode = this.randomDataGenerator.GetString(5, 15),
-                                          Country = countries[this.randomDataGenerator.GetInt(0, countries.Count - 1)].Name,
-                                          Company = this.randomDataGenerator.GetString(15, 200),
-                                      });
+                user.Adresses.Add(
+                    new ContactInformation
+                        {
+                            ContactPerson = this.randomDataGenerator.GetString(15, 200),
+                            Address1 = this.randomDataGenerator.GetString(15, 200),
+                            City = this.randomDataGenerator.GetString(15, 200),
+                            PhoneNumber = this.randomDataGenerator.GetString(15, 200),
+                            StateProvince = this.randomDataGenerator.GetString(15, 200),
+                            ZipCode = this.randomDataGenerator.GetString(5, 15),
+                            Country =
+                                countries[this.randomDataGenerator.GetInt(0, countries.Count - 1)].Name,
+                            Company = this.randomDataGenerator.GetString(15, 200),
+                        });
             }
 
             this.context.SaveChanges();
-        }
-
-        private void SeedRandomProducts(int count)
-        {
-
-            var categories = this.context.Categories.ToList();
-
-            for (var i = 0; i < count; i++)
-            {
-                this.SeedRandomProduct(categories);
-            }
-
-            this.context.SaveChanges();
-        }
-
-        private void SeedRandomProduct(IReadOnlyList<Category> categories)
-        {
-
-            this.context.Products.Add(
-                new Product
-                    {
-                        Name = this.randomDataGenerator.GetString(4, 40), 
-                        Manufacturer = this.randomDataGenerator.GetString(4, 40), 
-                        Published = true, 
-                        CreatedOnUtc = this.randomDataGenerator.GeneraDateTime(),
-                        UpdatedOnUtc = DateTime.UtcNow,
-                        Category = categories[this.randomDataGenerator.GetInt(0, categories.Count - 1)],
-                        FriendlyUrl = this.randomDataGenerator.GetUrlSafeString(20, 40),
-                        Description = this.randomDataGenerator.GetString(200, 350), 
-                        MetaDescription = this.randomDataGenerator.GetString(200, 350), 
-                        Sku = Guid.NewGuid().ToString(), 
-                        ManufacturerPartNumber = Guid.NewGuid().ToString(), 
-                        MetaTitle = this.randomDataGenerator.GetString(14, 40), 
-                        Images = this.GetImages(), 
-                        Price = this.randomDataGenerator.GetInt(500, 5000), 
-                        ProductCost = this.randomDataGenerator.GetInt(500, 5000), 
-                    });
         }
 
         public void SeedCategories(int count)
@@ -177,7 +133,7 @@
                         {
                             Name = this.randomDataGenerator.GetString(15, 150),
                             MetaTitle = this.randomDataGenerator.GetString(14, 40),
-                            FriendlyUrl = this.randomDataGenerator.GetUrlSafeString(15,35),
+                            FriendlyUrl = this.randomDataGenerator.GetUrlSafeString(15, 35),
                             MetaDescription = this.randomDataGenerator.GetString(150, 1500),
                         });
             }
@@ -194,9 +150,9 @@
 
             var dslr = new Category
                            {
-                               Name = "DSLRs", 
-                               MetaTitle = "Here you can find a great variety of Dslrs.", 
-                               FriendlyUrl = "dslr", 
+                               Name = "DSLRs",
+                               MetaTitle = "Here you can find a great variety of Dslrs.",
+                               FriendlyUrl = "dslr",
                                MetaDescription =
                                    "A digital single-lens reflex camera (also called a digital SLR or DSLR) is a digital camera combining the optics and the mechanisms of a single-lens reflex camera with a digital imaging sensor, as opposed to photographic film. The reflex design scheme is the primary difference between a DSLR and other digital cameras. In the reflex design, light travels through the lens, then to a mirror that alternates to send the image to either the viewfinder or the image sensor. The alternative would be to have a viewfinder with its own lens, hence the term \"single lens\" for this design. By using only one lens, the viewfinder presents an image that will not perceptibly differ from what is captured by the camera's sensor."
                            };
@@ -207,18 +163,18 @@
             this.context.Products.Add(
                 new Product
                     {
-                        Name = "EOS 5D mk3", 
-                        Manufacturer = "Canon", 
-                        Category = dslr, 
-                        Published = true, 
-                        CreatedOnUtc = DateTime.UtcNow, 
-                        UpdatedOnUtc = DateTime.UtcNow, 
-                        FriendlyUrl = "canon-eos-5d-mk3", 
-                        Description = Description, 
-                        MetaDescription = Description, 
-                        Sku = Guid.NewGuid().ToString(), 
-                        ManufacturerPartNumber = Guid.NewGuid().ToString(), 
-                        MetaTitle = "Canon EOS 5D mk3", 
+                        Name = "EOS 5D mk3",
+                        Manufacturer = "Canon",
+                        Category = dslr,
+                        Published = true,
+                        CreatedOnUtc = DateTime.UtcNow,
+                        UpdatedOnUtc = DateTime.UtcNow,
+                        FriendlyUrl = "canon-eos-5d-mk3",
+                        Description = Description,
+                        MetaDescription = Description,
+                        Sku = Guid.NewGuid().ToString(),
+                        ManufacturerPartNumber = Guid.NewGuid().ToString(),
+                        MetaTitle = "Canon EOS 5D mk3",
                         Images =
                             new[]
                                 {
@@ -234,19 +190,19 @@
             this.context.Products.Add(
                 new Product
                     {
-                        Name = "EOS 7D mk2", 
-                        Manufacturer = "Canon", 
-                        Category = dslr, 
-                        Price = 2000, 
-                        Published = true, 
-                        FriendlyUrl = "canon-eos-7d-mk2", 
-                        CreatedOnUtc = DateTime.UtcNow, 
-                        UpdatedOnUtc = DateTime.UtcNow, 
-                        Description = Description, 
-                        MetaDescription = Description, 
-                        Sku = Guid.NewGuid().ToString(), 
-                        ManufacturerPartNumber = Guid.NewGuid().ToString(), 
-                        MetaTitle = "Canon EOS 5D mk3", 
+                        Name = "EOS 7D mk2",
+                        Manufacturer = "Canon",
+                        Category = dslr,
+                        Price = 2000,
+                        Published = true,
+                        FriendlyUrl = "canon-eos-7d-mk2",
+                        CreatedOnUtc = DateTime.UtcNow,
+                        UpdatedOnUtc = DateTime.UtcNow,
+                        Description = Description,
+                        MetaDescription = Description,
+                        Sku = Guid.NewGuid().ToString(),
+                        ManufacturerPartNumber = Guid.NewGuid().ToString(),
+                        MetaTitle = "Canon EOS 5D mk3",
                         Images =
                             new[]
                                 {
@@ -262,19 +218,19 @@
             this.context.Products.Add(
                 new Product
                     {
-                        Name = "D7000", 
-                        Manufacturer = "Nikon", 
-                        Category = dslr, 
-                        Price = 1500, 
-                        Published = true, 
-                        FriendlyUrl = "nikon-d7000", 
-                        CreatedOnUtc = DateTime.UtcNow, 
-                        UpdatedOnUtc = DateTime.UtcNow, 
-                        Description = Description, 
-                        MetaDescription = Description, 
-                        MetaTitle = "Nikon D7000", 
-                        Sku = Guid.NewGuid().ToString(), 
-                        ManufacturerPartNumber = Guid.NewGuid().ToString(), 
+                        Name = "D7000",
+                        Manufacturer = "Nikon",
+                        Category = dslr,
+                        Price = 1500,
+                        Published = true,
+                        FriendlyUrl = "nikon-d7000",
+                        CreatedOnUtc = DateTime.UtcNow,
+                        UpdatedOnUtc = DateTime.UtcNow,
+                        Description = Description,
+                        MetaDescription = Description,
+                        MetaTitle = "Nikon D7000",
+                        Sku = Guid.NewGuid().ToString(),
+                        ManufacturerPartNumber = Guid.NewGuid().ToString(),
                         Images =
                             new[]
                                 {
@@ -306,19 +262,19 @@
             this.context.Products.Add(
                 new Product
                     {
-                        Name = "D5100", 
-                        Manufacturer = "Nikon", 
-                        Category = dslr, 
-                        Price = 700, 
-                        Published = true, 
-                        FriendlyUrl = "nikon-d5100", 
-                        CreatedOnUtc = DateTime.UtcNow, 
-                        UpdatedOnUtc = DateTime.UtcNow, 
-                        Description = Description, 
-                        Sku = Guid.NewGuid().ToString(), 
-                        ManufacturerPartNumber = Guid.NewGuid().ToString(), 
-                        MetaDescription = Description, 
-                        MetaTitle = "Nikon D5100", 
+                        Name = "D5100",
+                        Manufacturer = "Nikon",
+                        Category = dslr,
+                        Price = 700,
+                        Published = true,
+                        FriendlyUrl = "nikon-d5100",
+                        CreatedOnUtc = DateTime.UtcNow,
+                        UpdatedOnUtc = DateTime.UtcNow,
+                        Description = Description,
+                        Sku = Guid.NewGuid().ToString(),
+                        ManufacturerPartNumber = Guid.NewGuid().ToString(),
+                        MetaDescription = Description,
+                        MetaTitle = "Nikon D5100",
                         Images =
                             new[]
                                 {
@@ -334,19 +290,19 @@
             this.context.Products.Add(
                 new Product
                     {
-                        Name = "K-5", 
-                        Manufacturer = "Pentax", 
-                        Category = dslr, 
-                        Price = 1500, 
-                        Published = true, 
-                        FriendlyUrl = "pentax-k5", 
-                        CreatedOnUtc = DateTime.UtcNow, 
-                        UpdatedOnUtc = DateTime.UtcNow, 
-                        Description = Description, 
-                        MetaDescription = Description, 
-                        Sku = Guid.NewGuid().ToString(), 
-                        ManufacturerPartNumber = Guid.NewGuid().ToString(), 
-                        MetaTitle = "Pentax K-5", 
+                        Name = "K-5",
+                        Manufacturer = "Pentax",
+                        Category = dslr,
+                        Price = 1500,
+                        Published = true,
+                        FriendlyUrl = "pentax-k5",
+                        CreatedOnUtc = DateTime.UtcNow,
+                        UpdatedOnUtc = DateTime.UtcNow,
+                        Description = Description,
+                        MetaDescription = Description,
+                        Sku = Guid.NewGuid().ToString(),
+                        ManufacturerPartNumber = Guid.NewGuid().ToString(),
+                        MetaTitle = "Pentax K-5",
                         Images =
                             new[]
                                 {
@@ -361,19 +317,19 @@
             this.context.Products.Add(
                 new Product
                     {
-                        Name = "K-3", 
-                        Manufacturer = "Pentax", 
-                        Category = dslr, 
-                        Price = 1600, 
-                        Published = true, 
-                        FriendlyUrl = "pentax-k3", 
-                        CreatedOnUtc = DateTime.UtcNow, 
-                        UpdatedOnUtc = DateTime.UtcNow, 
-                        Description = Description, 
-                        MetaDescription = Description, 
-                        Sku = Guid.NewGuid().ToString(), 
-                        ManufacturerPartNumber = Guid.NewGuid().ToString(), 
-                        MetaTitle = "Pentax K-3", 
+                        Name = "K-3",
+                        Manufacturer = "Pentax",
+                        Category = dslr,
+                        Price = 1600,
+                        Published = true,
+                        FriendlyUrl = "pentax-k3",
+                        CreatedOnUtc = DateTime.UtcNow,
+                        UpdatedOnUtc = DateTime.UtcNow,
+                        Description = Description,
+                        MetaDescription = Description,
+                        Sku = Guid.NewGuid().ToString(),
+                        ManufacturerPartNumber = Guid.NewGuid().ToString(),
+                        MetaTitle = "Pentax K-3",
                         Images =
                             new[]
                                 {
@@ -390,7 +346,7 @@
             this.context.SaveChanges();
         }
 
-        private static void CreateRoleIfItDoesntExist(RoleManager<IdentityRole> roleManager, string role)
+        private static void CreateRoleIfItDoesntExist(RoleManager<IdentityRole, string> roleManager, string role)
         {
             if (!roleManager.RoleExists(role))
             {
@@ -423,6 +379,54 @@
                                    FileName = this.randomDataGenerator.GetString(4, 40), 
                                }
                        };
+        }
+
+        private void SeedRandomProducts(int count)
+        {
+            var categories = this.context.Categories.ToList();
+
+            for (var i = 0; i < count; i++)
+            {
+                this.SeedRandomProduct(categories);
+            }
+
+            this.context.SaveChanges();
+        }
+
+        private void SeedRandomProduct(IReadOnlyList<Category> categories)
+        {
+            this.context.Products.Add(
+                new Product
+                    {
+                        Name = this.randomDataGenerator.GetString(4, 40),
+                        Manufacturer = this.randomDataGenerator.GetString(4, 40),
+                        Published = true,
+                        CreatedOnUtc = this.randomDataGenerator.GeneraDateTime(),
+                        UpdatedOnUtc = DateTime.UtcNow,
+                        Category = categories[this.randomDataGenerator.GetInt(0, categories.Count - 1)],
+                        FriendlyUrl = this.randomDataGenerator.GetUrlSafeString(20, 40),
+                        Description = this.randomDataGenerator.GetString(200, 350),
+                        MetaDescription = this.randomDataGenerator.GetString(200, 350),
+                        Sku = Guid.NewGuid().ToString(),
+                        ManufacturerPartNumber = Guid.NewGuid().ToString(),
+                        MetaTitle = this.randomDataGenerator.GetString(14, 40),
+                        Images = this.GetImages(),
+                        Price = this.randomDataGenerator.GetInt(500, 5000),
+                        ProductCost = this.randomDataGenerator.GetInt(500, 5000),
+                    });
+        }
+
+        private void SeedOrder(ApplicationUser user, List<OrderItem> orderItems)
+        {
+            this.context.Orders.Add(
+                new Order
+                    {
+                        Customer = user,
+                        OrderItems = orderItems,
+                        CreatedOnUtc = this.randomDataGenerator.GeneraDateTime(),
+                        UpdatedOnUtc = DateTime.UtcNow,
+                        OrderStatus = (OrderStatus)this.randomDataGenerator.GetInt(0, 6)
+                    });
         }
     }
 }
