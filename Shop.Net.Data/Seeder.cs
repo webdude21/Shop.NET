@@ -109,15 +109,15 @@
                 user.Adresses.Add(
                     new ContactInformation
                         {
-                            ContactPerson = this.randomDataGenerator.GetString(15, 200),
-                            Address1 = this.randomDataGenerator.GetString(15, 200),
-                            City = this.randomDataGenerator.GetString(15, 200),
-                            PhoneNumber = this.randomDataGenerator.GetString(15, 200),
-                            StateProvince = this.randomDataGenerator.GetString(15, 200),
-                            ZipCode = this.randomDataGenerator.GetString(5, 15),
-                            Country =
-                                countries[this.randomDataGenerator.GetInt(0, countries.Count - 1)].Name,
-                            Company = this.randomDataGenerator.GetString(15, 200),
+                            ContactName = this.randomDataGenerator.GetString(4, 40),
+                            ContactPerson = this.randomDataGenerator.GetString(10, 40),
+                            Address1 = this.randomDataGenerator.GetString(10, 40),
+                            City = this.randomDataGenerator.GetString(10, 40),
+                            PhoneNumber = this.randomDataGenerator.GetString(10, 40),
+                            StateProvince = this.randomDataGenerator.GetString(10, 40),
+                            ZipCode = this.randomDataGenerator.GetString(3, 16),
+                            Country = countries[this.randomDataGenerator.GetInt(0, countries.Count - 1)].Name,
+                            Company = this.randomDataGenerator.GetString(10, 40),
                         });
             }
 

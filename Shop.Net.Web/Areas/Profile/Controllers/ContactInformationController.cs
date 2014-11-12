@@ -43,18 +43,19 @@
 
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult Add(
-            [DataSourceRequest] DataSourceRequest request,
-            ContactInformationViewModel contactInformation)
+            [DataSourceRequest] DataSourceRequest request, ContactInformationViewModel contactInformation)
         {
             var userId = this.User.Identity.GetUserId();
             var user = this.ShopData.Users.Find(userId);
 
-            if (contactInformation != null && this.ModelState.IsValid)
+            if (contactInformation == null || !this.ModelState.IsValid)
             {
-                var newInfo = GetNewContactInformation(contactInformation, user);
-                user.Adresses.Add(newInfo);
-                this.ShopData.SaveChanges();
+                return this.Json(new[] { contactInformation }.ToDataSourceResult(request, this.ModelState));
             }
+
+            var newInfo = GetNewContactInformation(contactInformation, user);
+            user.Adresses.Add(newInfo);
+            this.ShopData.SaveChanges();
 
             return this.Json(new[] { contactInformation }.ToDataSourceResult(request, this.ModelState));
         }
@@ -88,6 +89,7 @@
         {
             var newInfo = new ContactInformation
             {
+                ContactName = contactInformation.ContactName,
                 Address1 = contactInformation.Address1,
                 Address2 = contactInformation.Address2,
                 City = contactInformation.City,
@@ -97,7 +99,6 @@
                 StateProvince = contactInformation.StateProvince,
                 ZipCode = contactInformation.StateProvince,
                 ContactPerson = contactInformation.ContactPerson,
-                Customer = user,
                 Email = contactInformation.ContactPerson,
                 FaxNumber = contactInformation.FaxNumber
             };

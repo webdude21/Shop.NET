@@ -68,10 +68,7 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Contracts\" />
-    <Folder Include="General\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\Shop.Net.Resources\Shop.Net.Resources.csproj">
       <Project>{C4C4F305-65B1-4E69-93CB-19FDDF8DBE81}</Project>

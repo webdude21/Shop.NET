@@ -10,6 +10,10 @@
 
         [Required]
         [MaxLength(DbStringMaxLength)]
+        public string ContactName { get; set; }
+
+        [Required]
+        [MaxLength(DbStringMaxLength)]
         public string ContactPerson { get; set; }
 
         [Required]
@@ -20,7 +24,6 @@
         public string FaxNumber { get; set; }
 
         [MaxLength(DbStringMaxLength)]
-        [EmailAddress]
         public string Email { get; set; }
 
         [MaxLength(DbStringMaxLength)]
@@ -30,7 +33,7 @@
         [Required]
         public string Country { get; set; }
 
-        public ApplicationUser Customer { get; set; }
+        public virtual ApplicationUser Customer { get; set; }
 
         public string CustomerId { get; set; }
 

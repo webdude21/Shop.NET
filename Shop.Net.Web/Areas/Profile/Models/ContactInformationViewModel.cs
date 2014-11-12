@@ -13,6 +13,10 @@
 
         [Required]
         [StringLength(DbStringMaxLength)]
+        public string ContactName { get; set; }
+
+        [Required]
+        [StringLength(DbStringMaxLength)]
         public string ContactPerson { get; set; }
 
         [Required]
