@@ -79,7 +79,6 @@ namespace Shop.Net.Web
             kernel.Bind<IShopData>().To<ShopData>();
             kernel.Bind<IImageUploader>().To<ImageUploader>();
             kernel.Bind<IUserStore<ApplicationUser>>().To<UserStore<ApplicationUser>>();
-            //UserManager<ApplicationUser>(new UserStore<ApplicationUser>(this.context));
         }
     }
 }

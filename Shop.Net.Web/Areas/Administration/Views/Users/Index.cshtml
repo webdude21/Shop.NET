@@ -1,46 +1,56 @@
-﻿@model IEnumerable<Shop.Net.Web.Areas.Administration.Models.UserViewModel>
+﻿@using Kendo.Mvc.UI
+@using Shop.Net.Web.Areas.Administration.Models
+@{
+    ViewBag.Title = "User roles";
+}
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.UserName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Administrator)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Employee)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Customer)
-        </th>
-        <th></th>
-    </tr>
+<div class="row">
+    <h2>@ViewBag.Title</h2>
+</div>
 
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.UserName)
-            </td>
-            <td>
-                @Html.EditorFor(modelItem => item.Administrator)
-            </td>
-            <td>
-                @Html.EditorFor(modelItem => item.Employee)
-            </td>
-            <td>
-                @Html.EditorFor(modelItem => item.Customer)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
-            </td>
-        </tr>
+<div class="row">
+    @(Html.Kendo().Grid<UserViewModel>()
+    .Name("grid")
+    .Columns(columns =>
+        {
+            columns.Bound(p => p.Id);
+            columns.Bound(p => p.UserName);
+            columns.Bound(p => p.Administrator).Width(80);
+            columns.Bound(p => p.Employee).Width(80);
+            columns.Bound(p => p.Customer).Width(80);
+        })
+    .Editable(editable => editable.Mode(GridEditMode.InCell))
+    .Pageable(pageable => pageable.Refresh(true).PageSizes(true).ButtonCount(5))
+    .Resizable(resize => resize.Columns(true))
+    .Sortable(sortable => sortable.AllowUnsort(true).SortMode(GridSortMode.SingleColumn))
+    .Filterable(ftb => ftb.Mode(GridFilterMode.Menu))
+    .DataSource(dataSource => dataSource
+        .Ajax()
+        .PageSize(5)
+        .Events(events => events.Error("error_handler"))
+        .Model(model =>
+            {
+                model.Id(p => p.Id);
+                model.Field(p => p.Id).Editable(false);
+                model.Field(p => p.UserName).Editable(false);
+            })
+            .Read(read => read.Action("Get", "Users"))
+            .Update(update => update.Action("Update", "ContactInformation"))
+            .Destroy(delete => delete.Action("Delete", "ContactInformation"))
+    ))
+</div>
+<script type="text/javascript">
+    function error_handler(e) {
+        if (e.errors) {
+            var message = "Errors:\n";
+            $.each(e.errors, function (key, value) {
+                if ('errors' in value) {
+                    $.each(value.errors, function () {
+                        message += this + "\n";
+                    });
+                }
+            });
+            alert(message);
+        }
     }
-
-</table>
+</script>

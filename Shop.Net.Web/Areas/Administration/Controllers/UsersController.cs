@@ -1,8 +1,12 @@
 ﻿namespace Shop.Net.Web.Areas.Administration.Controllers
 {
+    using System.Linq;
     using System.Web.Mvc;
 
     using AutoMapper.QueryableExtensions;
+
+    using Kendo.Mvc.Extensions;
+    using Kendo.Mvc.UI;
 
     using Microsoft.AspNet.Identity;
 
@@ -19,16 +23,21 @@
         {
         }
 
-        public ActionResult Index()
+        public ActionResult Get([DataSourceRequest] DataSourceRequest request)
         {
-            var usersAndRoles = this.ShopData.Users.All().Project().To<UserViewModel>();
+            var users = this.ShopData.Users.All().Project().To<UserViewModel>().ToList().AsQueryable();
 
-            foreach (var userViewModel in usersAndRoles)
+            foreach (var userViewModel in users)
             {
                 this.FillRoles(userViewModel);
             }
 
-            return this.View(usersAndRoles);
+            return this.Json(users.ToDataSourceResult(request), JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult Index()
+        {
+            return this.View();
         }
 
         [NonAction]
@@ -47,7 +56,7 @@
                         userViewModel.Employee = true;
                         break;
                     case GlobalConstants.CustomerRole:
-                        userViewModel.Employee = true;
+                        userViewModel.Customer = true;
                         break;
                 }
             }
