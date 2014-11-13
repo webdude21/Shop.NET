@@ -1,0 +1,7 @@
+﻿@(Html.Kendo().DropDownList()
+                              .Name("ShippingInformationId")
+                              .HtmlAttributes(new { style = "width: 250px;" })
+                              .DataTextField("ContactName")
+                              .DataValueField("Id")
+                              .DataSource(source => source.Read(read => read.Action("ReadShippingInformation", "Cart", new { area = string.Empty})))
+)
