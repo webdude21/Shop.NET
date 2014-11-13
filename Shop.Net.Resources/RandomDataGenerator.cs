@@ -18,6 +18,8 @@
 
         private const string AllLeters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
 
+        private const string AllLetersWithSpaces = "abcdefghi jklmn opqrst uvwxyzABCDEFGHIJKL MNOPQRSTU VWXYZ1 234567890";
+
         private static RandomDataGenerator instance;
 
         private readonly Random random;
@@ -49,7 +51,7 @@
 
         public string GetStringExact(int length)
         {
-            return this.GetStringExact(length, AllLeters);
+            return this.GetStringExact(length, AllLetersWithSpaces);
         }
 
         public DateTime GeneraDateTime()
@@ -59,7 +61,7 @@
 
         public string GetString(int min, int max)
         {
-            return this.GetStringExact(this.random.Next(min, max + 1), AllLeters);
+            return this.GetStringExact(this.random.Next(min, max + 1), AllLetersWithSpaces);
         }
 
         public string GetString(int min, int max, string charsToUse)

@@ -155,10 +155,10 @@
             {
                 this.context.Categories.Add(new Category
                         {
-                            Name = this.randomDataGenerator.GetString(15, 150),
+                            Name = this.randomDataGenerator.GetString(15, 40),
                             MetaTitle = this.randomDataGenerator.GetString(14, 40),
                             FriendlyUrl = this.randomDataGenerator.GetUrlSafeString(15, 35),
-                            MetaDescription = this.randomDataGenerator.GetString(150, 1500),
+                            MetaDescription = this.randomDataGenerator.GetString(50, 200),
                         });
             }
 
@@ -435,6 +435,7 @@
                         ManufacturerPartNumber = Guid.NewGuid().ToString(),
                         MetaTitle = this.randomDataGenerator.GetString(14, 40),
                         Images = this.GetImages(),
+                        Quantity = this.randomDataGenerator.GetInt(50, 1500),
                         Price = this.randomDataGenerator.GetInt(500, 5000),
                         ProductCost = this.randomDataGenerator.GetInt(500, 5000),
                     });

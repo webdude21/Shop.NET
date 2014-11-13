@@ -1,8 +1,8 @@
-﻿@model ICollection<Shop.Net.Web.Areas.Catalog.Models.Product.ProductThumbnailModel>
+﻿@model Shop.Net.Web.Models.ViewModelWithPager<List<Shop.Net.Web.Areas.Catalog.Models.Product.ProductThumbnailModel>>
 @{
-    var category = Model.FirstOrDefault().Category;
+    var category = Model.ViewModel.FirstOrDefault().Category;
     ViewBag.Title = category.Name;
-    
+
     <div class="jumbotron">
         <h2>@category.Name - @category.MetaTitle</h2>
         <p class="lead text-justify">@category.MetaDescription</p>
@@ -10,9 +10,13 @@
 }
 
 <div class="row" id="thumbnails">
-    
-    @foreach (var product in Model)
+
+    @foreach (var product in Model.ViewModel)
     {
         @Html.Partial("_ThumbnailPartial", product);
     }
 </div>
+@{
+    Model.Pager.TargetUrl = @Url.Action("Index");
+}
+@Html.Partial("_PagerPartial", Model.Pager)

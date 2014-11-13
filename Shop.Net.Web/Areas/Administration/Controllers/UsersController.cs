@@ -10,7 +10,6 @@
 
     using Shop.Net.Data.Contracts;
     using Shop.Net.Web.Areas.Administration.Models;
-    using Shop.Net.Web.Areas.Profile.Models;
     using Shop.Net.Web.Controllers;
     using Shop.Net.Web.Infrastructure.Contracts;
 

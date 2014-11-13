@@ -24,7 +24,7 @@
 
         public const string RobotsIndexFollow = "index, follow";
 
-        public const int ItemsPerPage = 10;
+        public const int ItemsPerPage = 3;
 
         public const string FriendlyUrlsRegexValidator = @"[\w-]+";
 
