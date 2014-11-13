@@ -216,6 +216,8 @@
     <Compile Include="Areas\Profile\Models\ContactInformationViewModel.cs" />
     <Compile Include="Areas\Profile\Models\OrderCustomerViewModel.cs" />
     <Compile Include="Areas\Profile\Models\OrderItemViewModel.cs" />
+    <Compile Include="Models\Checkout\CarrierDropdownViewModel.cs" />
+    <Compile Include="Models\Checkout\ContactInformationDropdownViewModel.cs" />
     <Compile Include="Models\Checkout\OrderOutputModel.cs" />
     <Compile Include="Areas\Profile\Controllers\OrdersController.cs" />
     <Compile Include="Areas\Profile\ProfileAreaRegistration.cs" />
@@ -465,6 +467,7 @@
     <Content Include="Views\Cart\_OrderItems.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\ImageViewModel.cshtml" />
     <Content Include="Views\Cart\Checkout.cshtml" />
+    <Content Include="Views\Cart\NoShippingAddresses.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
