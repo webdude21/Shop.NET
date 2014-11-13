@@ -1,7 +1,6 @@
 ﻿namespace Shop.Net.Web.Controllers
 {
     using System;
-    using System.Collections.Generic;
     using System.Globalization;
     using System.Linq;
     using System.Net;
@@ -42,6 +41,10 @@
                 this.CreateNewOrder(model, userId, cart);
                 this.ShopData.SaveChanges();
                 this.EmptyCart(cart.Id);
+            }
+            else
+            {
+                return this.View(model);
             }
 
             return this.View("Success");

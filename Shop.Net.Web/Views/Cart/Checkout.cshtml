@@ -10,18 +10,19 @@
     <div class="form-horizontal">
         <h2>@ViewBag.Title</h2>
         <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.ValidationMessageFor(model => model.ShippingInformationId, "", new { @class = "text-danger" })
+        @Html.ValidationMessageFor(model => model.CarrierId, "", new { @class = "text-danger" })
         <div class="form-group">
             @Html.LabelFor(model => model.ShippingInformationId, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-              @(Html.Kendo().DropDownList()
-                              .Name("ShippingInformationId")
-                              .HtmlAttributes(new { style = "width: 400px;" })
-                              .DataTextField("ContactName")
-                              .DataValueField("Id")
-                              .DataSource(source => source.Read(read => read.Action("ReadShippingInformation", "Cart", new { area = string.Empty })))
-            )
-                @Html.ValidationMessageFor(model => model.ShippingInformationId, "", new { @class = "text-danger" })
+                @(Html.Kendo().DropDownList()
+                      .Name("ShippingInformationId")
+                      .HtmlAttributes(new { style = "width: 400px; margin-right: 20px" })
+                      .DataTextField("ContactName")
+                      .DataValueField("Id")
+                      .DataSource(source => source.Read(read => read.Action("ReadShippingInformation", "Cart", new { area = string.Empty })))
+                      )
+                @Html.ActionLink("Add new shipping address", "Index", "ContactInformation", new { area = "Profile" }, new { @class = "btn btn-info"})
             </div>
         </div>
 
@@ -29,13 +30,18 @@
             @Html.LabelFor(model => model.CarrierId, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @(Html.Kendo().DropDownList()
-                              .Name("CarrierId")
-                              .HtmlAttributes(new { style = "width: 400px;" })
-                              .DataTextField("Information")
-                              .DataValueField("Id")
-                              .DataSource(source => source.Read(read => read.Action("ReadCarrierInformation", "Cart", new { area = string.Empty })))
-                )
-                @Html.ValidationMessageFor(model => model.CarrierId, "", new { @class = "text-danger" })
+                      .Name("CarrierId")
+                      .HtmlAttributes(new { style = "width: 400px; " })
+                      .DataTextField("Information")
+                      .DataValueField("Id")
+                      .DataSource(source => source.Read(read => read.Action("ReadCarrierInformation", "Cart", new { area = string.Empty })))
+                      )
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.Label("Payment", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.Label("We're currently only accepting cash on delivery as payment", htmlAttributes: new { @class = "control-label" })
             </div>
         </div>
         <div class="form-group">
@@ -46,5 +52,3 @@
         </div>
     </div>
 }
-@Scripts.Render("~/bundles/jquery")
-@Scripts.Render("~/bundles/jqueryval")
