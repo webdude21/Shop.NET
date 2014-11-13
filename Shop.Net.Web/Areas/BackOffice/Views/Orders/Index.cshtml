@@ -30,7 +30,7 @@
           .Sortable(sortable => sortable.AllowUnsort(true).SortMode(GridSortMode.SingleColumn))
           .Pageable(pageable => pageable.Refresh(true).PageSizes(true).ButtonCount(10))
           .DataSource(dataSource => dataSource.Ajax().Read(read => read.Action("GetOrders", "Orders")))
-          .Events(events => events.DataBound("dataBound")))
+          )
 </div>
 
 <script id="order-detail-template" type="text/kendo-tmpl">
@@ -57,9 +57,6 @@
         .ToClientTemplate())
 </script>
 <script>
-    function dataBound() {
-        this.expandRow(this.tbody.find("tr.k-master-row").first());
-    }
     function error_handler(e) {
         if (e.errors) {
             var message = "Errors:\n";

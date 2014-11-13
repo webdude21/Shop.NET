@@ -20,9 +20,49 @@
           })
           .Groupable()
           .Resizable(resize => resize.Columns(true))
+          .ClientDetailTemplateId("order-detail-template")
           .Sortable(sortable => sortable.AllowUnsort(true).SortMode(GridSortMode.MultipleColumn))
           .Filterable(ftb => ftb.Mode(GridFilterMode.Menu))
           .Pageable(pageable => pageable.Refresh(true).PageSizes(true).ButtonCount(10))
-              .DataSource(dataSource => dataSource.Ajax()
-                  .Read(read => read.Action("GetMyOrders", "Orders"))))
+          .DataSource(dataSource => dataSource.Ajax().Read(read => read.Action("GetMyOrders", "Orders"))))
 </div>
+
+<script id="order-detail-template" type="text/kendo-tmpl">
+    @(Html.Kendo().Grid<OrderItemViewModel>()
+        .Name("orders-grid_#=Id#")
+        .Columns(columns =>
+        {
+            columns.Bound(o => o.OrderedProduct.Id).Width(50);
+            columns.Bound(o => o.Quantity).Width(110);
+            columns.Bound(o => o.OrderedProduct.Name).Width(130);
+            columns.Bound(o => o.OrderedProduct.Manufacturer).Width(130);
+            columns.Bound(o => o.OrderedProduct.Category.Name).Title("Category");
+            columns.Bound(o => o.OrderedProduct.Price).Width(90).Format("{0:C2}");
+        })
+        .DataSource(dataSource => dataSource
+        .Ajax()
+        .Read(read => read.Action("GetOrderDetails", "Orders", new { orderId = "#=Id#" })))
+        .Resizable(resize => resize.Columns(true))
+        .Filterable(ftb => ftb.Mode(GridFilterMode.Menu))
+        .Sortable(sortable => sortable.AllowUnsort(true).SortMode(GridSortMode.SingleColumn))
+        .Pageable(pageable => pageable.Refresh(true).PageSizes(true).ButtonCount(10))
+        .ToClientTemplate())
+</script>
+<script>
+    function dataBound() {
+        this.expandRow(this.tbody.find("tr.k-master-row").first());
+    }
+    function error_handler(e) {
+        if (e.errors) {
+            var message = "Errors:\n";
+            $.each(e.errors, function (key, value) {
+                if ('errors' in value) {
+                    $.each(value.errors, function () {
+                        message += this + "\n";
+                    });
+                }
+            });
+            alert(message);
+        }
+    }
+</script>

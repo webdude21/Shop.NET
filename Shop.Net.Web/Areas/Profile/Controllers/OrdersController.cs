@@ -42,5 +42,20 @@
 
             return result;
         }
+
+        public ActionResult GetOrderDetails(int orderId, [DataSourceRequest] DataSourceRequest request)
+        {
+            var userId = this.User.Identity.GetUserId();
+
+            var orderItems = this.ShopData.OrderItems.All()
+                  .Where(o => o.OrderId == orderId)
+                   .Where(o => o.Order.CustomerId == userId)
+                  .Include("Products")
+                  .Project()
+                  .To<OrderItemViewModel>();
+
+            return this.Json(orderItems.ToDataSourceResult(request), JsonRequestBehavior.AllowGet);
+        }
+
     }
 }
