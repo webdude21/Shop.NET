@@ -218,6 +218,8 @@
     <Compile Include="Areas\Profile\Models\ContactInformationViewModel.cs" />
     <Compile Include="Areas\Profile\Models\OrderCustomerViewModel.cs" />
     <Compile Include="Areas\Profile\Models\OrderItemViewModel.cs" />
+    <Compile Include="Infrastructure\Contracts\IRoleManager.cs" />
+    <Compile Include="Infrastructure\Helpers\RoleManager.cs" />
     <Compile Include="Models\Checkout\CarrierDropdownViewModel.cs" />
     <Compile Include="Models\Checkout\ContactInformationDropdownViewModel.cs" />
     <Compile Include="Models\Checkout\OrderOutputModel.cs" />

@@ -2,21 +2,19 @@
 {
     using System.Web.Mvc;
 
-    using Microsoft.AspNet.Identity;
-
     using Shop.Net.Data.Contracts;
-    using Shop.Net.Model;
     using Shop.Net.Resources;
+    using Shop.Net.Web.Infrastructure.Contracts;
 
     [Authorize(Roles = GlobalConstants.AdministratorRole)]
     public abstract class AdministrationController : BaseController
     {
-        protected AdministrationController(IShopData shopData, UserManager<ApplicationUser> userManager)
+        protected AdministrationController(IShopData shopData, IRoleManager roleManager)
             : base(shopData)
         {
-            this.UserManager = userManager;
+            this.RoleManager = roleManager;
         }
 
-        public UserManager<ApplicationUser> UserManager { get; set; }
+        public IRoleManager RoleManager { get; set; }
     }
 }

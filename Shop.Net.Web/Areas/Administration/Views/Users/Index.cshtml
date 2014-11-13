@@ -1,7 +1,7 @@
 ﻿@using Kendo.Mvc.UI
 @using Shop.Net.Web.Areas.Administration.Models
 @{
-    ViewBag.Title = "User roles";
+    ViewBag.Title = "Manage user roles";
 }
 
 <div class="row">
@@ -13,18 +13,19 @@
     .Name("grid")
     .Columns(columns =>
         {
-            columns.Bound(p => p.Id);
+            columns.Bound(p => p.Id).Width(260);
             columns.Bound(p => p.UserName);
-            columns.Bound(p => p.Administrator).Width(80);
-            columns.Bound(p => p.Employee).Width(80);
-            columns.Bound(p => p.Customer).Width(80);
+            columns.Bound(p => p.Administrator).Width(150);
+            columns.Bound(p => p.Employee).Width(150);
+            columns.Bound(p => p.Customer).Width(150);
+            columns.Command(command => { command.Edit(); command.Destroy(); }).Width(150);
         })
-    .Editable(editable => editable.Mode(GridEditMode.InCell))
-    .Pageable(pageable => pageable.Refresh(true).PageSizes(true).ButtonCount(5))
-    .Resizable(resize => resize.Columns(true))
-    .Sortable(sortable => sortable.AllowUnsort(true).SortMode(GridSortMode.SingleColumn))
-    .Filterable(ftb => ftb.Mode(GridFilterMode.Menu))
-    .DataSource(dataSource => dataSource
+        .Editable(editable => editable.Mode(GridEditMode.InLine))
+        .Pageable(pageable => pageable.Refresh(true).PageSizes(true).ButtonCount(5))
+        .Resizable(resize => resize.Columns(true))
+        .Sortable(sortable => sortable.AllowUnsort(true).SortMode(GridSortMode.SingleColumn))
+        .Filterable(ftb => ftb.Mode(GridFilterMode.Menu))
+        .DataSource(dataSource => dataSource
         .Ajax()
         .PageSize(5)
         .Events(events => events.Error("error_handler"))
@@ -34,9 +35,9 @@
                 model.Field(p => p.Id).Editable(false);
                 model.Field(p => p.UserName).Editable(false);
             })
-            .Read(read => read.Action("Get", "Users"))
-            .Update(update => update.Action("Update", "ContactInformation"))
-            .Destroy(delete => delete.Action("Delete", "ContactInformation"))
+        .Read(read => read.Action("Get", "Users", new { area = "Administration" }))
+        .Update(update => update.Action("Update", "Users", new {area = "Administration"}))
+        .Destroy(delete => delete.Action("Delete", "Users", new { area = "Administration" }))
     ))
 </div>
 <script type="text/javascript">

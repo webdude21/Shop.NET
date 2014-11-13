@@ -8,19 +8,23 @@
     using Kendo.Mvc.Extensions;
     using Kendo.Mvc.UI;
 
-    using Microsoft.AspNet.Identity;
-
     using Shop.Net.Data.Contracts;
-    using Shop.Net.Model;
-    using Shop.Net.Resources;
     using Shop.Net.Web.Areas.Administration.Models;
     using Shop.Net.Web.Controllers;
+    using Shop.Net.Web.Infrastructure.Contracts;
 
     public class UsersController : AdministrationController
     {
-        public UsersController(IShopData shopData, UserManager<ApplicationUser> userManager)
-            : base(shopData, userManager)
+        public UsersController(IShopData shopData, IRoleManager roleManager)
+            : base(shopData, roleManager)
         {
+        }
+
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult Update([DataSourceRequest] DataSourceRequest request, UserViewModel userModel)
+        {
+            this.RoleManager.UpdateRoles(userModel);
+            return this.Json(new[] { userModel }.ToDataSourceResult(request, this.ModelState));
         }
 
         public ActionResult Get([DataSourceRequest] DataSourceRequest request)
@@ -29,7 +33,7 @@
 
             foreach (var userViewModel in users)
             {
-                this.FillRoles(userViewModel);
+                this.RoleManager.FillRoles(userViewModel);
             }
 
             return this.Json(users.ToDataSourceResult(request), JsonRequestBehavior.AllowGet);
@@ -38,28 +42,6 @@
         public ActionResult Index()
         {
             return this.View();
-        }
-
-        [NonAction]
-        private void FillRoles(UserViewModel userViewModel)
-        {
-            var roles = this.UserManager.GetRoles(userViewModel.Id);
-
-            foreach (var role in roles)
-            {
-                switch (role)
-                {
-                    case GlobalConstants.AdministratorRole:
-                        userViewModel.Administrator = true;
-                        break;
-                    case GlobalConstants.EmployeeRole:
-                        userViewModel.Employee = true;
-                        break;
-                    case GlobalConstants.CustomerRole:
-                        userViewModel.Customer = true;
-                        break;
-                }
-            }
         }
     }
 }

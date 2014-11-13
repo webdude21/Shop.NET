@@ -79,6 +79,7 @@ namespace Shop.Net.Web
             kernel.Bind<IShopData>().To<ShopData>();
             kernel.Bind<IImageUploader>().To<ImageUploader>();
             kernel.Bind<IUserStore<ApplicationUser>>().To<UserStore<ApplicationUser>>();
+            kernel.Bind<IRoleManager>().To<RoleManager>();
         }
     }
 }
