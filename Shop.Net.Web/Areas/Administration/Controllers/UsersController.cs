@@ -10,6 +10,7 @@
 
     using Shop.Net.Data.Contracts;
     using Shop.Net.Web.Areas.Administration.Models;
+    using Shop.Net.Web.Areas.Profile.Models;
     using Shop.Net.Web.Controllers;
     using Shop.Net.Web.Infrastructure.Contracts;
 
@@ -37,6 +38,17 @@
             }
 
             return this.Json(users.ToDataSourceResult(request), JsonRequestBehavior.AllowGet);
+        }
+
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult Delete([DataSourceRequest] DataSourceRequest request, UserViewModel userModel)
+        {
+            var user = this.ShopData.Users.Find(userModel.Id);
+
+            this.ShopData.Users.Delete(user);
+            this.ShopData.SaveChanges();
+
+            return this.Json(new[] { userModel }.ToDataSourceResult(request, this.ModelState));
         }
 
         public ActionResult Index()
