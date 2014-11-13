@@ -75,9 +75,6 @@
         {
             configuration.CreateMap<Order, OrderEmployeeViewModel>()
                .ForMember(model => model.Customer, opt => opt.MapFrom(fullProduct => fullProduct.Customer.UserName));
-
-            configuration.CreateMap<Order, OrderEmployeeViewModel>()
-               .ForMember(model => model.ApprovedBy, opt => opt.MapFrom(fullProduct => fullProduct.ApprovedBy.UserName));
         }
     }
 }

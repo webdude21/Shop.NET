@@ -24,6 +24,14 @@
             this.repositories = new Dictionary<Type, object>();
         }
 
+        public IRepository<Carrier> Carrier
+        {
+            get
+            {
+                return this.GetRepository<Carrier>();
+            }
+        }
+
         public IRepository<ApplicationUser> Users
         {
             get

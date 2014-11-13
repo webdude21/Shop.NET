@@ -51,7 +51,6 @@
     <Compile Include="Catalog\Supplier.cs" />
     <Compile Include="Marketing\Comment.cs" />
     <Compile Include="Catalog\Product.cs" />
-    <Compile Include="Marketing\Rating.cs" />
     <Compile Include="Marketing\Review.cs" />
     <Compile Include="Marketing\Tag.cs" />
     <Compile Include="Cart\Cart.cs" />

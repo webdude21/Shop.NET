@@ -46,6 +46,26 @@
             this.context.SaveChanges();
         }
 
+        public void SeedCarrier()
+        {
+            if (this.context.Carriers.Any())
+            {
+                return;
+            }
+
+            this.context.Carriers.Add(new Carrier { Name = "Egmont Express", DeliveryPrice = 5.4m, DeliverInDays = 1 });
+
+            this.context.Carriers.Add(new Carrier { Name = "Speedy Gonzalez", DeliveryPrice = 4.6m, DeliverInDays = 2 });
+
+            this.context.Carriers.Add(new Carrier { Name = "Puma Express", DeliveryPrice = 3.8m, DeliverInDays = 1 });
+
+            this.context.Carriers.Add(new Carrier { Name = "Outer Logistics", DeliveryPrice = 3.4m, DeliverInDays = 3 });
+
+            this.context.Carriers.Add(new Carrier { Name = "Postal services", DeliveryPrice = 2.4m, DeliverInDays = 6 });
+
+            this.context.SaveChanges();
+        }
+
         public void SeedOrders(int count)
         {
             if (this.context.Orders.Any())
@@ -53,16 +73,20 @@
                 return;
             }
 
+            var contactInfo = this.context.ContactInformations.ToList();
             var user = this.context.Users.FirstOrDefault();
+            var carriers = this.context.Carriers.ToList();
             var products = this.context.Products.ToList();
-            var items = products.Select(product => new OrderItem { OrderedProduct = product, Quantity = this.randomDataGenerator.GetInt(1, 5) }).ToList();
+            var items =
+                products.Select(product => new OrderItem { OrderedProduct = product, Quantity = this.randomDataGenerator.GetInt(1, 5) }).ToList();
+
             const int OrderItemsPerOrder = 5;
 
             for (var i = 3; i < count; i++)
             {
                 if (i % OrderItemsPerOrder == 0)
                 {
-                    this.SeedOrder(user, items.GetRange(i - OrderItemsPerOrder, OrderItemsPerOrder));
+                    this.SeedOrder(user, items.GetRange(i - OrderItemsPerOrder, OrderItemsPerOrder), carriers, contactInfo);
                 }
             }
 
@@ -116,7 +140,8 @@
                             PhoneNumber = this.randomDataGenerator.GetString(10, 40),
                             StateProvince = this.randomDataGenerator.GetString(10, 40),
                             ZipCode = this.randomDataGenerator.GetString(3, 16),
-                            Country = countries[this.randomDataGenerator.GetInt(0, countries.Count - 1)].Name,
+                            Country =
+                                countries[this.randomDataGenerator.GetInt(0, countries.Count - 1)].Name,
                             Company = this.randomDataGenerator.GetString(10, 40),
                         });
             }
@@ -128,8 +153,7 @@
         {
             for (var i = 0; i < count; i++)
             {
-                this.context.Categories.Add(
-                    new Category
+                this.context.Categories.Add(new Category
                         {
                             Name = this.randomDataGenerator.GetString(15, 150),
                             MetaTitle = this.randomDataGenerator.GetString(14, 40),
@@ -416,16 +440,18 @@
                     });
         }
 
-        private void SeedOrder(ApplicationUser user, List<OrderItem> orderItems)
+        private void SeedOrder(ApplicationUser user, ICollection<OrderItem> orderItems, IReadOnlyList<Carrier> carriers, List<ContactInformation> contactInfo)
         {
             this.context.Orders.Add(
                 new Order
                     {
                         Customer = user,
                         OrderItems = orderItems,
+                        Carrier = carriers[this.randomDataGenerator.GetInt(0, carriers.Count - 1)],
+                        ShippingInformation = contactInfo[this.randomDataGenerator.GetInt(0, carriers.Count - 1)],
                         CreatedOnUtc = this.randomDataGenerator.GeneraDateTime(),
-                        UpdatedOnUtc = DateTime.UtcNow,
-                        OrderStatus = (OrderStatus)this.randomDataGenerator.GetInt(0, 6)
+                        UpdatedOnUtc = DateTime.UtcNow, 
+                        OrderStatus = (OrderStatus)this.randomDataGenerator.GetInt(0, 6),
                     });
         }
     }

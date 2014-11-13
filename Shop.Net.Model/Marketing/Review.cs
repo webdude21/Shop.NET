@@ -8,20 +8,20 @@
     {
         public int Id { get; set; }
 
-        public ApplicationUser Author { get; set; }
+        public virtual ApplicationUser Author { get; set; }
 
         [Required]
         [MaxLength(2000)]
         [MinLength(2)]
         public string Content { get; set; }
 
-        public Rating Shiping { get; set; }
+        public byte ShipingRating { get; set; }
 
-        public Rating Quality { get; set; }
+        public byte QualityRating { get; set; }
 
-        public Rating CustomerService { get; set; }
+        public byte CustomerServiceRating { get; set; }
 
-        public Rating Price { get; set; }
+        public byte PriceRating { get; set; }
 
         public virtual Product Product { get; set; }
 

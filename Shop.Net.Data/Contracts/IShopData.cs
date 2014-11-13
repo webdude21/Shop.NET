@@ -9,6 +9,8 @@
 
     public interface IShopData
     {
+        IRepository<Carrier> Carrier { get; }
+
         IRepository<ApplicationUser> Users { get; }
 
         IRepository<CartItem> CartItems { get; }

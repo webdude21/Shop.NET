@@ -12,7 +12,7 @@
 
         public int OrderId { get; set; }
 
-        public Product OrderedProduct { get; set; }
+        public virtual Product OrderedProduct { get; set; }
 
         public int OrderedProductId { get; set; }
     }

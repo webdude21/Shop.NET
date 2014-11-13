@@ -3,6 +3,8 @@
     using System;
     using System.Collections.Generic;
 
+    using Shop.Net.Model.Shipping;
+
     public class Order
     {
         private ICollection<OrderItem> orderItems;
@@ -12,15 +14,19 @@
             this.orderItems = new HashSet<OrderItem>();
         }
 
-        public ApplicationUser Customer { get; set; }
+        public int Id { get; set; }
+
+        public virtual ApplicationUser Customer { get; set; }
 
         public string CustomerId { get; set; }
 
-        public ApplicationUser ApprovedBy { get; set; }
+        public virtual ContactInformation ShippingInformation { get; set; }
 
-        public string ApprovedById { get; set; }
+        public int ShippingInformationId { get; set; }
 
-        public int Id { get; set; }
+        public virtual Carrier Carrier { get; set; }
+
+        public int CarrierId { get; set; }
 
         public virtual ICollection<OrderItem> OrderItems
         {
@@ -35,7 +41,7 @@
             }
         }
 
-        public OrderStatus OrderStatus { get; set; }
+        public virtual OrderStatus OrderStatus { get; set; }
 
         public DateTime? CreatedOnUtc { get; set; }
 

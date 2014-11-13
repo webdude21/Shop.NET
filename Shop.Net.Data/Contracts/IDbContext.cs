@@ -13,6 +13,8 @@
     {
         IDbSet<Cart> Carts { get; set; }
 
+        IDbSet<Carrier> Carriers { get; set; }
+
         IDbSet<CartItem> CartItems { get; set; }
 
         IDbSet<Country> Countries { get; set; }
