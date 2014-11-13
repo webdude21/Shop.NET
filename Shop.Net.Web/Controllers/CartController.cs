@@ -13,7 +13,7 @@
     using Shop.Net.Data.Contracts;
     using Shop.Net.Model.Cart;
     using Shop.Net.Web.Areas.Catalog.Models.Product;
-    using Shop.Net.Web.Models;
+    using Shop.Net.Web.Models.Cart;
 
     public class CartController : CustomerController
     {
@@ -22,13 +22,18 @@
         {
         }
 
+        public ActionResult Checkout(CartViewModel model)
+        {
+            return this.View();
+        }
+
         public ActionResult Index()
         {
             var cart = this.GetCartViewModel();
 
             if (cart == null || cart.CartItems.Count < 1)
             {
-               return this.View("Empty");
+                return this.View("Empty");
             }
 
             return this.View(cart);
@@ -55,6 +60,27 @@
         {
             var cart = this.ShopData.ShoppingCarts.All().FirstOrDefault(x => x.CustomerId == userId);
             return this.Json(cart == null ? "0" : cart.CartItems.Count.ToString(CultureInfo.InvariantCulture), JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpGet]
+        public ActionResult ClearCart(int id)
+        {
+            var cart = this.ShopData.ShoppingCarts.All().FirstOrDefault(c => c.Id == id);
+
+            if (cart == null)
+            {
+                return this.HttpNotFound(HttpStatusCode.BadRequest.ToString());
+            }
+
+            var cartItems = cart.CartItems.ToList();
+
+            foreach (var item in cartItems)
+            {
+                this.ShopData.CartItems.Delete(item);
+            }
+
+            this.ShopData.SaveChanges();
+            return this.View("Empty");
         }
 
         [HttpPost]
@@ -112,5 +138,6 @@
                     .FirstOrDefault();
             return cart;
         }
+
     }
 }

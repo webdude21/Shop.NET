@@ -1,6 +1,6 @@
-﻿@model IEnumerable<Shop.Net.Web.Models.CartItemViewModel>
+﻿@model IEnumerable<Shop.Net.Web.Models.Cart.CartItemViewModel>
 
-<table class="table">
+<table class="table" id="cart-table">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.OrderedProduct.Name)
@@ -10,6 +10,9 @@
         </th>
         <th>
             @Html.DisplayNameFor(model => model.OrderedProduct.Sku)
+        </th>
+        <th>
+            Price
         </th>
         <th>
             Action
@@ -29,6 +32,9 @@
                 @Html.DisplayFor(modelItem => item.OrderedProduct.Sku)
             </td>
             <td>
+                $@Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
                 @Ajax.ActionLink(@"Remove item", "Remove", "Cart", new { area = string.Empty, id = item.Id },
                     new AjaxOptions { HttpMethod = "GET", Confirm = "Are you sure that you want to delete this item?",
                                       InsertionMode = InsertionMode.Replace,
@@ -36,6 +42,7 @@
                                       OnSuccess = "updateCartItemCount",
                                     })
             </td>
+         
         </tr>
     }
 

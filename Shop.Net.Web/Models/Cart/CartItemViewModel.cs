@@ -1,4 +1,4 @@
-﻿namespace Shop.Net.Web.Models
+﻿namespace Shop.Net.Web.Models.Cart
 {
     using Shop.Net.Model.Cart;
     using Shop.Net.Web.Infrastructure.Mapping;
@@ -12,5 +12,13 @@
         public CartProductViewModel OrderedProduct { get; set; }
 
         public int OrderedProductId { get; set; }
+
+        public decimal Price
+        {
+            get
+            {
+                return this.OrderedProduct.Price * this.Quantity;
+            }
+        }
     }
 }

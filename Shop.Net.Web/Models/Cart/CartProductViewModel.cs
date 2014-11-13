@@ -1,4 +1,4 @@
-﻿namespace Shop.Net.Web.Models
+﻿namespace Shop.Net.Web.Models.Cart
 {
     using Shop.Net.Model.Catalog;
     using Shop.Net.Web.Infrastructure.Mapping;
@@ -13,5 +13,7 @@
         public string FriendlyUrl { get; set; }
 
         public string Sku { get; set; }
+
+        public decimal Price { get; set; }
     }
 }

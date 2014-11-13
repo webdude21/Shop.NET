@@ -25,20 +25,21 @@
         public ActionResult Index(int? page)
         {
             var productsCount = this.ShopData.Products.All().Count();
-            var pager = GetPagerViewModel(page, productsCount);
+            var pager = this.GetPagerViewModel(page, productsCount);
 
-            var products = this.ShopData.Products
-                .All()
-                .OrderBy(x => x.Id)
-                .Project().To<ProductsListModel>()
-                .Skip(GlobalConstants.ItemsPerPage * pager.CurrentPage)
-                .Take(GlobalConstants.ItemsPerPage).ToList();
+            var products =
+                this.ShopData.Products.All()
+                    .OrderBy(x => x.Id)
+                    .Project()
+                    .To<ProductsListModel>()
+                    .Skip(GlobalConstants.ItemsPerPage * pager.CurrentPage)
+                    .Take(GlobalConstants.ItemsPerPage)
+                    .ToList();
 
             var pagerWithProducts = this.GetViewModelWithPager(products, pager);
 
             return this.View(pagerWithProducts);
         }
-
 
         [HttpGet]
         public ActionResult Add()
@@ -67,7 +68,7 @@
             {
                 var savedProduct = this.ShopData.Products.Add(newPorduct);
                 this.ShopData.SaveChanges();
-                ImageUploader.UploadImages(this.Request, this.Server, savedProduct.Images);
+                this.ImageUploader.UploadImages(this.Request, this.Server, savedProduct.Images);
                 this.ShopData.SaveChanges();
                 this.ClearCache();
                 return this.RedirectToAction("Index");
@@ -84,11 +85,13 @@
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            var product = this.ShopData.Products
-                .All()
-                .Where(x => x.Id == id)
-                .Include(p => p.Images)
-                .Project().To<ProductEditModel>().FirstOrDefault();
+            var product =
+                this.ShopData.Products.All()
+                    .Where(x => x.Id == id)
+                    .Include(p => p.Images)
+                    .Project()
+                    .To<ProductEditModel>()
+                    .FirstOrDefault();
 
             if (product == null)
             {
@@ -106,11 +109,14 @@
         {
             var product = this.ShopData.Products.Find(model.Id);
 
-            if (this.ShopData.Products.All().Where(c => c.Id != model.Id).Any(c => c.FriendlyUrl == model.FriendlyUrl || c.Name == model.Name))
+            if (
+                this.ShopData.Products.All()
+                    .Where(c => c.Id != model.Id)
+                    .Any(c => c.FriendlyUrl == model.FriendlyUrl || c.Name == model.Name))
             {
                 this.ModelState.AddModelError(string.Empty, string.Format("Seo Friendly Url & Name must be unique!"));
             }
-               
+
             var category = this.ShopData.Categories.Find(model.Category.Id);
 
             if (category != null)
@@ -121,7 +127,7 @@
             this.TryUpdateModel(product);
             if (this.ModelState.IsValid)
             {
-                ImageUploader.UploadImages(this.Request, this.Server, product.Images);
+                this.ImageUploader.UploadImages(this.Request, this.Server, product.Images);
                 this.ShopData.SaveChanges();
                 this.ClearCache();
                 return this.RedirectToAction("Index", "Products");
@@ -140,10 +146,13 @@
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            var product = this.ShopData.Products.All()
-                .Where(x => x.Id == id.Value)
-                .Include(p => p.Images)
-                .Project().To<ProductEditModel>().FirstOrDefault();
+            var product =
+                this.ShopData.Products.All()
+                    .Where(x => x.Id == id.Value)
+                    .Include(p => p.Images)
+                    .Project()
+                    .To<ProductEditModel>()
+                    .FirstOrDefault();
 
             if (product == null)
             {
@@ -153,7 +162,8 @@
             return this.View(product);
         }
 
-        [HttpPost, ActionName("Delete")]
+        [HttpPost]
+        [ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
@@ -165,40 +175,40 @@
             return this.RedirectToAction("Index");
         }
 
-
         private static Product ConvertEditModelToModel(ProductEditModel model, Category category)
         {
             return new Product
-            {
-                Name = model.Name,
-                FriendlyUrl = model.FriendlyUrl,
-                MetaTitle = model.MetaTitle,
-                MetaDescription = model.MetaDescription,
-                MetaKeyWords = model.MetaKeyWords,
-                Category = category,
-                Price = model.Price,
-                Manufacturer = model.Manufacturer,
-                ManufacturerPartNumber = model.ManufacturerPartNumber,
-                AllowCustomerComments = model.AllowCustomerComments,
-                AllowCustomerReviews = model.AllowCustomerReviews,
-                AllowCustomerRating = model.AllowCustomerRating,
-                CreatedOnUtc = DateTime.UtcNow,
-                UpdatedOnUtc = DateTime.UtcNow,
-                Description = model.Description,
-                Height = model.Height,
-                Published = model.Published,
-                Length = model.Length,
-                ProductCost = model.ProductCost,
-                Quantity = model.Quantity,
-                Sku = model.Sku,
-                Weight = model.Weight,
-                Width = model.Width,
-            };
+                       {
+                           Name = model.Name, 
+                           FriendlyUrl = model.FriendlyUrl, 
+                           MetaTitle = model.MetaTitle, 
+                           MetaDescription = model.MetaDescription, 
+                           MetaKeyWords = model.MetaKeyWords, 
+                           Category = category, 
+                           Price = model.Price, 
+                           Manufacturer = model.Manufacturer, 
+                           ManufacturerPartNumber = model.ManufacturerPartNumber, 
+                           AllowCustomerComments = model.AllowCustomerComments, 
+                           AllowCustomerReviews = model.AllowCustomerReviews, 
+                           AllowCustomerRating = model.AllowCustomerRating, 
+                           CreatedOnUtc = DateTime.UtcNow, 
+                           UpdatedOnUtc = DateTime.UtcNow, 
+                           Description = model.Description, 
+                           Height = model.Height, 
+                           Published = model.Published, 
+                           Length = model.Length, 
+                           ProductCost = model.ProductCost, 
+                           Quantity = model.Quantity, 
+                           Sku = model.Sku, 
+                           Weight = model.Weight, 
+                           Width = model.Width, 
+                       };
         }
 
         private void PutCategoriesInTheViewDictionary(ProductEditModel product)
         {
-            this.ViewData["Categories"] = this.ShopData.Categories.All().Project().To<CategorySimpleViewModel>().ToList();
+            this.ViewData["Categories"] =
+                this.ShopData.Categories.All().Project().To<CategorySimpleViewModel>().ToList();
             this.ViewData["SelectedCategory"] = product.Category == null ? (object)null : product.Category.Id;
         }
 

@@ -1,4 +1,4 @@
-﻿namespace Shop.Net.Web.Models
+﻿namespace Shop.Net.Web.Models.Cart
 {
     using System;
     using System.Collections.Generic;
@@ -15,5 +15,6 @@
         public ICollection<CartItemViewModel> CartItems { get; set; }
 
         public DateTime? CreatedOnUtc { get; set; }
+
     }
 }

@@ -1,12 +1,34 @@
-﻿@model Shop.Net.Web.Models.CartViewModel
+﻿@model Shop.Net.Web.Models.Cart.CartViewModel
 
 @{
     ViewBag.Title = "Cart";
 }
 
-<div class="row">
-    <h1>@ViewBag.Title</h1>
-</div>
-<div class="row">
-   @Html.Partial("_OrderItems", Model.CartItems)
-</div>
+@using (Html.BeginForm("Checkout", "Cart", FormMethod.Post, new { @class = "form-horizontal", role = "form"}))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h2>@ViewBag.Title</h2>
+        <hr />
+    </div>
+
+    <div class="row">
+        @Html.Partial("_OrderItems", Model.CartItems)
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-5 col-md-5">
+            @Ajax.ActionLink(@"Clear cart", "ClearCart", "Cart",
+                new { area = string.Empty, id = Model.Id },
+                new AjaxOptions
+                    {
+                        HttpMethod = "Get",
+                        Confirm = "Are you sure you want to delete the content of the entire cart?",
+                        UpdateTargetId = ("cart-form"),
+                        OnSuccess = "updateCartItemCount",
+                    }, new { @class = "btn btn-danger" })
+            <input type="submit" class="btn btn-success" value="Checkout" />
+        </div>
+    </div>
+}

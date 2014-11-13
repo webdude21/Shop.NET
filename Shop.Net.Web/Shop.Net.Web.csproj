@@ -259,12 +259,12 @@
     <Compile Include="Models\Account\IdentityModels.cs" />
     <Compile Include="Models\Account\ManageLoginsViewModel.cs" />
     <Compile Include="Areas\Catalog\Models\Category\CategoryViewModel.cs" />
-    <Compile Include="Models\CartProductViewModel.cs" />
-    <Compile Include="Models\CartViewModel.cs" />
+    <Compile Include="Models\Cart\CartProductViewModel.cs" />
+    <Compile Include="Models\Cart\CartViewModel.cs" />
     <Compile Include="Models\IndexViewModel.cs" />
     <Compile Include="Models\Marketing\SeoEditModel.cs" />
     <Compile Include="Models\Marketing\SeoViewModel.cs" />
-    <Compile Include="Models\CartItemViewModel.cs" />
+    <Compile Include="Models\Cart\CartItemViewModel.cs" />
     <Compile Include="Models\PagerViewModel.cs" />
     <Compile Include="Models\ViewModelWithPager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -470,6 +470,7 @@
     <Folder Include="Areas\Administration\Views\Shared\" />
     <Folder Include="Areas\Profile\Views\Shared\" />
     <Folder Include="Content\Images\Products\" />
+    <Folder Include="Models\Checkout\" />
     <Folder Include="Views\Shared\EditorTemplates\" />
   </ItemGroup>
   <ItemGroup>
