@@ -8,8 +8,11 @@ using WebActivatorEx;
 namespace Shop.Net.Web
 {
     using System;
+    using System.Data.Entity;
     using System.Web;
 
+    using Microsoft.AspNet.Identity;
+    using Microsoft.AspNet.Identity.EntityFramework;
     using Microsoft.Web.Infrastructure.DynamicModuleHelper;
 
     using Ninject;
@@ -17,6 +20,7 @@ namespace Shop.Net.Web
 
     using Shop.Net.Data;
     using Shop.Net.Data.Contracts;
+    using Shop.Net.Model;
     using Shop.Net.Web.Infrastructure.Contracts;
     using Shop.Net.Web.Infrastructure.Helpers;
 
@@ -70,8 +74,12 @@ namespace Shop.Net.Web
         /// <param name="kernel">The kernel.</param>
         private static void RegisterServices(IKernel kernel)
         {
-            kernel.Bind<IShopData>().To<ShopData>().WithConstructorArgument("context", c => new ShopDbContext());
+            kernel.Bind<IDbContext>().To<ShopDbContext>();
+            kernel.Bind<DbContext>().To<ShopDbContext>();
+            kernel.Bind<IShopData>().To<ShopData>();
             kernel.Bind<IImageUploader>().To<ImageUploader>();
+            kernel.Bind<IUserStore<ApplicationUser>>().To<UserStore<ApplicationUser>>();
+            //UserManager<ApplicationUser>(new UserStore<ApplicationUser>(this.context));
         }
     }
 }

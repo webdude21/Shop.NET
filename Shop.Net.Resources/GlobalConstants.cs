@@ -8,7 +8,7 @@
 
         public const string GitHubLink = "https://github.com/webdude21/Shop.NET";
 
-        public const string AdministratorRole = "AdministratorRole";
+        public const string AdministratorRole = "Administrator";
 
         public const string EmployeeRole = "Employee";
 

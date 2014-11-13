@@ -2,7 +2,6 @@
 {
     using System.Data.Entity;
     using System.Linq;
-    using System.Net;
     using System.Web.Mvc;
 
     using AutoMapper.QueryableExtensions;
@@ -28,14 +27,11 @@
             return this.View();
         }
 
-        public JsonResult GetMyOrders([DataSourceRequest]DataSourceRequest request)
+        public JsonResult GetMyOrders([DataSourceRequest] DataSourceRequest request)
         {
             var userId = this.User.Identity.GetUserId();
             var orders =
-                this.ShopData.Orders.All()
-                    .Where(o => o.CustomerId == userId)
-                    .Project()
-                    .To<OrderCustomerViewModel>();
+                this.ShopData.Orders.All().Where(o => o.CustomerId == userId).Project().To<OrderCustomerViewModel>();
 
             var result = this.Json(orders.ToDataSourceResult(request), JsonRequestBehavior.AllowGet);
             result.MaxJsonLength = int.MaxValue;
@@ -47,15 +43,15 @@
         {
             var userId = this.User.Identity.GetUserId();
 
-            var orderItems = this.ShopData.OrderItems.All()
-                  .Where(o => o.OrderId == orderId)
-                   .Where(o => o.Order.CustomerId == userId)
-                  .Include("Products")
-                  .Project()
-                  .To<OrderItemViewModel>();
+            var orderItems =
+                this.ShopData.OrderItems.All()
+                    .Where(o => o.OrderId == orderId)
+                    .Where(o => o.Order.CustomerId == userId)
+                    .Include("Products")
+                    .Project()
+                    .To<OrderItemViewModel>();
 
             return this.Json(orderItems.ToDataSourceResult(request), JsonRequestBehavior.AllowGet);
         }
-
     }
 }

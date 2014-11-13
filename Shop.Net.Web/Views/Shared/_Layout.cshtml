@@ -25,6 +25,7 @@
                 <div class="navbar-collapse collapse">
                     @Html.Action("RenderCategoriesMenu", "Menu", new { area = string.Empty })
                     @Html.Action("RenderBackOfficeMenu", "Menu", new { area = string.Empty })
+                    @Html.Action("RenderAdministratorMenu", "Menu", new { area = string.Empty })
                     <ul class="nav navbar-nav">
                         <li>@Html.ActionLink("About", "About", "Pages", new { area = string.Empty }, null)</li>
                         <li>@Html.ActionLink("Contact", "Contact", "Pages",  new { area = string.Empty }, null)</li>

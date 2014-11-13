@@ -1,7 +1,7 @@
-﻿using System.Web.Mvc;
-
-namespace Shop.Net.Web.Areas.Administration
+﻿namespace Shop.Net.Web.Areas.Administration
 {
+    using System.Web.Mvc;
+
     public class AdministrationAreaRegistration : AreaRegistration 
     {
         public override string AreaName 
