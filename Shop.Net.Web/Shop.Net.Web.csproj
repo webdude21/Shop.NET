@@ -458,7 +458,7 @@
     <Content Include="Views\Shared\_ThumbnailPartial.cshtml" />
     <Content Include="Views\Shared\_SeoPartial.cshtml" />
     <Content Include="Views\Shared\_FacebookSdkPartial.cshtml" />
-    <Content Include="Views\Shared\_CategoriesMenuPartial.cshtml" />
+    <Content Include="Views\Menu\_CategoriesMenu.cshtml" />
     <Content Include="Views\Menu\_BackOfficeMenu.cshtml" />
     <Content Include="Views\Shared\_PagerPartial.cshtml" />
     <Content Include="Views\Shared\_ImageGalleryPartial.cshtml" />
@@ -469,6 +469,7 @@
     <Content Include="Views\Cart\Checkout.cshtml" />
     <Content Include="Views\Cart\NoShippingAddresses.cshtml" />
     <Content Include="Views\Cart\Success.cshtml" />
+    <Content Include="Views\Menu\_AdministratorMenu.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

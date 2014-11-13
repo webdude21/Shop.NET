@@ -6,7 +6,6 @@
 @using (Html.BeginForm("Checkout", "Cart", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
 {
     @Html.AntiForgeryToken()
-
     <div class="form-horizontal">
         <h2>@ViewBag.Title</h2>
         <hr />

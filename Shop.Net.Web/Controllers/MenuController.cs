@@ -31,7 +31,7 @@
 
             var cachedCategories = this.HttpContext.Cache[CategoryNames];
 
-            return this.PartialView("_CategoriesMenuPartial", cachedCategories);
+            return this.PartialView("_CategoriesMenu", cachedCategories);
         }
 
         [ChildActionOnly]
@@ -40,6 +40,17 @@
             if (User.IsInRole(GlobalConstants.AdministratorRole) || User.IsInRole(GlobalConstants.EmployeeRole))
             {
                 return this.PartialView("_BackOfficeMenu");
+            }
+
+            return null;
+        }
+
+        [ChildActionOnly]
+        public ActionResult RenderAdministratorMenu()
+        {
+            if (User.IsInRole(GlobalConstants.AdministratorRole))
+            {
+                return this.PartialView("_AdministratorMenu");
             }
 
             return null;
