@@ -1,0 +1,8 @@
+﻿﻿@{
+    ViewBag.Title = "Order sent";
+}
+
+<div class="jumbotron">
+    <h1>@ViewBag.Title</h1>
+    <p class="lead">Your order was accepted for proccessing. You can follow the status of your orders @Html.ActionLink("here", "Index", "Orders", new { area = "Profile" }, new { @style = "btn btn-info"})</p>
+</div>
