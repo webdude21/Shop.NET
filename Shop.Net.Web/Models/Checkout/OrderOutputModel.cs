@@ -9,8 +9,5 @@
 
         [Required]
         public int CarrierId { get; set; }
-
-        [Required]
-        public int CartId { get; set; }
     }
 }

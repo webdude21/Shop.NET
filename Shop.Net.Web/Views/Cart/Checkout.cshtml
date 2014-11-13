@@ -14,7 +14,13 @@
         <div class="form-group">
             @Html.LabelFor(model => model.ShippingInformationId, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.ShippingInformationId, new { htmlAttributes = new { @class = "form-control" } })
+              @(Html.Kendo().DropDownList()
+                              .Name("ShippingInformationId")
+                              .HtmlAttributes(new { style = "width: 400px;" })
+                              .DataTextField("ContactName")
+                              .DataValueField("Id")
+                              .DataSource(source => source.Read(read => read.Action("ReadShippingInformation", "Cart", new { area = string.Empty })))
+            )
                 @Html.ValidationMessageFor(model => model.ShippingInformationId, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -22,30 +28,23 @@
         <div class="form-group">
             @Html.LabelFor(model => model.CarrierId, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.CarrierId, new { htmlAttributes = new { @class = "form-control" } })
+                @(Html.Kendo().DropDownList()
+                              .Name("CarrierId")
+                              .HtmlAttributes(new { style = "width: 400px;" })
+                              .DataTextField("Information")
+                              .DataValueField("Id")
+                              .DataSource(source => source.Read(read => read.Action("ReadCarrierInformation", "Cart", new { area = string.Empty })))
+                )
                 @Html.ValidationMessageFor(model => model.CarrierId, "", new { @class = "text-danger" })
             </div>
         </div>
-
         <div class="form-group">
-            @Html.LabelFor(model => model.CartId, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.CartId, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.CartId, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+            <div class="col-md-offset-3 col-md-10">
+                @Html.ActionLink("Back to List", "Index", new { area = string.Empty }, new { @class = "btn btn-danger" })
+                <input type="submit" value="Create" class="btn btn-success" />
             </div>
         </div>
     </div>
 }
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
-
 @Scripts.Render("~/bundles/jquery")
 @Scripts.Render("~/bundles/jqueryval")

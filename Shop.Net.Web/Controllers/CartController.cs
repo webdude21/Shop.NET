@@ -41,9 +41,27 @@
                 return this.HttpNotFound(HttpStatusCode.BadRequest.ToString());
             }
 
-            var orderOutputModel = new OrderOutputModel { CartId = cart.Id };
+            return this.View(new OrderOutputModel());
+        }
 
-            return this.View(orderOutputModel);
+        [HttpGet]
+        public ActionResult ReadShippingInformation()
+        {
+            var userId = this.User.Identity.GetUserId();
+            var addresses =
+                this.ShopData.ContactInformations.All()
+                    .Where(x => x.CustomerId == userId)
+                    .Project()
+                    .To<ContactInformationDropdownViewModel>()
+                    .ToList();
+
+            return this.Json(addresses, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpGet]
+        public ActionResult ReadCarrierInformation()
+        {
+            return this.Json(this.ShopData.Carrier.All().Project().To<CarrierDropdownViewModel>(), JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult Index()
