@@ -10,16 +10,18 @@
 <div class="row">
     @(Html.Kendo().Grid<OrderCustomerViewModel>().Name("orders-grid").Columns(columns =>
           {
-              columns.Bound(c => c.Id);
-              columns.Bound(c => c.TotalAmmout);
-              columns.Bound(c => c.OrderStatus);
+              columns.Bound(c => c.Id).Width(40);
+              columns.Bound(c => c.TotalAmmout).Width(80).Filterable(false).Sortable(false).Groupable(false);
               columns.Bound(c => c.ItemsCount).Sortable(false).Filterable(false).Groupable(false);
+              columns.Bound(c => c.OrderStatus);
+              columns.Bound(c => c.Carrier.Name).Title("Carrier");
               columns.Bound(c => c.CreatedOnUtc).Format("{0:MM/dd/yyyy HH:MM:ss}");
+              columns.Bound(c => c.ExpectedDelivery).Format("{0:MM/dd/yyyy}").Filterable(false).Sortable(false).Groupable(false);
           })
           .Groupable()
           .Resizable(resize => resize.Columns(true))
           .Sortable(sortable => sortable.AllowUnsort(true).SortMode(GridSortMode.MultipleColumn))
-          .Filterable(ftb => ftb.Mode(GridFilterMode.Row))
+          .Filterable(ftb => ftb.Mode(GridFilterMode.Menu))
           .Pageable(pageable => pageable.Refresh(true).PageSizes(true).ButtonCount(10))
               .DataSource(dataSource => dataSource.Ajax()
                   .Read(read => read.Action("GetMyOrders", "Orders"))))

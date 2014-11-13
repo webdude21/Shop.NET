@@ -14,6 +14,7 @@
     using Shop.Net.Model.Cart;
     using Shop.Net.Web.Areas.Catalog.Models.Product;
     using Shop.Net.Web.Models.Cart;
+    using Shop.Net.Web.Models.Checkout;
 
     public class CartController : CustomerController
     {
@@ -22,9 +23,27 @@
         {
         }
 
-        public ActionResult Checkout(CartViewModel model)
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Checkout(OrderOutputModel model)
         {
             return this.View();
+        }
+
+        [HttpGet]
+        public ActionResult Checkout()
+        {
+            var userId = this.User.Identity.GetUserId();
+            var cart = this.ShopData.ShoppingCarts.All().FirstOrDefault(c => c.CustomerId == userId);
+
+            if (cart == null || cart.CartItems.Count == 0)
+            {
+                return this.HttpNotFound(HttpStatusCode.BadRequest.ToString());
+            }
+
+            var orderOutputModel = new OrderOutputModel { CartId = cart.Id };
+
+            return this.View(orderOutputModel);
         }
 
         public ActionResult Index()

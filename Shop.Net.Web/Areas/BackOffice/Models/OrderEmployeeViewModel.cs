@@ -9,6 +9,7 @@
 
     using Shop.Net.Model.Order;
     using Shop.Net.Web.Infrastructure.Mapping;
+    using Shop.Net.Web.Models;
 
     public class OrderEmployeeViewModel : IMapFrom<Order>, IHaveCustomMappings
     {
@@ -18,9 +19,7 @@
 
         public string CustomerId { get; set; }
 
-        public string ApprovedBy { get; set; }
-
-        public string ApprovedById { get; set; }
+        public virtual CarrierViewModel Carrier { get; set; }
 
         public virtual ICollection<OrderItemEmployeeViewModel> OrderItems { get; set; }
 
@@ -30,6 +29,14 @@
         public DateTime? CreatedOnUtc { get; set; }
 
         public DateTime? UpdatedOnUtc { get; set; }
+
+        public DateTime? ExpectedDelivery
+        {
+            get
+            {
+                return this.CreatedOnUtc.GetValueOrDefault(DateTime.Now).AddDays(this.Carrier.DeliverInDays);
+            }
+        }
 
         public decimal TotalAmmout
         {

@@ -130,9 +130,10 @@
 
             for (var i = 0; i < count; i++)
             {
-                user.Adresses.Add(
-                    new ContactInformation
+                context.ContactInformations.Add(new ContactInformation
                         {
+                            Customer = user,
+                            CustomerId = user.Id,
                             ContactName = this.randomDataGenerator.GetString(4, 40),
                             ContactPerson = this.randomDataGenerator.GetString(10, 40),
                             Address1 = this.randomDataGenerator.GetString(10, 40),
@@ -140,8 +141,7 @@
                             PhoneNumber = this.randomDataGenerator.GetString(10, 40),
                             StateProvince = this.randomDataGenerator.GetString(10, 40),
                             ZipCode = this.randomDataGenerator.GetString(3, 16),
-                            Country =
-                                countries[this.randomDataGenerator.GetInt(0, countries.Count - 1)].Name,
+                            Country = countries[this.randomDataGenerator.GetInt(0, countries.Count - 1)].Name,
                             Company = this.randomDataGenerator.GetString(10, 40),
                         });
             }

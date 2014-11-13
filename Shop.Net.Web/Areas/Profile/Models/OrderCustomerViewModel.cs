@@ -9,6 +9,7 @@
 
     using Shop.Net.Model.Order;
     using Shop.Net.Web.Infrastructure.Mapping;
+    using Shop.Net.Web.Models;
 
     public class OrderCustomerViewModel : IMapFrom<Order>, IHaveCustomMappings
     {
@@ -16,16 +17,19 @@
 
         public ICollection<OrderItemViewModel> OrderItems { get; set; }
 
+        public virtual CarrierViewModel Carrier { get; set; }
+
         public OrderStatus OrderStatus { get; set; }
 
         [DisplayName(@"Created on")]
         public DateTime? CreatedOnUtc { get; set; }
 
-        public decimal TotalAmmout
+        public string TotalAmmout
         {
             get
             {
-                return this.OrderItems.Sum(x => x.Quantity * x.OrderedProduct.Price);
+                var total = this.OrderItems.Sum(x => x.Quantity * x.OrderedProduct.Price) + this.Carrier.DeliveryPrice;
+                return total.ToString("C");
             }
         }
 
@@ -42,6 +46,14 @@
             get
             {
                 return this.OrderItems.Sum(i => i.Quantity);
+            }
+        }
+
+        public DateTime? ExpectedDelivery
+        {
+            get
+            {
+                return this.CreatedOnUtc.GetValueOrDefault(DateTime.Now).AddDays(this.Carrier.DeliverInDays);
             }
         }
 

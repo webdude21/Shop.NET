@@ -216,6 +216,7 @@
     <Compile Include="Areas\Profile\Models\ContactInformationViewModel.cs" />
     <Compile Include="Areas\Profile\Models\OrderCustomerViewModel.cs" />
     <Compile Include="Areas\Profile\Models\OrderItemViewModel.cs" />
+    <Compile Include="Models\Checkout\OrderOutputModel.cs" />
     <Compile Include="Areas\Profile\Controllers\OrdersController.cs" />
     <Compile Include="Areas\Profile\ProfileAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
@@ -259,6 +260,7 @@
     <Compile Include="Models\Account\IdentityModels.cs" />
     <Compile Include="Models\Account\ManageLoginsViewModel.cs" />
     <Compile Include="Areas\Catalog\Models\Category\CategoryViewModel.cs" />
+    <Compile Include="Models\CarrierViewModel.cs" />
     <Compile Include="Models\Cart\CartProductViewModel.cs" />
     <Compile Include="Models\Cart\CartViewModel.cs" />
     <Compile Include="Models\IndexViewModel.cs" />
@@ -462,6 +464,7 @@
     <Content Include="Views\Cart\Empty.cshtml" />
     <Content Include="Views\Cart\_OrderItems.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\ImageViewModel.cshtml" />
+    <Content Include="Views\Cart\Checkout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -470,7 +473,6 @@
     <Folder Include="Areas\Administration\Views\Shared\" />
     <Folder Include="Areas\Profile\Views\Shared\" />
     <Folder Include="Content\Images\Products\" />
-    <Folder Include="Models\Checkout\" />
     <Folder Include="Views\Shared\EditorTemplates\" />
   </ItemGroup>
   <ItemGroup>

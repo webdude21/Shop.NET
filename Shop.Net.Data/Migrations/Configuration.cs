@@ -25,6 +25,7 @@ namespace Shop.Net.Data.Migrations
             seeder.SeedRolesAndUsers();
             seeder.SeedCountries();
             seeder.SeedContactInformaton(50);
+            seeder.SeedCarrier();
             seeder.SeedCategories(15);
             seeder.SeedProducts(200);
             seeder.SeedOrders(200);
