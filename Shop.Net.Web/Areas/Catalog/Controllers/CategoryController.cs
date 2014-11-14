@@ -1,18 +1,13 @@
 ﻿namespace Shop.Net.Web.Areas.Catalog.Controllers
 {
-    using System.Data.Entity;
     using System.Linq;
-    using System.Linq.Expressions;
     using System.Web.Mvc;
-
-    using Antlr.Runtime.Misc;
 
     using AutoMapper.QueryableExtensions;
 
     using Microsoft.Ajax.Utilities;
 
     using Shop.Net.Data.Contracts;
-    using Shop.Net.Model.Catalog;
     using Shop.Net.Resources;
     using Shop.Net.Web.Areas.Catalog.Models.Category;
     using Shop.Net.Web.Areas.Catalog.Models.Product;
@@ -27,8 +22,7 @@
 
         public ActionResult Index(string categoryFriendlyUrl, int? page, string orderby, bool? asc)
         {
-            var matchingProducts =
-                this.ShopData.Products.All()
+            var matchingProducts = this.ShopData.Products.All()
                     .Where(c => c.Category.FriendlyUrl == categoryFriendlyUrl && c.Published)
                     .Project()
                     .To<ProductThumbnailModel>();
@@ -37,8 +31,8 @@
 
             var orderedCollection = this.Sort(orderby, asc, matchingProducts);
 
-            var products = orderedCollection
-                    .Skip(GlobalConstants.ItemsPerPage * pager.CurrentPage)
+            var products =
+                orderedCollection.Skip(GlobalConstants.ItemsPerPage * pager.CurrentPage)
                     .Take(GlobalConstants.ItemsPerPage)
                     .ToList();
 
@@ -46,7 +40,8 @@
 
             if (products.Count == 0)
             {
-                var category = this.ShopData.Categories.All()
+                var category =
+                    this.ShopData.Categories.All()
                         .Where(c => c.FriendlyUrl == categoryFriendlyUrl)
                         .Project()
                         .To<CategoryViewModel>()
