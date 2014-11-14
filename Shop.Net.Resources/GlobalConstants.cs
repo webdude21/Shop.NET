@@ -36,5 +36,9 @@
         public const string ProductImagesRelativePath = "/Content/Images/Products/";
 
         public const string GuidRegEx = @"\b[A-F0-9]{8}(?:-[A-F0-9]{4}){3}-[A-F0-9]{12}\b";
+
+        public const string DateTimeFormat = "{0:MM/dd/yyyy HH:MM:ss}";
+
+        public const string DateFormat = "{0:MM/dd/yyyy}";
     }
 }

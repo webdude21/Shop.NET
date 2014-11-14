@@ -1,0 +1,64 @@
+﻿@using Kendo.Mvc.UI
+@model Shop.Net.Web.Models.ViewModelWithPageSorter<List<Shop.Net.Web.Areas.Catalog.Models.Product.ProductThumbnailModel>>
+
+<div class="row">
+    <div class="form-group">
+        @Html.Label("Order by: ", htmlAttributes: new { @class = "control-label col-md-1" })
+        <div class="col-md-10">
+            @(Html.Kendo().DropDownList()
+                  .Name("Pager.OrderBy")
+                  .DataTextField("Text")
+                  .DataValueField("Value")
+                  .BindTo(new List<SelectListItem>() {
+                                                         new SelectListItem() {
+                                                                                  Text = string.Empty,
+                                                                                  Value = string.Empty
+                                                                              },
+                                                         new SelectListItem() {
+                                                                                  Text = @"Price",
+                                                                                  Value = "price"
+                                                                              },
+                                                         new SelectListItem() {
+                                                                                  Text = @"Name",
+                                                                                  Value = "name"
+                                                                              },
+
+                                                     })
+                  .Value("1"))
+            @(Html.Kendo().DropDownList()
+                  .Name("Pager.Asc")
+                  .DataTextField("Text")
+                  .DataValueField("Value")
+                  .BindTo(new List<SelectListItem>() {
+                                                         new SelectListItem() {
+                                                                                  Text = string.Empty,
+                                                                                  Value = string.Empty
+                                                                              },
+                                                         new SelectListItem() {
+                                                                                  Text = @"Ascending",
+                                                                                  Value = "true"
+                                                                              },
+                                                         new SelectListItem() {
+                                                                                  Text = @"Descending",
+                                                                                  Value = "false"
+                                                                              },
+
+                                                     })
+                  .Value("1"))
+        </div>
+    </div>
+</div>
+<hr />
+
+<div class="row" id="thumbnails">
+    @foreach (var product in Model.ViewModel)
+    {
+        @Html.Partial("_ThumbnailPartial", product)
+    }
+</div>
+
+@{
+    Model.Pager.TargetUrl =  Request.Url.AbsoluteUri + "?orderBy=" + Model.Pager.OrderBy + "&asc=" + Model.Pager.Asc;
+}
+
+@Html.Partial("_PagerPartial", Model.Pager)

@@ -350,6 +350,7 @@
     <Content Include="Areas\Profile\Views\ContactInformation\Index.cshtml" />
     <Content Include="Areas\Administration\Views\Users\Index.cshtml" />
     <Content Include="Areas\Administration\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Catalog\Views\Category\_ProductsListPartial.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Kendo\Kendo.Mvc.dll" />
     <Content Include="Kendo\Kendo.Mvc.xml" />

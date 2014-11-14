@@ -1,4 +1,5 @@
 ﻿@using Kendo.Mvc.UI
+@using Shop.Net.Resources
 @using Shop.Net.Web.Areas.BackOffice.Models
 @{
     ViewBag.Title = "Orders";
@@ -19,7 +20,7 @@
                   columns.Bound(c => c.TotalGrossProfit).Width(120).Format("{0:C2}").Sortable(false).Filterable(false).Groupable(false);
                   columns.Bound(c => c.TotalQuantity).Width(100).Sortable(false).Filterable(false).Groupable(false);
                   columns.Bound(c => c.Customer).Width(250);
-                  columns.Bound(c => c.CreatedOnUtc).Format("{0:MM/dd/yyyy HH:MM:ss}");
+                  columns.Bound(c => c.CreatedOnUtc).Format(GlobalConstants.DateTimeFormat);
               })
           .Scrollable()
           .Groupable()
