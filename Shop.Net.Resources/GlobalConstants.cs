@@ -14,6 +14,8 @@
 
         public const string CustomerRole = "Customer";
 
+        public const string EmailDomainForShop = "@shop.net";
+
         public const string DefaultAdminUser = "webdude@webdude.eu";
 
         public const int ProductsOnHomePage = 6;
@@ -24,7 +26,7 @@
 
         public const string RobotsIndexFollow = "index, follow";
 
-        public const int ItemsPerPage = 3;
+        public const int ItemsPerPage = 12;
 
         public const string FriendlyUrlsRegexValidator = @"[\w-]+";
 

@@ -353,7 +353,6 @@
     <Content Include="Areas\Catalog\Views\Category\_ProductsListPartial.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Kendo\Kendo.Mvc.dll" />
-    <Content Include="Kendo\Kendo.Mvc.xml" />
     <Content Include="Content\Bootstrap\editor.png" />
     <Content Include="Content\Bootstrap\imagebrowser.png" />
     <Content Include="Content\Bootstrap\indeterminate.gif" />

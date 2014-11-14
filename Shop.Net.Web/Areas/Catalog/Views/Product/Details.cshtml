@@ -3,51 +3,54 @@
 @section MetaInformation {
     @Html.Partial("_SeoPartial", Model);
 }
+
 @{
     ViewBag.Title = Model.MetaTitle ?? Model.Name;
 }
 
-@using (Ajax.BeginForm("Add", "Cart", new { area = string.Empty}, new AjaxOptions
-                                                                      {
-                                                                          HttpMethod = "POST",
-                                                                          UpdateTargetId = "order-count",
-                                                                          InsertionMode = InsertionMode.Replace,
-                                                                          Confirm = "Are you sure you want to add this item to the shopping Cart"
-                                                                      }, new { id = "searchForm" }))
-{
-    @Html.AntiForgeryToken()
-    <div id="product-wrapper">
-        <div class="row">
-            @Html.Partial("_ImageGalleryPartial", Model)
-            <div class="col-lg-7">
-                <h4>@Model.Manufacturer @Model.Name</h4>
-                @if (Model.Sku != null)
-                {
-                    <span class="label label-default">Sku: @Model.Sku</span>
-                }
-                <hr />
-                <p class="info text-justify">@Model.Description</p>
-                <hr />
-                @Html.Partial("_SocialSharerPartial")
-                <hr />
+<div id="product-wrapper">
+    <div class="row">
+        @Html.Partial("_ImageGalleryPartial", Model)
+        <div class="col-lg-7">
+            <h4>@Model.Manufacturer @Model.Name</h4>
+            @if (Model.Sku != null)
+            {
+                <span class="label label-default">Sku: @Model.Sku</span>
+            }
+            <hr />
+            <p class="info text-justify">@Model.Description</p>
+            <hr />
+            @Html.Partial("_SocialSharerPartial")
+            <hr />
+            @using (Ajax.BeginForm("Add", "Cart", new { area = string.Empty }, new AjaxOptions { HttpMethod = "POST", UpdateTargetId = "order-count", InsertionMode = InsertionMode.Replace, Confirm = "Are you sure you want to add this item to the shopping Cart" }, new { id = "buy-form" }))
+            {
+                @Html.AntiForgeryToken()
+
                 <div class="form-group">
                     @Html.HiddenFor(m => m.Id)
                     @Html.LabelFor(m => m.OrderQuantity, new { @class = "col-md-2 control-label" })
                     <div class="col-md-2">
                         @Html.TextBoxFor(m => m.OrderQuantity, new { @class = "form-control", type = "number" })
                     </div>
-                    <input type="submit" class="btn btn-warning" value="Buy" />
+
+                    @if (Request.IsAuthenticated)
+                    {
+                        <input type="submit" class="btn btn-warning" value="Buy" />
+                    }
+                    else
+                    {
+                        @Html.ActionLink("Buy", "Login", "Account", new { area = string.Empty }, new { @class = "btn btn-warning" })
+                    }
                 </div>
                 <div class="row">
-                    @Html.ValidationMessageFor(model => model.OrderQuantity, "", new { @class = "text-danger" })
+                    @Html.ValidationMessageFor(model => model.OrderQuantity, string.Empty, new { @class = "text-danger" })
                 </div>
                 <div class="row" id="results">
-                    
                 </div>
-            </div>
+            }
         </div>
     </div>
-}
+</div>
 
 @section scripts{
     @Scripts.Render("~/bundles/jqueryval")

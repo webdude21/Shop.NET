@@ -93,7 +93,7 @@
             this.context.SaveChanges();
         }
 
-        public void SeedRolesAndUsers()
+        public void SeedRolesAndUsers(int count = 10)
         {
             var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(this.context));
             var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(this.context));
@@ -102,19 +102,30 @@
             CreateRoleIfItDoesntExist(roleManager, GlobalConstants.EmployeeRole);
             CreateRoleIfItDoesntExist(roleManager, GlobalConstants.CustomerRole);
 
-            var user = new ApplicationUser { UserName = GlobalConstants.DefaultAdminUser };
+            CreateUserWithRole(userManager, GlobalConstants.DefaultAdminUser, GlobalConstants.AdministratorRole);
+            CreateUserWithRole(userManager, "employee" + GlobalConstants.EmailDomainForShop, GlobalConstants.EmployeeRole);
 
-            if (userManager.FindByName(GlobalConstants.DefaultAdminUser) == null)
+            for (var i = 0; i < count; i++)
             {
-                var result = userManager.Create(user, GlobalConstants.DefaultAdminUser);
-
-                if (result.Succeeded)
-                {
-                    userManager.AddToRole(user.Id, GlobalConstants.AdministratorRole);
-                }
+                CreateUserWithRole(userManager, this.randomDataGenerator.GetString(4, 10) + GlobalConstants.EmailDomainForShop, GlobalConstants.CustomerRole);
             }
 
             this.context.SaveChanges();
+        }
+
+        private static void CreateUserWithRole(UserManager<ApplicationUser> userManager, string username, string role)
+        {
+            var user = new ApplicationUser { UserName = username };
+
+            if (userManager.FindByName(user.UserName) == null)
+            {
+                var result = userManager.Create(user, user.UserName);
+
+                if (result.Succeeded)
+                {
+                    userManager.AddToRole(user.Id, role);
+                }
+            }
         }
 
         public void SeedContactInformaton(int count)
