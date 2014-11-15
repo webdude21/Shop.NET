@@ -29,6 +29,7 @@ namespace Shop.Net.Data.Migrations
             seeder.SeedCategories(15);
             seeder.SeedProducts(200);
             seeder.SeedOrders(200);
+            seeder.SeedReviews(15); // reviews per product
             context.Configuration.AutoDetectChangesEnabled = true;
         }
     }

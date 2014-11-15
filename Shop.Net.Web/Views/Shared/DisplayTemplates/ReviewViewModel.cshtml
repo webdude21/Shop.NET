@@ -1,0 +1,9 @@
+﻿@model  Shop.Net.Web.Models.Rating.ReviewViewModel
+
+<div class="row review">
+    <blockquote>
+        <p>@Model.Content</p>
+        <small>by @Model.Author</small>
+        <input id="customer-service-@Model.Id" type="number" class="rating" min=0 max=5 step=0.5 data-size="lg" value="@Model.CustomerServiceRating">
+    </blockquote>
+</div>

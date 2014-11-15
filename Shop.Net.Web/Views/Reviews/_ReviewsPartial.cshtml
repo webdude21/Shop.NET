@@ -1,0 +1,13 @@
+﻿@model  IEnumerable<Shop.Net.Web.Models.Rating.ReviewViewModel>
+
+
+@foreach (var item in Model)
+{
+    <div class="row review">
+        <blockquote>
+            <p>@item.Content</p>
+            <small>by @item.Author</small>
+            <input id="customer-service-@item.Id" type="number" class="rating" min=0 max=5 step=0.5 data-size="lg" value="@item.CustomerServiceRating">
+        </blockquote>
+    </div>
+}

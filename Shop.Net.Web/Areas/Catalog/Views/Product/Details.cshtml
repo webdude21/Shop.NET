@@ -19,8 +19,9 @@
             }
             <hr />
             <p class="info text-justify">@Model.Description</p>
-            <hr />
-            @Html.Partial("_SocialSharerPartial")
+            <div id="social-container" class="pull-right">
+                @Html.Partial("_SocialSharerPartial") 
+            </div>
             <hr />
             @using (Ajax.BeginForm("Add", "Cart", new { area = string.Empty }, new AjaxOptions { HttpMethod = "POST", UpdateTargetId = "order-count", InsertionMode = InsertionMode.Replace, Confirm = "Are you sure you want to add this item to the shopping Cart" }, new { id = "buy-form" }))
             {
@@ -35,7 +36,7 @@
 
                     @if (Request.IsAuthenticated)
                     {
-                        <input type="submit" class="btn btn-warning" value="Buy" />
+                        <input type="submit" class="btn btn-success" value="Buy" />
                     }
                     else
                     {
@@ -43,16 +44,52 @@
                     }
                 </div>
                 <div class="row">
-                    @Html.ValidationMessageFor(model => model.OrderQuantity, string.Empty, new { @class = "text-danger" })
+                    @Html.ValidationMessageFor(model => model.OrderQuantity, string.Empty, new { @class = "text-danger col-lg-offset-1" })
                 </div>
-                <div class="row" id="results">
-                </div>
+                <div id="results"></div>
+
             }
         </div>
     </div>
 </div>
+<hr/>
+<div class="row" id="reviews-wrapper">
+</div>
+<button class="btn btn-success" id="review-button">Show reviews</button> 
 
 @section scripts{
     @Scripts.Render("~/bundles/jqueryval")
-
 }
+
+<script>
+
+    var currentReviewPage = 0;
+    var url = '@Url.Action("GetReviews", "Reviews", new { area = string.Empty, productId = @Model.Id })';
+    var $reviewContainer = $('#reviews-wrapper');
+    var $reviewbutton = $("#review-button");
+
+    var appendMoreReviews = function () {
+        $.ajax(
+        {
+            url: url + "&page=" + currentReviewPage,
+            type: "GET",
+            success: function (data) {
+
+                if (data.length > 10) {
+                    var $data = $(data);
+                    $reviewContainer.append($data);
+                    currentReviewPage += 1;
+                    $reviewbutton.html("Show more reviews");
+                } else if (currentReviewPage > 0) {
+                    $reviewContainer.append('@Html.Label("No more reviews")');
+                    $reviewbutton.remove();
+                } else {
+                    $reviewContainer.append('@Html.Label("There are no reviews for this product")');
+                    $reviewbutton.remove();
+                }
+            }
+        });
+    }
+
+    $reviewbutton.on("click", appendMoreReviews);
+</script>

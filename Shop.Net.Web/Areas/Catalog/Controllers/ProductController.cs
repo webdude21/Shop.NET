@@ -33,8 +33,7 @@
 
         public ActionResult ByFriendlyUrl(string categoryFriendlyUrl, string productFriendlyUrl)
         {
-            var product =
-                this.ShopData.Products.All()
+            var product = this.ShopData.Products.All()
                     .Where(c => c.Category.FriendlyUrl == categoryFriendlyUrl)
                     .Where(x => x.FriendlyUrl == productFriendlyUrl)
                     .Project().To<ProductDetailsViewModel>()

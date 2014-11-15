@@ -12,7 +12,7 @@
 
         [Required]
         [MaxLength(2000)]
-        [MinLength(2)]
+        [MinLength(50)]
         public string Content { get; set; }
 
         public byte ShipingRating { get; set; }

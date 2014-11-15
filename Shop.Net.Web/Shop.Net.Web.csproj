@@ -65,7 +65,17 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\Homework\ASP.NET MVC\LaptopSystem\External Libraries\Kendo.Mvc.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.AspNet.SignalR.Core">
+      <HintPath>..\packages\Microsoft.AspNet.SignalR.Core.2.1.2\lib\net45\Microsoft.AspNet.SignalR.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.SignalR.SystemWeb">
+      <HintPath>..\packages\Microsoft.AspNet.SignalR.SystemWeb.2.1.2\lib\net45\Microsoft.AspNet.SignalR.SystemWeb.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="Ninject">
       <HintPath>..\packages\Ninject.3.2.0.0\lib\net45-full\Ninject.dll</HintPath>
     </Reference>
@@ -140,9 +150,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>..\packages\Newtonsoft.Json.6.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
-    </Reference>
     <Reference Include="EntityFramework">
       <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
@@ -218,6 +225,8 @@
     <Compile Include="Areas\Profile\Models\ContactInformationViewModel.cs" />
     <Compile Include="Areas\Profile\Models\OrderCustomerViewModel.cs" />
     <Compile Include="Areas\Profile\Models\OrderItemViewModel.cs" />
+    <Compile Include="Controllers\ReviewsController.cs" />
+    <Compile Include="Hubs\Chat.cs" />
     <Compile Include="Infrastructure\Contracts\IRoleManager.cs" />
     <Compile Include="Infrastructure\Helpers\RoleManager.cs" />
     <Compile Include="Models\Checkout\CarrierDropdownViewModel.cs" />
@@ -274,6 +283,7 @@
     <Compile Include="Models\Marketing\SeoViewModel.cs" />
     <Compile Include="Models\Cart\CartItemViewModel.cs" />
     <Compile Include="Models\PagerViewModel.cs" />
+    <Compile Include="Models\Rating\ReviewViewModel.cs" />
     <Compile Include="Models\ViewModelWithPager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -289,6 +299,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\font-awesome.css" />
     <Content Include="Content\font-awesome.min.css" />
+    <Content Include="Content\jquery.raty.css" />
     <Content Include="Content\Kendo\Default\editor.png" />
     <Content Include="Content\Kendo\Default\imagebrowser.png" />
     <Content Include="Content\Kendo\Default\indeterminate.gif" />
@@ -406,6 +417,9 @@
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <None Include="Scripts\jquery-2.1.1-vsdoc.js" />
     <Content Include="Scripts\jquery.magnific-popup.js" />
+    <Content Include="Scripts\jquery.raty.js" />
+    <Content Include="Scripts\jquery.signalR-2.1.2.js" />
+    <Content Include="Scripts\jquery.signalR-2.1.2.min.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
@@ -477,6 +491,8 @@
     <Content Include="Views\Cart\NoShippingAddresses.cshtml" />
     <Content Include="Views\Cart\Success.cshtml" />
     <Content Include="Views\Menu\_AdministratorMenu.cshtml" />
+    <Content Include="Views\Reviews\_ReviewsPartial.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\ReviewViewModel.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

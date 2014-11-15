@@ -9,6 +9,7 @@
 
     using Shop.Net.Model;
     using Shop.Net.Model.Catalog;
+    using Shop.Net.Model.Marketing;
     using Shop.Net.Model.Order;
     using Shop.Net.Model.Shipping;
     using Shop.Net.Resources;
@@ -22,11 +23,14 @@
 
         private readonly IRandomDataGenerator randomDataGenerator;
 
+        private readonly List<ApplicationUser> customers;
+
         public Seeder(ShopDbContext context, CountryLoader countryLoader, IRandomDataGenerator randomDataGenerator)
         {
             this.context = context;
             this.countryLoader = countryLoader;
             this.randomDataGenerator = randomDataGenerator;
+            this.customers = new List<ApplicationUser>();
         }
 
         public void SeedCountries()
@@ -41,6 +45,36 @@
             foreach (var country in countryList)
             {
                 this.context.Countries.Add(new Country { Code = country.Key, Name = country.Value });
+            }
+
+            this.context.SaveChanges();
+        }
+
+        public void SeedReviews(int reviewPerProduct)
+        {
+            if (this.context.Reviews.Any())
+            {
+                return;
+            }
+
+            var products = this.context.Products.ToList();
+
+            foreach (var product in products)
+            {
+                for (int i = 0; i < reviewPerProduct; i++)
+                {
+                    this.context.Reviews.Add(
+                            new Review
+                            {
+                                Author = this.customers[this.randomDataGenerator.GetInt(0, this.customers.Count - 1)],
+                                Content = this.randomDataGenerator.GetString(150, 300),
+                                Product = product,
+                                CustomerServiceRating = (byte)this.randomDataGenerator.GetInt(0, 5),
+                                PriceRating = (byte)this.randomDataGenerator.GetInt(0, 5),
+                                QualityRating = (byte)this.randomDataGenerator.GetInt(0, 5),
+                                ShipingRating = (byte)this.randomDataGenerator.GetInt(0, 5),
+                            });
+                }
             }
 
             this.context.SaveChanges();
@@ -107,13 +141,15 @@
 
             for (var i = 0; i < count; i++)
             {
-                CreateUserWithRole(userManager, this.randomDataGenerator.GetString(4, 10) + GlobalConstants.EmailDomainForShop, GlobalConstants.CustomerRole);
+                var newCustomer = CreateUserWithRole(userManager, this.randomDataGenerator.GetString(4, 10) + GlobalConstants.EmailDomainForShop, GlobalConstants.CustomerRole);
+
+                this.customers.Add(newCustomer);
             }
 
             this.context.SaveChanges();
         }
 
-        private static void CreateUserWithRole(UserManager<ApplicationUser> userManager, string username, string role)
+        private static ApplicationUser CreateUserWithRole(UserManager<ApplicationUser> userManager, string username, string role)
         {
             var user = new ApplicationUser { UserName = username };
 
@@ -126,6 +162,8 @@
                     userManager.AddToRole(user.Id, role);
                 }
             }
+
+            return user;
         }
 
         public void SeedContactInformaton(int count)
@@ -462,7 +500,7 @@
                         Carrier = carriers[this.randomDataGenerator.GetInt(0, carriers.Count - 1)],
                         ShippingInformation = contactInfo[this.randomDataGenerator.GetInt(0, carriers.Count - 1)],
                         CreatedOnUtc = this.randomDataGenerator.GeneraDateTime(),
-                        UpdatedOnUtc = DateTime.UtcNow, 
+                        UpdatedOnUtc = DateTime.UtcNow,
                         OrderStatus = (OrderStatus)this.randomDataGenerator.GetInt(0, 6),
                     });
         }

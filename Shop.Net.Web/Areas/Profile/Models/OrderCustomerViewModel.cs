@@ -5,13 +5,11 @@
     using System.ComponentModel;
     using System.Linq;
 
-    using AutoMapper;
-
     using Shop.Net.Model.Order;
     using Shop.Net.Web.Infrastructure.Mapping;
     using Shop.Net.Web.Models;
 
-    public class OrderCustomerViewModel : IMapFrom<Order>, IHaveCustomMappings
+    public class OrderCustomerViewModel : IMapFrom<Order>
     {
         public int Id { get; set; }
 
@@ -55,10 +53,6 @@
             {
                 return this.CreatedOnUtc.GetValueOrDefault(DateTime.Now).AddDays(this.Carrier.DeliverInDays);
             }
-        }
-
-        public void CreateMappings(IConfiguration configuration)
-        {
         }
     }
 }
