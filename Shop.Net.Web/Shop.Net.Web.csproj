@@ -299,7 +299,6 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\font-awesome.css" />
     <Content Include="Content\font-awesome.min.css" />
-    <Content Include="Content\jquery.raty.css" />
     <Content Include="Content\Kendo\Default\editor.png" />
     <Content Include="Content\Kendo\Default\imagebrowser.png" />
     <Content Include="Content\Kendo\Default\indeterminate.gif" />
@@ -316,6 +315,7 @@
     <Content Include="Content\Kendo\kendo.common-bootstrap.min.css" />
     <Content Include="Content\magnific-popup\magnific-popup.css" />
     <Content Include="Content\paper.css" />
+    <Content Include="Content\star-rating.min.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -417,7 +417,6 @@
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <None Include="Scripts\jquery-2.1.1-vsdoc.js" />
     <Content Include="Scripts\jquery.magnific-popup.js" />
-    <Content Include="Scripts\jquery.raty.js" />
     <Content Include="Scripts\jquery.signalR-2.1.2.js" />
     <Content Include="Scripts\jquery.signalR-2.1.2.min.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
@@ -435,6 +434,7 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\responsive-images.js" />
+    <Content Include="Scripts\star-rating.min.js" />
     <Content Include="Scripts\thumbnail-gallery-script.js" />
     <Content Include="Scripts\upload.js" />
     <Content Include="Scripts\_references.js" />

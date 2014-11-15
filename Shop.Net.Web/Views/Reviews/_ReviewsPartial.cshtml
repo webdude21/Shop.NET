@@ -6,8 +6,26 @@
     <div class="row review">
         <blockquote>
             <p>@item.Content</p>
-            <small>by @item.Author</small>
-            <input id="customer-service-@item.Id" type="number" class="rating" min=0 max=5 step=0.5 data-size="lg" value="@item.CustomerServiceRating">
+            <div>
+                <div class="rating-label-container">
+                    <span class="label label-info">Shipping rating: </span>
+                    <input class="rating" type="number" value="@item.ShipingRating">
+                </div>
+                <div class="rating-label-container">
+                    <span class="label label-info">Quality rating: </span>
+                    <input class="rating" type="number" value="@item.QualityRating">
+                </div>
+                <div class="rating-label-container">
+                    <span class="label label-info">Customer Service: </span>
+                    <input class="rating" type="number" value="@item.CustomerServiceRating">
+                </div>
+                <div class="rating-label-container">
+                    <span class="label label-info">Price rating: </span>
+                    <input class="rating" type="number" value="@item.PriceRating">
+                </div>
+            </div>
+            <small class="pull-right">by @item.Author</small>
         </blockquote>
     </div>
+    <hr/>
 }

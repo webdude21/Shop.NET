@@ -79,9 +79,20 @@
                     var $data = $(data);
                     $reviewContainer.append($data);
                     currentReviewPage += 1;
+                    $(".rating").rating({
+                        min: 0,
+                        max: 5,
+                        step: 1,
+                        size: 'xs',
+                        disabled: true,
+                        showClear: false,
+                        showCaption: false,
+                        readonly: true
+                    });
                     $reviewbutton.html("Show more reviews");
+
                 } else if (currentReviewPage > 0) {
-                    $reviewContainer.append('@Html.Label("No more reviews")');
+                    $reviewContainer.append('@Html.Label("There are no more reviews", new { @class = "text-warning"})');
                     $reviewbutton.remove();
                 } else {
                     $reviewContainer.append('@Html.Label("There are no reviews for this product")');

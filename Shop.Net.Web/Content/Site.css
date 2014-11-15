@@ -67,3 +67,8 @@ body .break-word {
     margin-left: -3px;
     margin-top: 4px;
 }
+
+.rating-label-container {
+    float: left;
+    margin-left: 20px;
+}

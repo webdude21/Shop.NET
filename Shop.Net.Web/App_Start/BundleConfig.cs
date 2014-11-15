@@ -23,7 +23,7 @@
                 new ScriptBundle("~/bundles/responsive-images").Include("~/Scripts/masonry.pkgd.min.js")
                 .Include("~/Scripts/jquery.magnific-popup.js")
                     .Include("~/Scripts/responsive-images.js")
-                    .Include("~/Scripts/thumbnail-gallery-script.js").Include("~/Scripts/jquery.raty.js"));
+                    .Include("~/Scripts/thumbnail-gallery-script.js").Include("~/Scripts/star-rating.min.js"));
 
             bundles.Add(
                 new ScriptBundle("~/bundles/kendo").Include("~/Scripts/Kendo/kendo.all.min.js")
@@ -38,7 +38,7 @@
                     "~/Content/Kendo/kendo.common-bootstrap.min.css",
                     "~/Content/Kendo/kendo.bootstrap.min.css",
                     "~/Content/font-awesome.min.css",
-                    "~/Content/jquery.raty.css"));
+                    "~/Content/star-rating.min.css"));
 
             // Set EnableOptimizations to false for debugging. For more information,
             // visit http://go.microsoft.com/fwlink/?LinkId=301862
