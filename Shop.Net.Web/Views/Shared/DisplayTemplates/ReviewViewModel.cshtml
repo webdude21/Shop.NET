@@ -3,7 +3,25 @@
 <div class="row review">
     <blockquote>
         <p>@Model.Content</p>
-        <small>by @Model.Author</small>
-        <input id="customer-service-@Model.Id" type="number" class="rating" min=0 max=5 step=0.5 data-size="lg" value="@Model.CustomerServiceRating">
+        <div>
+            <div class="rating-label-container text-center">
+                <span class="label label-success">Shipping rating</span>
+                <input class="rating" type="number" value="@Model.ShipingRating">
+            </div>
+            <div class="rating-label-container text-center">
+                <span class="label label-success">Quality rating</span>
+                <input class="rating" type="number" value="@Model.QualityRating">
+            </div>
+            <div class="rating-label-container text-center">
+                <span class="label label-success">Customer Service</span>
+                <input class="rating" type="number" value="@Model.CustomerServiceRating">
+            </div>
+            <div class="rating-label-container text-center">
+                <span class="label label-success">Price rating</span>
+                <input class="rating" type="number" value="@Model.PriceRating">
+            </div>
+        </div>
+        <small class="pull-right">by @Model.Author</small>
     </blockquote>
 </div>
+<hr />

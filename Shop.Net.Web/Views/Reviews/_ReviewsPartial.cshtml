@@ -1,31 +1,3 @@
-﻿@model  IEnumerable<Shop.Net.Web.Models.Rating.ReviewViewModel>
+﻿@model  ICollection<Shop.Net.Web.Models.Rating.ReviewViewModel>
 
-
-@foreach (var item in Model)
-{
-    <div class="row review">
-        <blockquote>
-            <p>@item.Content</p>
-            <div>
-                <div class="rating-label-container">
-                    <span class="label label-info">Shipping rating: </span>
-                    <input class="rating" type="number" value="@item.ShipingRating">
-                </div>
-                <div class="rating-label-container">
-                    <span class="label label-info">Quality rating: </span>
-                    <input class="rating" type="number" value="@item.QualityRating">
-                </div>
-                <div class="rating-label-container">
-                    <span class="label label-info">Customer Service: </span>
-                    <input class="rating" type="number" value="@item.CustomerServiceRating">
-                </div>
-                <div class="rating-label-container">
-                    <span class="label label-info">Price rating: </span>
-                    <input class="rating" type="number" value="@item.PriceRating">
-                </div>
-            </div>
-            <small class="pull-right">by @item.Author</small>
-        </blockquote>
-    </div>
-    <hr/>
-}
+@Html.DisplayFor(x => x);

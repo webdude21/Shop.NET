@@ -1,7 +1,7 @@
 ﻿@model Shop.Net.Web.Areas.Catalog.Models.Product.ProductDetailsViewModel
 
 @section MetaInformation {
-    @Html.Partial("_SeoPartial", Model);
+    @Html.Partial("_SeoPartial", Model)
 }
 
 @{
@@ -11,7 +11,7 @@
 <div id="product-wrapper">
     <div class="row">
         @Html.Partial("_ImageGalleryPartial", Model)
-        <div class="col-lg-7">
+        <div class="col-sm-7">
             <h4>@Model.Manufacturer @Model.Name</h4>
             @if (Model.Sku != null)
             {
@@ -29,11 +29,10 @@
 
                 <div class="form-group">
                     @Html.HiddenFor(m => m.Id)
-                    @Html.LabelFor(m => m.OrderQuantity, new { @class = "col-md-2 control-label" })
-                    <div class="col-md-2">
+                    @Html.LabelFor(m => m.OrderQuantity, new { @class = "col-sm-2 control-label" })
+                    <div class="col-sm-2">
                         @Html.TextBoxFor(m => m.OrderQuantity, new { @class = "form-control", type = "number" })
                     </div>
-
                     @if (Request.IsAuthenticated)
                     {
                         <input type="submit" class="btn btn-success" value="Buy" />
@@ -44,7 +43,7 @@
                     }
                 </div>
                 <div class="row">
-                    @Html.ValidationMessageFor(model => model.OrderQuantity, string.Empty, new { @class = "text-danger col-lg-offset-1" })
+                    @Html.ValidationMessageFor(model => model.OrderQuantity, string.Empty, new { @class = "text-danger col-sm-offset-1" })
                 </div>
                 <div id="results"></div>
 
@@ -62,11 +61,19 @@
 }
 
 <script>
-
     var currentReviewPage = 0;
     var url = '@Url.Action("GetReviews", "Reviews", new { area = string.Empty, productId = @Model.Id })';
     var $reviewContainer = $('#reviews-wrapper');
     var $reviewbutton = $("#review-button");
+    var allReviewsAreDownloaded = false;
+
+    $(window).scroll(function () {
+        if ($(window).scrollTop() == $(document).height() - $(window).height()) {
+            if (!allReviewsAreDownloaded) {
+                appendMoreReviews();
+            }
+        }
+    });
 
     var appendMoreReviews = function () {
         $.ajax(
@@ -74,7 +81,6 @@
             url: url + "&page=" + currentReviewPage,
             type: "GET",
             success: function (data) {
-
                 if (data.length > 10) {
                     var $data = $(data);
                     $reviewContainer.append($data);
@@ -89,14 +95,14 @@
                         showCaption: false,
                         readonly: true
                     });
-                    $reviewbutton.html("Show more reviews");
-
                 } else if (currentReviewPage > 0) {
                     $reviewContainer.append('@Html.Label("There are no more reviews", new { @class = "text-warning"})');
                     $reviewbutton.remove();
+                    allReviewsAreDownloaded = true;
                 } else {
                     $reviewContainer.append('@Html.Label("There are no reviews for this product")');
                     $reviewbutton.remove();
+                    allReviewsAreDownloaded = true;
                 }
             }
         });

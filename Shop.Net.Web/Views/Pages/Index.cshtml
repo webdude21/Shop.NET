@@ -1,11 +1,12 @@
-﻿@model ICollection<Shop.Net.Web.Areas.Catalog.Models.Product.ProductThumbnailModel>
+﻿@using Shop.Net.Resources
+@model ICollection<Shop.Net.Web.Areas.Catalog.Models.Product.ProductThumbnailModel>
 @{
     ViewBag.Title = "Home Products Page";
 }
 
 <div class="jumbotron">
-    <h1>Shop.Net</h1>
-    <p class="lead">Welcome to our shop!</p>
+    <h1>@GlobalConstants.ShopName</h1>
+    <p class="lead">Welcome to our shop! These are the lates items added</p>
 </div>
 
 <div class="row" id="thumbnails">

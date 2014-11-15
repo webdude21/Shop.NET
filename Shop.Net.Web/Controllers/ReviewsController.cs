@@ -24,7 +24,7 @@
                 .OrderBy(x => x.Id)
                 .Project().To<ReviewViewModel>()
                 .Skip(GlobalConstants.ItemsPerPage * page.GetValueOrDefault(0))
-                .Take(GlobalConstants.ItemsPerPage);
+                .Take(GlobalConstants.ItemsPerPage).ToList();
 
             return this.PartialView("_ReviewsPartial", results);
         }

@@ -478,7 +478,7 @@
     <Content Include="Views\Pages\Index.cshtml" />
     <Content Include="Views\Shared\_ThumbnailPartial.cshtml" />
     <Content Include="Views\Shared\_SeoPartial.cshtml" />
-    <Content Include="Views\Shared\_FacebookSdkPartial.cshtml" />
+    <Content Include="Views\Shared\_SocialSDKs.cshtml" />
     <Content Include="Views\Menu\_CategoriesMenu.cshtml" />
     <Content Include="Views\Menu\_BackOfficeMenu.cshtml" />
     <Content Include="Views\Shared\_PagerPartial.cshtml" />
