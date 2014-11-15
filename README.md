@@ -7,11 +7,13 @@ Features
 ------------
 
 ### The basics
+
 Crud operations on all products and categories. Products and categories have SEO friendly urls with Meta information.
 
 ### User Roles
 
 There are three user roles in the application
+
 1. Administrator
 2. Emplpoyee
 3. Customer
