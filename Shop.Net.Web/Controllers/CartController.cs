@@ -66,8 +66,7 @@
 
             foreach (var item in cart.CartItems)
             {
-                order.OrderItems.Add(
-                    new OrderItem { OrderedProductId = item.OrderedProductId, Quantity = item.Quantity });
+                order.OrderItems.Add(new OrderItem { OrderedProductId = item.OrderedProductId, Quantity = item.Quantity });
             }
 
             this.ShopData.SaveChanges();

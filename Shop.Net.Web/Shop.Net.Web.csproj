@@ -493,13 +493,13 @@
     <Content Include="Views\Menu\_AdministratorMenu.cshtml" />
     <Content Include="Views\Reviews\_ReviewsPartial.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\ReviewViewModel.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Enum.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Administration\Views\Shared\" />
     <Folder Include="Areas\Profile\Views\Shared\" />
     <Folder Include="Content\Images\Products\" />
-    <Folder Include="Views\Shared\EditorTemplates\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

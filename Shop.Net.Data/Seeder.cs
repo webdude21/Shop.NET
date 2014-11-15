@@ -108,20 +108,25 @@
             }
 
             var contactInfo = this.context.ContactInformations.ToList();
-            var user = this.context.Users.FirstOrDefault();
+            var users = this.context.Users.ToList();
             var carriers = this.context.Carriers.ToList();
             var products = this.context.Products.ToList();
-            var items =
-                products.Select(product => new OrderItem { OrderedProduct = product, Quantity = this.randomDataGenerator.GetInt(1, 5) }).ToList();
 
-            const int OrderItemsPerOrder = 5;
+            var items = products.Select(product => new OrderItem { OrderedProduct = product, Quantity = this.randomDataGenerator.GetInt(1, 5) }).ToList();
 
-            for (var i = 3; i < count; i++)
+
+            foreach (var user in users)
             {
-                if (i % OrderItemsPerOrder == 0)
+                const int OrderItemsPerOrder = 5;
+
+                for (var i = 3; i < count; i++)
                 {
-                    this.SeedOrder(user, items.GetRange(i - OrderItemsPerOrder, OrderItemsPerOrder), carriers, contactInfo);
+                    if (i % OrderItemsPerOrder == 0)
+                    {
+                        this.SeedOrder(user, items.GetRange(i - OrderItemsPerOrder, OrderItemsPerOrder), carriers, contactInfo);
+                    }
                 }
+
             }
 
             this.context.SaveChanges();

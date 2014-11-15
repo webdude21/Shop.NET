@@ -9,11 +9,10 @@
     using AutoMapper;
 
     using Shop.Net.Model.Catalog;
-    using Shop.Net.Model.Marketing;
-    using Shop.Net.Resources;
     using Shop.Net.Web.Areas.Catalog.Models.Category;
     using Shop.Net.Web.Infrastructure.Mapping;
     using Shop.Net.Web.Models.Marketing;
+    using Shop.Net.Web.Models.Rating;
 
     public class ProductDetailsViewModel : SeoViewModel, IMapFrom<Product>
     {
@@ -59,14 +58,16 @@
 
         public CategoryViewModel Category { get; set; }
 
-        public IEnumerable<Review> Reviews { get; set; }
+        public IEnumerable<ReviewViewModel> Reviews { get; set; }
 
         public IEnumerable<ImageViewModel> Images { get; set; }
 
         public void CreateMappings(IConfiguration configuration)
         {
             configuration.CreateMap<Product, ProductDetailsViewModel>()
-                   .ForMember(model => model.FirstImage, opt => opt.MapFrom(fullProduct => fullProduct.Images.FirstOrDefault()));
+                .ForMember(
+                    model => model.FirstImage, 
+                    opt => opt.MapFrom(fullProduct => fullProduct.Images.FirstOrDefault()));
         }
     }
 }

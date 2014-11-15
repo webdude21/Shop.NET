@@ -2,15 +2,12 @@
 {
     using System.ComponentModel;
     using System.ComponentModel.DataAnnotations;
-    using System.Linq;
 
     using AutoMapper;
 
-    using Shop.Net.Model;
     using Shop.Net.Model.Catalog;
     using Shop.Net.Model.Marketing;
     using Shop.Net.Resources;
-    using Shop.Net.Web.Areas.Catalog.Models.Product;
     using Shop.Net.Web.Infrastructure.Mapping;
 
     public class ReviewViewModel : IMapFrom<Review>, IHaveCustomMappings
@@ -44,14 +41,10 @@
         [DefaultValue(3)]
         public byte PriceRating { get; set; }
 
-        public virtual Product Product { get; set; }
-
-        public int ProductId { get; set; }
-
         public void CreateMappings(IConfiguration configuration)
         {
             configuration.CreateMap<Review, ReviewViewModel>()
-                        .ForMember(model => model.Author, opt => opt.MapFrom(fullProduct => fullProduct.Author.UserName));
+                .ForMember(model => model.Author, opt => opt.MapFrom(fullProduct => fullProduct.Author.UserName));
         }
     }
 }

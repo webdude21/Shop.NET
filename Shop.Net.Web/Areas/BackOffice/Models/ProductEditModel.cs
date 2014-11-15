@@ -6,11 +6,11 @@
     using System.ComponentModel.DataAnnotations.Schema;
 
     using Shop.Net.Model.Catalog;
-    using Shop.Net.Model.Marketing;
     using Shop.Net.Resources;
     using Shop.Net.Web.Areas.Catalog.Models.Product;
     using Shop.Net.Web.Infrastructure.Mapping;
     using Shop.Net.Web.Models.Marketing;
+    using Shop.Net.Web.Models.Rating;
 
     public class ProductEditModel : SeoEditModel, IMapFrom<Product>
     {
@@ -72,7 +72,7 @@
 
         public CategorySimpleViewModel Category { get; set; }
 
-        public IEnumerable<Review> Reviews { get; set; }
+        public IEnumerable<ReviewViewModel> Reviews { get; set; }
 
         public IList<ImageViewModel> Images { get; set; }
     }
