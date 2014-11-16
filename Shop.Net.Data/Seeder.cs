@@ -526,8 +526,8 @@
                     {
                         Customer = user, 
                         OrderItems = orderItems, 
-                        Carrier = carriers[this.randomDataGenerator.GetInt(0, carriers.Count - 1)], 
-                        ShippingInformation = contactInfo[this.randomDataGenerator.GetInt(0, carriers.Count - 1)], 
+                        Carrier = carriers[this.randomDataGenerator.GetInt(0, carriers.Count - 1)],
+                        ShippingInformation = contactInfo[this.randomDataGenerator.GetInt(0, contactInfo.Count - 1)], 
                         CreatedOnUtc = this.randomDataGenerator.GeneraDateTime(), 
                         UpdatedOnUtc = DateTime.UtcNow, 
                         OrderStatus = (OrderStatus)this.randomDataGenerator.GetInt(0, 6), 

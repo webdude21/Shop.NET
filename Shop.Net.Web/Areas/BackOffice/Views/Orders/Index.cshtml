@@ -36,12 +36,10 @@
                         model.Id(p => p.Id);
                         model.Field(p => p.Id).Editable(false);
                         model.Field(p => p.Customer).Editable(false);
-                        model.Field(p => p.CreatedOnUtc).Editable(false);
-                        model.Field(p => p.UpdatedOnUtc).Editable(false);
                     })
-              .Update(update => update.Action("EditingCustom_Update", "Grid"))
-              .Destroy(delete => delete.Action("Delete", "Users", new { area = "Administration" }))
-              .Read(read => read.Action("GetOrders", "Orders")))
+              .Update(update => update.Action("Update", "Orders"))
+                              .Destroy(delete => delete.Action("Delete", "Orders"))
+              .Read(read => read.Action("Get", "Orders")))
     )
 </div>
 
@@ -61,7 +59,7 @@
               })
           .DataSource(dataSource => dataSource
                                         .Ajax()
-                                        .Read(read => read.Action("GetOrderDetails", "Orders", new { orderId = "#=Id#" })))
+                                        .Read(read => read.Action("GetDetails", "Orders", new { orderId = "#=Id#" })))
           .Resizable(resize => resize.Columns(true))
           .Filterable(ftb => ftb.Mode(GridFilterMode.Menu))
           .Sortable(sortable => sortable.AllowUnsort(true).SortMode(GridSortMode.SingleColumn))
@@ -69,11 +67,6 @@
           .ToClientTemplate())
 </script>
 <script>
-    $("#grid").kendoGrid({
-  edit: function(e) {
-     e.container.find("input:first").hide();
-  }
-});
     function error_handler(e) {
         if (e.errors) {
             var message = "Errors:\n";
