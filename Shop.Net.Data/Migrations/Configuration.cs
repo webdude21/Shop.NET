@@ -28,7 +28,7 @@ namespace Shop.Net.Data.Migrations
             seeder.SeedCarrier();
             seeder.SeedCategories(15);
             seeder.SeedProducts(200);
-            seeder.SeedOrders(200);
+            seeder.SeedOrders(30);
             seeder.SeedReviews(15); // reviews per product
             context.Configuration.AutoDetectChangesEnabled = true;
         }

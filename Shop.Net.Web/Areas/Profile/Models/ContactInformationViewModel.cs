@@ -9,6 +9,7 @@
     {
         private const int DbStringMaxLength = 400;
 
+        [ScaffoldColumn(false)]
         public int Id { get; set; }
 
         [Required]

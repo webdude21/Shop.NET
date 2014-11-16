@@ -21,9 +21,9 @@
 
         private readonly CountryLoader countryLoader;
 
-        private readonly IRandomDataGenerator randomDataGenerator;
-
         private readonly List<ApplicationUser> customers;
+
+        private readonly IRandomDataGenerator randomDataGenerator;
 
         public Seeder(ShopDbContext context, CountryLoader countryLoader, IRandomDataGenerator randomDataGenerator)
         {
@@ -61,18 +61,18 @@
 
             foreach (var product in products)
             {
-                for (int i = 0; i < reviewPerProduct; i++)
+                for (var i = 0; i < reviewPerProduct; i++)
                 {
                     this.context.Reviews.Add(
-                            new Review
+                        new Review
                             {
-                                Author = this.customers[this.randomDataGenerator.GetInt(0, this.customers.Count - 1)],
-                                Content = this.randomDataGenerator.GetString(150, 300),
-                                Product = product,
-                                CustomerServiceRating = (byte)this.randomDataGenerator.GetInt(0, 5),
-                                PriceRating = (byte)this.randomDataGenerator.GetInt(0, 5),
-                                QualityRating = (byte)this.randomDataGenerator.GetInt(0, 5),
-                                ShipingRating = (byte)this.randomDataGenerator.GetInt(0, 5),
+                                Author = this.customers[this.randomDataGenerator.GetInt(0, this.customers.Count - 1)], 
+                                Content = this.randomDataGenerator.GetString(150, 300), 
+                                Product = product, 
+                                CustomerServiceRating = (byte)this.randomDataGenerator.GetInt(0, 5), 
+                                PriceRating = (byte)this.randomDataGenerator.GetInt(0, 5), 
+                                QualityRating = (byte)this.randomDataGenerator.GetInt(0, 5), 
+                                ShipingRating = (byte)this.randomDataGenerator.GetInt(0, 5), 
                             });
                 }
             }
@@ -100,7 +100,7 @@
             this.context.SaveChanges();
         }
 
-        public void SeedOrders(int count)
+        public void SeedOrders(int ordersCount, int ordersItem = 15)
         {
             if (this.context.Orders.Any())
             {
@@ -112,24 +112,33 @@
             var carriers = this.context.Carriers.ToList();
             var products = this.context.Products.ToList();
 
-            var items = products.Select(product => new OrderItem { OrderedProduct = product, Quantity = this.randomDataGenerator.GetInt(1, 5) }).ToList();
-
-
             foreach (var user in users)
             {
-                const int OrderItemsPerOrder = 5;
-
-                for (var i = 3; i < count; i++)
+                for (var order = 0; order < ordersCount; order++)
                 {
-                    if (i % OrderItemsPerOrder == 0)
+                    var orderItems = new List<OrderItem>();
+
+                    for (var j = 0; j < ordersItem; j++)
                     {
-                        this.SeedOrder(user, items.GetRange(i - OrderItemsPerOrder, OrderItemsPerOrder), carriers, contactInfo);
+                        orderItems.Add(this.context.OrderItems.Add(this.GetOrderItem(products)));
                     }
+
+                    this.SeedOrder(user, orderItems, carriers, contactInfo);
                 }
 
+                this.context.SaveChanges();
             }
 
             this.context.SaveChanges();
+        }
+
+        private OrderItem GetOrderItem(List<Product> products)
+        {
+            return new OrderItem
+                       {
+                           OrderedProduct = products[this.randomDataGenerator.GetInt(0, products.Count - 1)], 
+                           Quantity = this.randomDataGenerator.GetInt(2, 5)
+                       };
         }
 
         public void SeedRolesAndUsers(int count = 10)
@@ -142,11 +151,17 @@
             CreateRoleIfItDoesntExist(roleManager, GlobalConstants.CustomerRole);
 
             CreateUserWithRole(userManager, GlobalConstants.DefaultAdminUser, GlobalConstants.AdministratorRole);
-            CreateUserWithRole(userManager, "employee" + GlobalConstants.EmailDomainForShop, GlobalConstants.EmployeeRole);
+            CreateUserWithRole(
+                userManager, 
+                "employee" + GlobalConstants.EmailDomainForShop, 
+                GlobalConstants.EmployeeRole);
 
             for (var i = 0; i < count; i++)
             {
-                var newCustomer = CreateUserWithRole(userManager, this.randomDataGenerator.GetString(4, 10) + GlobalConstants.EmailDomainForShop, GlobalConstants.CustomerRole);
+                var newCustomer = CreateUserWithRole(
+                    userManager, 
+                    this.randomDataGenerator.GetUrlSafeString(4, 10) + GlobalConstants.EmailDomainForShop, 
+                    GlobalConstants.CustomerRole);
 
                 this.customers.Add(newCustomer);
             }
@@ -154,7 +169,10 @@
             this.context.SaveChanges();
         }
 
-        private static ApplicationUser CreateUserWithRole(UserManager<ApplicationUser> userManager, string username, string role)
+        private static ApplicationUser CreateUserWithRole(
+            UserManager<ApplicationUser> userManager, 
+            string username, 
+            string role)
         {
             var user = new ApplicationUser { UserName = username };
 
@@ -173,31 +191,32 @@
 
         public void SeedContactInformaton(int count)
         {
-            var user = this.context.Users.FirstOrDefault();
-
-            if (user == null || user.Adresses.Any())
-            {
-                return;
-            }
+            var users = this.context.Users.ToList();
 
             var countries = this.context.Countries.ToList();
 
-            for (var i = 0; i < count; i++)
+            foreach (var user in users)
             {
-                context.ContactInformations.Add(new ContactInformation
-                        {
-                            Customer = user,
-                            CustomerId = user.Id,
-                            ContactName = this.randomDataGenerator.GetString(4, 40),
-                            ContactPerson = this.randomDataGenerator.GetString(10, 40),
-                            Address1 = this.randomDataGenerator.GetString(10, 40),
-                            City = this.randomDataGenerator.GetString(10, 40),
-                            PhoneNumber = this.randomDataGenerator.GetString(10, 40),
-                            StateProvince = this.randomDataGenerator.GetString(10, 40),
-                            ZipCode = this.randomDataGenerator.GetString(3, 16),
-                            Country = countries[this.randomDataGenerator.GetInt(0, countries.Count - 1)].Name,
-                            Company = this.randomDataGenerator.GetString(10, 40),
-                        });
+                for (var i = 0; i < count; i++)
+                {
+                    this.context.ContactInformations.Add(
+                        new ContactInformation
+                            {
+                                Customer = user, 
+                                CustomerId = user.Id, 
+                                ContactName = this.randomDataGenerator.GetString(4, 40), 
+                                ContactPerson = this.randomDataGenerator.GetString(10, 40), 
+                                Address1 = this.randomDataGenerator.GetString(10, 40), 
+                                City = this.randomDataGenerator.GetString(10, 40), 
+                                PhoneNumber = this.randomDataGenerator.GetString(10, 40), 
+                                StateProvince = this.randomDataGenerator.GetString(10, 40), 
+                                ZipCode = this.randomDataGenerator.GetString(3, 16), 
+                                Country =
+                                    countries[this.randomDataGenerator.GetInt(0, countries.Count - 1)]
+                                    .Name, 
+                                Company = this.randomDataGenerator.GetString(10, 40), 
+                            });
+                }
             }
 
             this.context.SaveChanges();
@@ -207,12 +226,13 @@
         {
             for (var i = 0; i < count; i++)
             {
-                this.context.Categories.Add(new Category
+                this.context.Categories.Add(
+                    new Category
                         {
-                            Name = this.randomDataGenerator.GetString(15, 40),
-                            MetaTitle = this.randomDataGenerator.GetString(14, 40),
-                            FriendlyUrl = this.randomDataGenerator.GetUrlSafeString(15, 35),
-                            MetaDescription = this.randomDataGenerator.GetString(50, 200),
+                            Name = this.randomDataGenerator.GetString(15, 40), 
+                            MetaTitle = this.randomDataGenerator.GetString(14, 40), 
+                            FriendlyUrl = this.randomDataGenerator.GetUrlSafeString(15, 35), 
+                            MetaDescription = this.randomDataGenerator.GetString(50, 200), 
                         });
             }
 
@@ -228,9 +248,9 @@
 
             var dslr = new Category
                            {
-                               Name = "DSLRs",
-                               MetaTitle = "Here you can find a great variety of Dslrs.",
-                               FriendlyUrl = "dslr",
+                               Name = "DSLRs", 
+                               MetaTitle = "Here you can find a great variety of Dslrs.", 
+                               FriendlyUrl = "dslr", 
                                MetaDescription =
                                    "A digital single-lens reflex camera (also called a digital SLR or DSLR) is a digital camera combining the optics and the mechanisms of a single-lens reflex camera with a digital imaging sensor, as opposed to photographic film. The reflex design scheme is the primary difference between a DSLR and other digital cameras. In the reflex design, light travels through the lens, then to a mirror that alternates to send the image to either the viewfinder or the image sensor. The alternative would be to have a viewfinder with its own lens, hence the term \"single lens\" for this design. By using only one lens, the viewfinder presents an image that will not perceptibly differ from what is captured by the camera's sensor."
                            };
@@ -241,18 +261,18 @@
             this.context.Products.Add(
                 new Product
                     {
-                        Name = "EOS 5D mk3",
-                        Manufacturer = "Canon",
-                        Category = dslr,
-                        Published = true,
-                        CreatedOnUtc = DateTime.UtcNow,
-                        UpdatedOnUtc = DateTime.UtcNow,
-                        FriendlyUrl = "canon-eos-5d-mk3",
-                        Description = Description,
-                        MetaDescription = Description,
-                        Sku = Guid.NewGuid().ToString(),
-                        ManufacturerPartNumber = Guid.NewGuid().ToString(),
-                        MetaTitle = "Canon EOS 5D mk3",
+                        Name = "EOS 5D mk3", 
+                        Manufacturer = "Canon", 
+                        Category = dslr, 
+                        Published = true, 
+                        CreatedOnUtc = DateTime.UtcNow, 
+                        UpdatedOnUtc = DateTime.UtcNow, 
+                        FriendlyUrl = "canon-eos-5d-mk3", 
+                        Description = Description, 
+                        MetaDescription = Description, 
+                        Sku = Guid.NewGuid().ToString(), 
+                        ManufacturerPartNumber = Guid.NewGuid().ToString(), 
+                        MetaTitle = "Canon EOS 5D mk3", 
                         Images =
                             new[]
                                 {
@@ -268,19 +288,19 @@
             this.context.Products.Add(
                 new Product
                     {
-                        Name = "EOS 7D mk2",
-                        Manufacturer = "Canon",
-                        Category = dslr,
-                        Price = 2000,
-                        Published = true,
-                        FriendlyUrl = "canon-eos-7d-mk2",
-                        CreatedOnUtc = DateTime.UtcNow,
-                        UpdatedOnUtc = DateTime.UtcNow,
-                        Description = Description,
-                        MetaDescription = Description,
-                        Sku = Guid.NewGuid().ToString(),
-                        ManufacturerPartNumber = Guid.NewGuid().ToString(),
-                        MetaTitle = "Canon EOS 5D mk3",
+                        Name = "EOS 7D mk2", 
+                        Manufacturer = "Canon", 
+                        Category = dslr, 
+                        Price = 2000, 
+                        Published = true, 
+                        FriendlyUrl = "canon-eos-7d-mk2", 
+                        CreatedOnUtc = DateTime.UtcNow, 
+                        UpdatedOnUtc = DateTime.UtcNow, 
+                        Description = Description, 
+                        MetaDescription = Description, 
+                        Sku = Guid.NewGuid().ToString(), 
+                        ManufacturerPartNumber = Guid.NewGuid().ToString(), 
+                        MetaTitle = "Canon EOS 5D mk3", 
                         Images =
                             new[]
                                 {
@@ -296,19 +316,19 @@
             this.context.Products.Add(
                 new Product
                     {
-                        Name = "D7000",
-                        Manufacturer = "Nikon",
-                        Category = dslr,
-                        Price = 1500,
-                        Published = true,
-                        FriendlyUrl = "nikon-d7000",
-                        CreatedOnUtc = DateTime.UtcNow,
-                        UpdatedOnUtc = DateTime.UtcNow,
-                        Description = Description,
-                        MetaDescription = Description,
-                        MetaTitle = "Nikon D7000",
-                        Sku = Guid.NewGuid().ToString(),
-                        ManufacturerPartNumber = Guid.NewGuid().ToString(),
+                        Name = "D7000", 
+                        Manufacturer = "Nikon", 
+                        Category = dslr, 
+                        Price = 1500, 
+                        Published = true, 
+                        FriendlyUrl = "nikon-d7000", 
+                        CreatedOnUtc = DateTime.UtcNow, 
+                        UpdatedOnUtc = DateTime.UtcNow, 
+                        Description = Description, 
+                        MetaDescription = Description, 
+                        MetaTitle = "Nikon D7000", 
+                        Sku = Guid.NewGuid().ToString(), 
+                        ManufacturerPartNumber = Guid.NewGuid().ToString(), 
                         Images =
                             new[]
                                 {
@@ -340,19 +360,19 @@
             this.context.Products.Add(
                 new Product
                     {
-                        Name = "D5100",
-                        Manufacturer = "Nikon",
-                        Category = dslr,
-                        Price = 700,
-                        Published = true,
-                        FriendlyUrl = "nikon-d5100",
-                        CreatedOnUtc = DateTime.UtcNow,
-                        UpdatedOnUtc = DateTime.UtcNow,
-                        Description = Description,
-                        Sku = Guid.NewGuid().ToString(),
-                        ManufacturerPartNumber = Guid.NewGuid().ToString(),
-                        MetaDescription = Description,
-                        MetaTitle = "Nikon D5100",
+                        Name = "D5100", 
+                        Manufacturer = "Nikon", 
+                        Category = dslr, 
+                        Price = 700, 
+                        Published = true, 
+                        FriendlyUrl = "nikon-d5100", 
+                        CreatedOnUtc = DateTime.UtcNow, 
+                        UpdatedOnUtc = DateTime.UtcNow, 
+                        Description = Description, 
+                        Sku = Guid.NewGuid().ToString(), 
+                        ManufacturerPartNumber = Guid.NewGuid().ToString(), 
+                        MetaDescription = Description, 
+                        MetaTitle = "Nikon D5100", 
                         Images =
                             new[]
                                 {
@@ -368,19 +388,19 @@
             this.context.Products.Add(
                 new Product
                     {
-                        Name = "K-5",
-                        Manufacturer = "Pentax",
-                        Category = dslr,
-                        Price = 1500,
-                        Published = true,
-                        FriendlyUrl = "pentax-k5",
-                        CreatedOnUtc = DateTime.UtcNow,
-                        UpdatedOnUtc = DateTime.UtcNow,
-                        Description = Description,
-                        MetaDescription = Description,
-                        Sku = Guid.NewGuid().ToString(),
-                        ManufacturerPartNumber = Guid.NewGuid().ToString(),
-                        MetaTitle = "Pentax K-5",
+                        Name = "K-5", 
+                        Manufacturer = "Pentax", 
+                        Category = dslr, 
+                        Price = 1500, 
+                        Published = true, 
+                        FriendlyUrl = "pentax-k5", 
+                        CreatedOnUtc = DateTime.UtcNow, 
+                        UpdatedOnUtc = DateTime.UtcNow, 
+                        Description = Description, 
+                        MetaDescription = Description, 
+                        Sku = Guid.NewGuid().ToString(), 
+                        ManufacturerPartNumber = Guid.NewGuid().ToString(), 
+                        MetaTitle = "Pentax K-5", 
                         Images =
                             new[]
                                 {
@@ -395,19 +415,19 @@
             this.context.Products.Add(
                 new Product
                     {
-                        Name = "K-3",
-                        Manufacturer = "Pentax",
-                        Category = dslr,
-                        Price = 1600,
-                        Published = true,
-                        FriendlyUrl = "pentax-k3",
-                        CreatedOnUtc = DateTime.UtcNow,
-                        UpdatedOnUtc = DateTime.UtcNow,
-                        Description = Description,
-                        MetaDescription = Description,
-                        Sku = Guid.NewGuid().ToString(),
-                        ManufacturerPartNumber = Guid.NewGuid().ToString(),
-                        MetaTitle = "Pentax K-3",
+                        Name = "K-3", 
+                        Manufacturer = "Pentax", 
+                        Category = dslr, 
+                        Price = 1600, 
+                        Published = true, 
+                        FriendlyUrl = "pentax-k3", 
+                        CreatedOnUtc = DateTime.UtcNow, 
+                        UpdatedOnUtc = DateTime.UtcNow, 
+                        Description = Description, 
+                        MetaDescription = Description, 
+                        Sku = Guid.NewGuid().ToString(), 
+                        ManufacturerPartNumber = Guid.NewGuid().ToString(), 
+                        MetaTitle = "Pentax K-3", 
                         Images =
                             new[]
                                 {
@@ -476,37 +496,41 @@
             this.context.Products.Add(
                 new Product
                     {
-                        Name = this.randomDataGenerator.GetString(4, 40),
-                        Manufacturer = this.randomDataGenerator.GetString(4, 40),
-                        Published = true,
-                        CreatedOnUtc = this.randomDataGenerator.GeneraDateTime(),
-                        UpdatedOnUtc = DateTime.UtcNow,
-                        Category = categories[this.randomDataGenerator.GetInt(0, categories.Count - 1)],
-                        FriendlyUrl = this.randomDataGenerator.GetUrlSafeString(20, 40),
-                        Description = this.randomDataGenerator.GetString(200, 350),
-                        MetaDescription = this.randomDataGenerator.GetString(200, 350),
-                        Sku = Guid.NewGuid().ToString(),
-                        ManufacturerPartNumber = Guid.NewGuid().ToString(),
-                        MetaTitle = this.randomDataGenerator.GetString(14, 40),
-                        Images = this.GetImages(),
-                        Quantity = this.randomDataGenerator.GetInt(50, 1500),
-                        Price = this.randomDataGenerator.GetInt(500, 5000),
-                        ProductCost = this.randomDataGenerator.GetInt(500, 5000),
+                        Name = this.randomDataGenerator.GetString(4, 40), 
+                        Manufacturer = this.randomDataGenerator.GetString(4, 40), 
+                        Published = true, 
+                        CreatedOnUtc = this.randomDataGenerator.GeneraDateTime(), 
+                        UpdatedOnUtc = DateTime.UtcNow, 
+                        Category = categories[this.randomDataGenerator.GetInt(0, categories.Count - 1)], 
+                        FriendlyUrl = this.randomDataGenerator.GetUrlSafeString(20, 40), 
+                        Description = this.randomDataGenerator.GetString(200, 350), 
+                        MetaDescription = this.randomDataGenerator.GetString(200, 350), 
+                        Sku = Guid.NewGuid().ToString(), 
+                        ManufacturerPartNumber = Guid.NewGuid().ToString(), 
+                        MetaTitle = this.randomDataGenerator.GetString(14, 40), 
+                        Images = this.GetImages(), 
+                        Quantity = this.randomDataGenerator.GetInt(50, 1500), 
+                        Price = this.randomDataGenerator.GetInt(500, 5000), 
+                        ProductCost = this.randomDataGenerator.GetInt(500, 5000), 
                     });
         }
 
-        private void SeedOrder(ApplicationUser user, ICollection<OrderItem> orderItems, IReadOnlyList<Carrier> carriers, List<ContactInformation> contactInfo)
+        private void SeedOrder(
+            ApplicationUser user, 
+            ICollection<OrderItem> orderItems, 
+            IReadOnlyList<Carrier> carriers, 
+            List<ContactInformation> contactInfo)
         {
             this.context.Orders.Add(
                 new Order
                     {
-                        Customer = user,
-                        OrderItems = orderItems,
-                        Carrier = carriers[this.randomDataGenerator.GetInt(0, carriers.Count - 1)],
-                        ShippingInformation = contactInfo[this.randomDataGenerator.GetInt(0, carriers.Count - 1)],
-                        CreatedOnUtc = this.randomDataGenerator.GeneraDateTime(),
-                        UpdatedOnUtc = DateTime.UtcNow,
-                        OrderStatus = (OrderStatus)this.randomDataGenerator.GetInt(0, 6),
+                        Customer = user, 
+                        OrderItems = orderItems, 
+                        Carrier = carriers[this.randomDataGenerator.GetInt(0, carriers.Count - 1)], 
+                        ShippingInformation = contactInfo[this.randomDataGenerator.GetInt(0, carriers.Count - 1)], 
+                        CreatedOnUtc = this.randomDataGenerator.GeneraDateTime(), 
+                        UpdatedOnUtc = DateTime.UtcNow, 
+                        OrderStatus = (OrderStatus)this.randomDataGenerator.GetInt(0, 6), 
                     });
         }
     }

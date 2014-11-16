@@ -15,49 +15,65 @@
               {
                   columns.Bound(c => c.Id).Width(50);
                   columns.Bound(c => c.OrderStatus).Width(250);
-                  columns.Bound(c => c.TotalAmmout).Width(100).Format("{0:C2}").Sortable(false).Filterable(false).Groupable(false);
-                  columns.Bound(c => c.TotalCost).Width(80).Format("{0:C2}").Sortable(false).Filterable(false).Groupable(false);
-                  columns.Bound(c => c.TotalGrossProfit).Width(120).Format("{0:C2}").Sortable(false).Filterable(false).Groupable(false);
-                  columns.Bound(c => c.TotalQuantity).Width(100).Sortable(false).Filterable(false).Groupable(false);
                   columns.Bound(c => c.Customer).Width(250);
                   columns.Bound(c => c.CreatedOnUtc).Format(GlobalConstants.DateTimeFormat);
+                  columns.Bound(c => c.UpdatedOnUtc).Format(GlobalConstants.DateTimeFormat);
+                  columns.Command(command => { command.Edit(); command.Destroy(); }).Width(150);
               })
           .Scrollable()
           .Groupable()
+                  .Editable(editable => editable.Mode(GridEditMode.PopUp))
           .Filterable(ftb => ftb.Mode(GridFilterMode.Menu))
           .HtmlAttributes(new { style = "height: 500px;" })
           .ClientDetailTemplateId("order-detail-template")
           .Resizable(resize => resize.Columns(true))
           .Sortable(sortable => sortable.AllowUnsort(true).SortMode(GridSortMode.SingleColumn))
           .Pageable(pageable => pageable.Refresh(true).PageSizes(true).ButtonCount(10))
-          .DataSource(dataSource => dataSource.Ajax().Read(read => read.Action("GetOrders", "Orders")))
-          )
+          .DataSource(dataSource => dataSource
+              .Ajax()
+                     .Model(model =>
+                    {
+                        model.Id(p => p.Id);
+                        model.Field(p => p.Id).Editable(false);
+                        model.Field(p => p.Customer).Editable(false);
+                        model.Field(p => p.CreatedOnUtc).Editable(false);
+                        model.Field(p => p.UpdatedOnUtc).Editable(false);
+                    })
+              .Update(update => update.Action("EditingCustom_Update", "Grid"))
+              .Destroy(delete => delete.Action("Delete", "Users", new { area = "Administration" }))
+              .Read(read => read.Action("GetOrders", "Orders")))
+    )
 </div>
 
 <script id="order-detail-template" type="text/kendo-tmpl">
     @(Html.Kendo().Grid<OrderItemEmployeeViewModel>()
-        .Name("orders-grid_#=Id#")
-        .Columns(columns =>
-        {
-            columns.Bound(o => o.OrderedProduct.Id).Width(50);
-            columns.Bound(o => o.OrderedProduct.Name).Width(130);
-            columns.Bound(o => o.OrderedProduct.Manufacturer).Width(130);
-            columns.Bound(o => o.OrderedProduct.Category.Name).Width(130).Title("Category");
-            columns.Bound(o => o.OrderedProduct.Price).Width(90).Format("{0:C2}");
-            columns.Bound(o => o.OrderedProduct.ProductCost).Width(90).Format("{0:C2}").Title("Cost");
-            columns.Bound(o => o.Quantity).Width(110);
-            columns.Bound(o => o.OrderedProduct.Sku);
-        })
-        .DataSource(dataSource => dataSource
-        .Ajax()
-        .Read(read => read.Action("GetOrderDetails", "Orders", new { orderId = "#=Id#" })))
-        .Resizable(resize => resize.Columns(true))
-        .Filterable(ftb => ftb.Mode(GridFilterMode.Menu))
-        .Sortable(sortable => sortable.AllowUnsort(true).SortMode(GridSortMode.SingleColumn))
-        .Pageable(pageable => pageable.Refresh(true).PageSizes(true).ButtonCount(10))
-        .ToClientTemplate())
+          .Name("orders-grid_#=Id#")
+          .Columns(columns =>
+              {
+                  columns.Bound(o => o.OrderedProduct.Id).Width(50);
+                  columns.Bound(o => o.OrderedProduct.Name).Width(130);
+                  columns.Bound(o => o.OrderedProduct.Manufacturer).Width(130);
+                  columns.Bound(o => o.OrderedProduct.Category.Name).Width(130).Title("Category");
+                  columns.Bound(o => o.OrderedProduct.Price).Width(90).Format("{0:C2}");
+                  columns.Bound(o => o.OrderedProduct.ProductCost).Width(90).Format("{0:C2}").Title("Cost");
+                  columns.Bound(o => o.Quantity).Width(110);
+                  columns.Bound(o => o.OrderedProduct.Sku);
+              })
+          .DataSource(dataSource => dataSource
+                                        .Ajax()
+                                        .Read(read => read.Action("GetOrderDetails", "Orders", new { orderId = "#=Id#" })))
+          .Resizable(resize => resize.Columns(true))
+          .Filterable(ftb => ftb.Mode(GridFilterMode.Menu))
+          .Sortable(sortable => sortable.AllowUnsort(true).SortMode(GridSortMode.SingleColumn))
+          .Pageable(pageable => pageable.Refresh(true).PageSizes(true).ButtonCount(10))
+          .ToClientTemplate())
 </script>
 <script>
+    $("#grid").kendoGrid({
+  edit: function(e) {
+     e.container.find("input:first").hide();
+  }
+});
     function error_handler(e) {
         if (e.errors) {
             var message = "Errors:\n";

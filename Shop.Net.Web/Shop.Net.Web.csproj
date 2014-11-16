@@ -362,7 +362,7 @@
     <Content Include="Areas\Administration\Views\Users\Index.cshtml" />
     <Content Include="Areas\Administration\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Catalog\Views\Category\_ProductsListPartial.cshtml" />
-    <Content Include="Areas\BackOffice\Views\Shared\EditorTemplates\OrderStatus.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Shared\EditorTemplates\Empty.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Kendo\Kendo.Mvc.dll" />
     <Content Include="Content\Bootstrap\editor.png" />
@@ -494,6 +494,10 @@
     <Content Include="Views\Reviews\_ReviewsPartial.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\ReviewViewModel.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Enum.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\OrderStatus.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\ReadOnly.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Date.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\DateTime.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
