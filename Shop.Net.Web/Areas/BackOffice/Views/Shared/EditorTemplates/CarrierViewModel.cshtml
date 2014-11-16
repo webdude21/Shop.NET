@@ -1,0 +1,8 @@
+﻿@using Kendo.Mvc.UI
+@model Shop.Net.Web.Models.CarrierViewModel
+@(Html.Kendo().DropDownList()
+                      .Name("Carrier")
+                      .DataTextField("Information")
+                      .DataValueField("Id")
+                      .DataSource(source => source.Read(read => read.Action("ReadCarrierInformation", "Cart", new { area = string.Empty })))
+)

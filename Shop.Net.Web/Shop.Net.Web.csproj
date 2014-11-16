@@ -498,6 +498,7 @@
     <Content Include="Views\Shared\EditorTemplates\ReadOnly.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Date.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\DateTime.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Shared\EditorTemplates\CarrierViewModel.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

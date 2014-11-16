@@ -15,7 +15,8 @@
               {
                   columns.Bound(c => c.Id).Width(50);
                   columns.Bound(c => c.OrderStatus).Width(250);
-                  columns.Bound(c => c.Customer).Width(250);
+                  columns.Bound(c => c.Customer).Width(170);
+                  columns.Bound(c => c.Carrier).Width(250).ClientTemplate("#=Carrier.Name#");
                   columns.Bound(c => c.CreatedOnUtc).Format(GlobalConstants.DateTimeFormat);
                   columns.Bound(c => c.UpdatedOnUtc).Format(GlobalConstants.DateTimeFormat);
                   columns.Command(command => { command.Edit(); command.Destroy(); }).Width(150);

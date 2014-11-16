@@ -11,7 +11,6 @@
 
     using Shop.Net.Data.Contracts;
     using Shop.Net.Web.Areas.BackOffice.Models;
-    using Shop.Net.Web.Areas.Profile.Models;
     using Shop.Net.Web.Controllers;
     using Shop.Net.Web.Infrastructure.Contracts;
 
@@ -22,23 +21,21 @@
         {
         }
 
-        public JsonResult Get([DataSourceRequest]DataSourceRequest request)
+        public JsonResult Get([DataSourceRequest] DataSourceRequest request)
         {
-            var orders =
-                this.ShopData.Orders.All()
-                    .Project()
-                    .To<OrderEmployeeViewModel>();
+            var orders = this.ShopData.Orders.All().Project().To<OrderEmployeeViewModel>();
 
             return this.Json(orders.ToDataSourceResult(request), JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult GetDetails(int orderId, [DataSourceRequest] DataSourceRequest request)
         {
-            var orderItems = this.ShopData.OrderItems.All()
-                  .Where(o => o.OrderId == orderId)
-                  .Include("Products")
-                  .Project()
-                  .To<OrderItemEmployeeViewModel>();
+            var orderItems =
+                this.ShopData.OrderItems.All()
+                    .Where(o => o.OrderId == orderId)
+                    .Include("Products")
+                    .Project()
+                    .To<OrderItemEmployeeViewModel>();
 
             return this.Json(orderItems.ToDataSourceResult(request), JsonRequestBehavior.AllowGet);
         }
@@ -60,18 +57,13 @@
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult Delete([DataSourceRequest] DataSourceRequest request, OrderEmployeeViewModel modelOrder)
         {
-            var order = this.ShopData.Orders.Find(modelOrder.Id);
+            var order = this.ShopData.Orders.All().FirstOrDefault(x => x.Id == modelOrder.Id);
 
-                if (order != null)
-                {
-                    foreach (var item in order.OrderItems.ToList())
-                    {
-                        this.ShopData.OrderItems.Delete(item);
-                    }
-
-                    this.ShopData.Orders.Delete(order);
-                    this.ShopData.SaveChanges();
-                }
+            if (order != null)
+            {
+                this.ShopData.Orders.Delete(order);
+                this.ShopData.SaveChanges();
+            }
 
             return this.Json(new[] { modelOrder }.ToDataSourceResult(request, this.ModelState));
         }

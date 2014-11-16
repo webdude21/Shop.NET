@@ -21,9 +21,10 @@
         [ScaffoldColumn(false)]
         public string CustomerId { get; set; }
 
-        public virtual CarrierViewModel Carrier { get; set; }
+        [UIHint("CarrierViewModel")]
+        public CarrierViewModel Carrier { get; set; }
 
-        public virtual ICollection<OrderItemEmployeeViewModel> OrderItems { get; set; }
+        public ICollection<OrderItemEmployeeViewModel> OrderItems { get; set; }
 
         public OrderStatus OrderStatus { get; set; }
 
