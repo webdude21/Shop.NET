@@ -10,6 +10,8 @@
 
         public virtual ApplicationUser Author { get; set; }
 
+        public string AuthorId { get; set; }
+
         [Required]
         [MaxLength(2000)]
         [MinLength(50)]

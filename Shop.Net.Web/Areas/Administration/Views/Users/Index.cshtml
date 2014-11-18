@@ -18,7 +18,7 @@
             columns.Bound(p => p.Administrator).Width(150);
             columns.Bound(p => p.Employee).Width(150);
             columns.Bound(p => p.Customer).Width(150);
-            columns.Command(command => { command.Edit(); command.Destroy(); }).Width(150);
+            columns.Command(command => command.Edit()).Width(100);
         })
         .Editable(editable => editable.Mode(GridEditMode.InLine))
         .Pageable(pageable => pageable.Refresh(true).PageSizes(true).ButtonCount(5))

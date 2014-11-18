@@ -283,6 +283,7 @@
     <Compile Include="Models\Marketing\SeoViewModel.cs" />
     <Compile Include="Models\Cart\CartItemViewModel.cs" />
     <Compile Include="Models\PagerViewModel.cs" />
+    <Compile Include="Models\Rating\ReviewOutputModel.cs" />
     <Compile Include="Models\Rating\ReviewViewModel.cs" />
     <Compile Include="Models\ViewModelWithPager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -499,6 +500,11 @@
     <Content Include="Views\Shared\EditorTemplates\Date.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\DateTime.cshtml" />
     <Content Include="Areas\BackOffice\Views\Shared\EditorTemplates\CarrierViewModel.cshtml" />
+    <Content Include="Views\Reviews\_PostReviewPartial.cshtml" />
+    <Content Include="Views\Reviews\_ErrorPostingReview.cshtml" />
+    <Content Include="Views\Reviews\_SuccesfullReview.cshtml" />
+    <Content Include="Views\Reviews\_ErrorValidationSummary.cshtml" />
+    <Content Include="Views\Reviews\_AlreadyReviewdPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

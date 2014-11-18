@@ -13,7 +13,7 @@
 //        public void Index()
 //        {
 //            // Arrange
-//            var controller = new PagesController();
+//            var controller = new pagescontroller();
 
 //            // Act
 //            var result = controller.Index() as ViewResult;

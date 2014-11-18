@@ -3,6 +3,8 @@
         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Administration<b class="caret"></b></a>
         <ul class="dropdown-menu">
             <li>@Html.ActionLink("Manage user roles", "Index", "Users", new { area = "Administration" }, null)</li>
+            <li><a href="javascript:(function(){document.cookie='glimpsePolicy=;path=/;expires=Sat, 01 Jan 2050 12:00:00 GMT;';window.location.reload();})();">Disable Glimpse</a></li>
+            <li><a href="javascript:(function(){document.cookie='glimpsePolicy=On;path=/;expires=Sat, 01 Jan 2050 12:00:00 GMT;';window.location.reload();})();">Enable Glimpse</a></li>
         </ul>
     </li>
 </ul>

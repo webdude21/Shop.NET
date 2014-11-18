@@ -20,7 +20,7 @@
             <hr />
             <p class="info text-justify">@Model.Description</p>
             <div id="social-container" class="pull-right">
-                @Html.Partial("_SocialSharerPartial") 
+                @Html.Partial("_SocialSharerPartial")
             </div>
             <hr />
             @using (Ajax.BeginForm("Add", "Cart", new { area = string.Empty }, new AjaxOptions { HttpMethod = "POST", UpdateTargetId = "order-count", InsertionMode = InsertionMode.Replace, Confirm = "Are you sure you want to add this item to the shopping Cart" }, new { id = "buy-form" }))
@@ -51,31 +51,65 @@
         </div>
     </div>
 </div>
-<hr/>
+<hr />
+<div class="row" id="leave-review-wrapper"></div>
 <div class="row" id="reviews-wrapper">
 </div>
-<button class="btn btn-success" id="review-button">Show reviews</button> 
+<button class="btn btn-success" id="review-button">Show reviews</button>
+<button class="btn btn-success" id="leave-review-button">Leave review</button>
 
-@section scripts{
+@section scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }
 
 <script>
     var currentReviewPage = 0;
     var url = '@Url.Action("GetReviews", "Reviews", new { area = string.Empty, productId = @Model.Id })';
+    var leaveReviewUrl = '@Url.Action("LeaveReview", "Reviews", new { area = string.Empty, productId = @Model.Id })';
+    var $leaveReviewContainer = $('#leave-review-wrapper');
+    var $leaverReviewButton = $('#leave-review-button');
     var $reviewContainer = $('#reviews-wrapper');
     var $reviewbutton = $("#review-button");
     var allReviewsAreDownloaded = false;
+    var readReviewsClicked = false;
 
     $(window).scroll(function () {
         if ($(window).scrollTop() == $(document).height() - $(window).height()) {
             if (!allReviewsAreDownloaded) {
-                appendMoreReviews();
+                if (readReviewsClicked) {
+                    appendMoreReviews();
+                }
             }
         }
     });
 
+    var reviewLoaded = function () {
+        $(".leave-rating").rating({
+            min: 0,
+            max: 5,
+            step: 1,
+            size: 'xs',
+            showClear: false,
+            showCaption: false,
+        });
+    }
+
+    var loadReviewForm = function () {
+        $leaverReviewButton.remove();
+        $.ajax(
+        {
+            url: leaveReviewUrl,
+            type: "GET",
+            success: function(data) {
+                var $data = $(data);
+                $reviewContainer.append($data);
+                reviewLoaded();
+            }
+        });
+    }
+
     var appendMoreReviews = function () {
+        readReviewsClicked = true;
         $.ajax(
         {
             url: url + "&page=" + currentReviewPage,
@@ -109,4 +143,5 @@
     }
 
     $reviewbutton.on("click", appendMoreReviews);
+    $leaverReviewButton.on("click", loadReviewForm);
 </script>
