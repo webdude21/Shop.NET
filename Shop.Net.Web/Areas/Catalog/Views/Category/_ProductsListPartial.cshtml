@@ -1,5 +1,5 @@
 ﻿@using Kendo.Mvc.UI
-@model Shop.Net.Web.Models.ViewModelWithPageSorter<List<Shop.Net.Web.Areas.Catalog.Models.Product.ProductThumbnailModel>>
+@model Shop.Net.Web.Models.ViewModelWithPager<List<Shop.Net.Web.Areas.Catalog.Models.Product.ProductThumbnailModel>>
 
 <div class="row">
     <div class="form-group">
@@ -58,7 +58,7 @@
 </div>
 
 @{
-    Model.Pager.TargetUrl =  Request.Url.AbsoluteUri + "?orderBy=" + Model.Pager.OrderBy + "&asc=" + Model.Pager.Asc;
+    Model.Pager.TargetUrl = Request.Url.AbsoluteUri + "?orderBy=";
 }
 
 @Html.Partial("_PagerPartial", Model.Pager)
