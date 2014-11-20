@@ -1,0 +1,1 @@
+?These libs are on trial version and are not legal to use unless purchased or also downloaded as trials (from http://www.telerik.com/kendo-ui).
