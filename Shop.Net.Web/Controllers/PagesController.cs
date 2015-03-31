@@ -12,7 +12,6 @@
     using Shop.Net.Resources;
     using Shop.Net.Web.Areas.Catalog.Models.Product;
 
-    [RequireHttps]
     public class PagesController : BaseController
     {
         public PagesController(IShopData shopData)
