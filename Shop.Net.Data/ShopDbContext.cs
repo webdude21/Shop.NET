@@ -16,7 +16,7 @@
     public class ShopDbContext : IdentityDbContext<ApplicationUser>, IDbContext
     {
         public ShopDbContext()
-            : base("ShopNetProductionConnection", false)
+            : base("DefaultConnection", false)
         {
             Database.SetInitializer(new MigrateDatabaseToLatestVersion<ShopDbContext, Configuration>());
         }
